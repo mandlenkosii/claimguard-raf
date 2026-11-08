@@ -6,10 +6,19 @@ import { AccessDeniedPage } from '@/pages/auth/AccessDeniedPage';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { PasswordRecoveryPage } from '@/pages/auth/PasswordRecoveryPage';
 import { RegisterPage } from '@/pages/auth/RegisterPage';
+import { ClaimWorkspaceLayout, RestrictedTab } from '@/pages/claims/workspace/ClaimWorkspaceLayout';
+import { OverviewTab } from '@/pages/claims/workspace/OverviewTab';
+import { TimelineTab } from '@/pages/claims/workspace/TimelineTab';
+import { ClientDetailPage } from '@/pages/lawyer/ClientDetailPage';
+import { ClientsPage } from '@/pages/lawyer/ClientsPage';
 import { AboutPage } from '@/pages/public/AboutPage';
 import { HowItWorksPage } from '@/pages/public/HowItWorksPage';
 import { LandingPage } from '@/pages/public/LandingPage';
 import { SecurityPage } from '@/pages/public/SecurityPage';
+import { ClaimsQueuePage } from '@/pages/raf/ClaimsQueuePage';
+import { ClaimantDashboardPage } from '@/pages/shared/ClaimantDashboardPage';
+import { ClaimsListPage } from '@/pages/shared/ClaimsListPage';
+import { NewClaimPage } from '@/pages/shared/NewClaimPage';
 import { ProfilePage } from '@/pages/shared/ProfilePage';
 
 function PublicRoutes() {
@@ -26,6 +35,24 @@ function area(allow: readonly RoleKey[], children: RouteObject[]): RouteObject {
 }
 
 const placeholder = (path: string): RouteObject => ({ path, element: null });
+
+// Documents, Readiness, Messages and Requests are filled in by Phases 5, 6 and 8.
+function workspace(path: string): RouteObject {
+  return {
+    path,
+    element: <ClaimWorkspaceLayout />,
+    children: [
+      { index: true, element: <OverviewTab /> },
+      { path: 'documents', element: null },
+      { path: 'readiness', element: null },
+      { path: 'risk', element: <RestrictedTab allowed="risk" /> },
+      { path: 'messages', element: null },
+      { path: 'requests', element: null },
+      { path: 'timeline', element: <TimelineTab /> },
+      { path: 'audit', element: <RestrictedTab allowed="audit" /> },
+    ],
+  };
+}
 
 export const routes: RouteObject[] = [
   {
@@ -51,11 +78,12 @@ export const routes: RouteObject[] = [
     children: [
       {
         element: <DashboardRoute />,
-        children: [area(['claimant'], [placeholder('/dashboard')])],
+        children: [area(['claimant'], [{ path: '/dashboard', element: <ClaimantDashboardPage /> }])],
       },
-      area(ROLE_ORDER, [placeholder('/claims'), placeholder('/notifications'), { path: '/profile', element: <ProfilePage /> }]),
-      area(['lawyer'], [placeholder('/lawyer/dashboard'), placeholder('/lawyer/claims'), placeholder('/lawyer/clients'), placeholder('/lawyer/tasks'), { path: '/lawyer/profile', element: <ProfilePage /> }]),
-      area(['raf_officer'], [placeholder('/raf/dashboard'), placeholder('/raf/claims'), placeholder('/raf/tasks'), placeholder('/raf/reports')]),
+      area(['claimant', 'lawyer', 'raf_officer'], [{ path: '/claims/new', element: <NewClaimPage /> }]),
+      area(ROLE_ORDER, [{ path: '/claims', element: <ClaimsListPage /> }, workspace('/claims/:id'), placeholder('/notifications'), { path: '/profile', element: <ProfilePage /> }]),
+      area(['lawyer'], [placeholder('/lawyer/dashboard'), { path: '/lawyer/claims', element: <ClaimsListPage /> }, { path: '/lawyer/clients', element: <ClientsPage /> }, { path: '/lawyer/clients/:id', element: <ClientDetailPage /> }, placeholder('/lawyer/tasks'), { path: '/lawyer/profile', element: <ProfilePage /> }]),
+      area(['raf_officer'], [placeholder('/raf/dashboard'), { path: '/raf/claims', element: <ClaimsQueuePage /> }, workspace('/raf/claims/:id'), placeholder('/raf/tasks'), placeholder('/raf/reports')]),
       area(['investigator'], [placeholder('/raf/risk')]),
       area(['manager'], [placeholder('/raf/management')]),
       area(['admin'], [placeholder('/admin/users'), placeholder('/admin/roles'), placeholder('/admin/organisations'), placeholder('/admin/settings'), placeholder('/admin/audit')]),
@@ -63,3 +91,4 @@ export const routes: RouteObject[] = [
     ],
   },
 ];
+

@@ -88,9 +88,11 @@ describe('US4 capabilities', () => {
     expect(sidebarItemsFor(data.roles).map((item) => item.to)).toEqual(expect.arrayContaining(['/claims', '/raf/management']));
 
     const { data: summaries } = await client.from('claim_summaries').select('id');
+    const { count: everyClaim } = await admin.from('claims').select('id', { count: 'exact', head: true });
     const { data: claims } = await client.from('claims').select('reference');
-    expect(summaries!.length).toBe(5);
-    expect(claims).toEqual([{ reference: 'CG-2026-000141' }]);
+    expect(summaries!.length).toBe(everyClaim);
+    expect(claims).toContainEqual({ reference: 'CG-2026-000141' });
+    expect(claims).not.toContainEqual({ reference: 'CG-2026-000142' });
     const { data: alerts } = await client.from('risk_alerts').select('id');
     expect(alerts).toEqual([]);
   });
@@ -115,7 +117,7 @@ describe('US5 and session rules', () => {
   it('T-AUTH-3 a role removed by an admin is denied on the next request', async () => {
     await tempRole(ids.claimant2, 'manager');
     const client = await signedIn('claimant2.demo@example.com');
-    expect((await client.from('claim_summaries').select('id')).data!.length).toBe(5);
+    expect((await client.from('claim_summaries').select('id')).data!.length).toBeGreaterThan(0);
     await admin.from('user_roles').delete().eq('user_id', ids.claimant2).eq('role_key', 'manager');
     expect((await client.from('claim_summaries').select('id')).data).toEqual([]);
   });

@@ -9,7 +9,7 @@
 | App name | ClaimGuard RAF (Claim Intelligence & Assurance Platform) |
 | Built from PRD version | v1.1 (4 November 2026): PRD v1.0 plus the Section 18 answers, recorded in the PRD Change log. Must match the version in docs/PRD.md |
 | Screen designs | Stitch project: https://stitch.withgoogle.com/projects/3126694362497483814 (screens S01–S46 from the ClaimGuard RAF Stitch prompt pack). Exported screens are saved in `docs/designs/` with the file names in Section 7.3 |
-| Plan version | v1.6 |
+| Plan version | v1.7 |
 | Repository | https://github.com/mandlenkosii/claimguard-raf |
 | Status | Ready to build. All 42 Section 18 rows are Answered |
 | Last updated | 08 Nov 2026 |
@@ -1950,30 +1950,30 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | T-E2E-7 | E2E | tests/e2e/access.spec.ts | Show a restricted view for a role without permission (PRD 12.3) |
 | T-C-10, T-C-18, T-C-22, T-C-24, T-C-33 | Component | tests/component/domain/*.test.tsx | StatusChip, Stepper, Timeline, ClaimHeader, RestrictedNotice render every variant |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above are written, run, and fail for the expected reason.
 
 **Step 2: Backend (Green)**
 
-- [ ] `supabase/functions/_shared/rules/workflow.ts` (matrix from 8.3 as answered in #5), `reference.ts`, `requiredFields.ts`.
-- [ ] Migration `…_ops_claims_workflow.sql`: `create_claim`, `transition_claim_status`, `allowed_transitions`, `assign_claim_staff`, `add_client`.
-- [ ] Notifications for status changes and assignments are written by the `notify_*` triggers (shown in the UI in Phase 9).
+- [x] `supabase/functions/_shared/rules/workflow.ts` (matrix from 8.3 as answered in #5), `reference.ts`, `requiredFields.ts`.
+- [x] Migration `…_ops_claims_workflow.sql`: `create_claim`, `transition_claim_status`, `allowed_transitions`, `assign_claim_staff`, `add_client`.
+- [x] Notifications for status changes and assignments are written by the `notify_*` triggers (shown in the UI in Phase 9).
 
 **Step 3: Frontend (Green)**
 
-- [ ] `features/claims` and `features/workflow` API and hooks.
-- [ ] S10 Claims list (no filters yet): Normal, Empty, Loading, Error, Offline.
-- [ ] S11 New claim wizard, steps 1–6: Normal per step, Draft saved, Validation errors, Loading, Error, Offline, Success.
-- [ ] ClaimWorkspaceLayout with ClaimHeader and tab bar; S14 Overview: Normal, Loading, Error, Offline, Restricted.
-- [ ] S23 Timeline: Normal, Empty, Loading, Error, Offline, blocked-action events.
-- [ ] S25 Restricted view; M2 Change status modal with all its states.
-- [ ] S27 Clients and S28 Client detail; S31 Claims queue (no filters yet).
-- [ ] S09 shows the "Your claim" card linking to the workspace (full dashboard in Phase 9).
+- [x] `features/claims` and `features/workflow` API and hooks.
+- [x] S10 Claims list (no filters yet): Normal, Empty, Loading, Error, Offline.
+- [x] S11 New claim wizard, steps 1–6: Normal per step, Draft saved, Validation errors, Loading, Error, Offline, Success.
+- [x] ClaimWorkspaceLayout with ClaimHeader and tab bar; S14 Overview: Normal, Loading, Error, Offline, Restricted.
+- [x] S23 Timeline: Normal, Empty, Loading, Error, Offline, blocked-action events.
+- [x] S25 Restricted view; M2 Change status modal with all its states.
+- [x] S27 Clients and S28 Client detail; S31 Claims queue (no filters yet).
+- [x] S09 shows the "Your claim" card linking to the workspace (full dashboard in Phase 9).
 
 **Step 4: Refactor and full check**
 
-- [ ] Code cleaned up; no duplicated logic; names use PRD key terms.
+- [x] Code cleaned up; no duplicated logic; names use PRD key terms.
 - [ ] Full check passes (lint, type check, every automated test from every phase so far).
-- [ ] `npm run test:e2e` passes.
+- [x] `npm run test:e2e` passes.
 
 **Step 5: Manual checks (human)**
 
@@ -1984,9 +1984,9 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 
 **Definition of Done**
 
-- [ ] Every test in Step 1 passes.
+- [x] Every test in Step 1 passes.
 - [ ] All earlier tests still pass.
-- [ ] Every screen in this phase shows all its required states.
+- [x] Every screen in this phase shows all its required states.
 - [ ] Manual checks are ticked by the human.
 - [ ] Progress log updated (Section 17).
 
@@ -3140,6 +3140,7 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | 1 | 08 Nov 2026 | Complete; manual checks confirmed by the human | 128 / 128 (124 unit + component, 1 pgTAP database, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 1: Foundation | Versions: Node 24.18.0, npm 11.16.0, Deno 2.9.8, gitleaks 8.30.1, React 19.3.1, React Router 8.5.1, TanStack Query 5.107.1, Lucide React 1.70.0, supabase-js 2.119.0, Vite 8.3.6, @vitejs/plugin-react 6.2.1, TypeScript 6.0.3 (7.0 not used: typescript-eslint supports < 6.1), Tailwind CSS 4.3.5, Vitest 5.1.0 (+ coverage-v8), React Testing Library 16.3.3 (+ jest-dom 7.0.1, user-event 14.6.8), jsdom 31.0.0, Playwright 1.65.0, @axe-core/playwright 4.14.0, ESLint 10.14.0, typescript-eslint 8.72.1, Supabase CLI 3.0.0, pg 8.23.1. Backend: hosted Supabase project (Section 18 #46, #48); pgTAP extension enabled there. T-SETUP-6 passed at the Red step because `.gitignore` and `.env.example` were created before the test |
 | 2 | 08 Nov 2026 | Complete; manual checks confirmed by the human | 374 / 374 (130 unit + component, 241 pgTAP assertions in 35 files, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 2: Data and security | Ten migrations and the seed applied to the hosted project with `npm run db:reset`. Summary views stay security invoker, and read checked definer functions, so managers and administrators have no base-table access (SEC5, SEC6). Beyond the listed tests, T-DB-8 also proves users cannot set server-owned fields (processing state, confirmation, timestamps). Checked through the real API: all demo roles sign in and see only their permitted claims |
 | 3 | 08 Nov 2026 | Committed with outstanding items: T-INT-5 and the Step 5 manual checks | 438 / 442 (176 unit + component, 241 pgTAP assertions, 12 of 16 integration, 9 end-to-end) | Phase 3: Authentication and profiles | OUTSTANDING: the 4 T-INT-5 tests fail because `demo-sign-in` is not deployed (needs `SUPABASE_ACCESS_TOKEN`, Section 18 #53), so `npm run check` exits with those 4 failures only and the S05 demo buttons show TXT-2. They are not skipped. The function code is written and passes `deno check`. To finish: add the token, run `npm run functions:deploy`, re-run `npm run check`. End-to-end: 9 / 9 |
+| 4 | 08 Nov 2026 | Committed with outstanding items: T-INT-5 (from Phase 3) and the Step 5 manual checks | 570 / 574 (251 unit + component, 267 pgTAP assertions, 37 of 41 integration, 15 end-to-end) | Phase 4: Claims and workflow | Every Phase 4 test passes. The only failures are the 4 outstanding T-INT-5 tests from Phase 3 (Section 18 #53). Integration tests add fictional claims to the hosted project; `npm run db:reset` clears them |
 
 ---
 
@@ -3202,6 +3203,8 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | 51 | Should Supabase "Confirm email" stay on? The built-in mailer only sends to the project's team addresses, so with it on, other people cannot finish registering | OP1, S06, Phase 3 Step 5 | Turn it off: new users can sign in straight after registering. S06 still handles the "check your email" state (TXT-9) if it is ever turned back on | Answered |
 | 52 | "Request access" on S08 (T-S8-1) has no operation in Section 10 | S08, T-S8-1 | Show the button disabled; no new feature is added | Answered |
 | 53 | Deploying `demo-sign-in` needs `SUPABASE_ACCESS_TOKEN`, which the human will add later | OP8, T-INT-5, S05 | Deferred by the human. Until then the six demo buttons on S05 show TXT-2, the four T-INT-5 tests stay failing (they are not skipped) and `npm run check` exits with those failures only. To finish: add the token to `.env` and run `npm run functions:deploy` | Answered |
+| 54 | T-BR4-2 says an invalid transition "raises", but T-BR6-1 needs the blocked attempt to be logged, and raising would roll that log back | OP13, T-BR4-2, T-BR6-1 | `transition_claim_status` returns `{ ok: false, code, reason }` for a refused transition, changes nothing and keeps the log. Only "no access" and unexpected errors stop earlier | Answered |
+| 55 | S11 New claim was never exported from Stitch and the human chose to continue without it | 7.3, Phase 4 | S11 is built from the plan's fields and tests in the style of the other screens, with six steps: Claimant, Accident, Injuries, Vehicles, Parties, Review. It can be matched to a design later if one is added | Answered |
 
 ---
 
@@ -3209,6 +3212,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 
 | Plan version | Date | What changed | Why |
 | --- | --- | --- | --- |
+| v1.7 | 08 Nov 2026 | Section 18 #54 and #55 added and Answered | Found while building Phase 4 |
 | v1.6 | 08 Nov 2026 | Section 6 adds `SUPABASE_ACCESS_TOKEN`. Section 18 #50, #51, #52 and #53 Answered | Found while building Phase 3 |
 | v1.5 | 08 Nov 2026 | Section 18 #49 added and Answered: S06, S07 and S13 designs created in the repository | The human asked for them to be created |
 | v1.4 | 08 Nov 2026 | Section 18 #48 added and Answered: `pg` and `scripts/test-db.mjs` run the pgTAP tests without Docker | `supabase test db` needs Docker |
