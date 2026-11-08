@@ -18,7 +18,7 @@ import {
   Users,
   type LucideIcon,
 } from 'lucide-react';
-import type { RoleKey } from './roles';
+import { ROLE_ORDER, type RoleKey } from './roles';
 
 export type NavItem = { label: string; to: string; icon: LucideIcon };
 
@@ -64,6 +64,18 @@ export const SIDEBAR_ITEMS: Record<RoleKey, NavItem[]> = {
     { label: 'Audit log', to: '/admin/audit', icon: History },
   ],
 };
+
+/** The sidebar for one or several roles, in Section 11 role order, each destination once. */
+export function sidebarItemsFor(roles: readonly RoleKey[]): NavItem[] {
+  const seen = new Set<string>();
+  return ROLE_ORDER.filter((role) => roles.includes(role))
+    .flatMap((role) => SIDEBAR_ITEMS[role])
+    .filter((item) => {
+      if (seen.has(item.to)) return false;
+      seen.add(item.to);
+      return true;
+    });
+}
 
 /**
  * Claimant mobile bottom tab bar (S45). Requests and Messages live inside the claim workspace,

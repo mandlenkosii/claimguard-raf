@@ -9,7 +9,7 @@
 | App name | ClaimGuard RAF (Claim Intelligence & Assurance Platform) |
 | Built from PRD version | v1.1 (4 November 2026): PRD v1.0 plus the Section 18 answers, recorded in the PRD Change log. Must match the version in docs/PRD.md |
 | Screen designs | Stitch project: https://stitch.withgoogle.com/projects/3126694362497483814 (screens S01–S46 from the ClaimGuard RAF Stitch prompt pack). Exported screens are saved in `docs/designs/` with the file names in Section 7.3 |
-| Plan version | v1.5 |
+| Plan version | v1.6 |
 | Repository | https://github.com/mandlenkosii/claimguard-raf |
 | Status | Ready to build. All 42 Section 18 rows are Answered |
 | Last updated | 08 Nov 2026 |
@@ -347,7 +347,7 @@ The backend is the hosted Supabase project (Section 18 #46); `.env` must point a
 | Purpose | Command |
 | --- | --- |
 | Install dependencies | `npm install` |
-| Apply migrations / deploy functions to the hosted project | `npm run db:push` (runs `supabase db push --remote`) and `npm run functions:deploy` (runs `supabase functions deploy --use-api`) |
+| Apply migrations / deploy functions to the hosted project | `npm run db:push` (runs `supabase db push --remote`) and `npm run functions:deploy` (runs `scripts/deploy-functions.mjs`: sets the function secrets, then deploys with `--use-api`) |
 | Reset the database (migrations + seed data) | `npm run db:reset` (runs `supabase db reset --remote` on the hosted project, then `node scripts/seed-demo-users.mjs`) |
 | Start the app | `npm run dev` |
 | Unit and component tests | `npm run test:unit` (Vitest: `tests/unit`, `tests/component`) |
@@ -445,6 +445,7 @@ claimguard-raf/
 | DEMO_USER_PASSWORD | Password given to every seeded demo account | Chosen by the human; written only in `.env` and in Supabase Edge Function secrets | Secret | `scripts/seed-demo-users.mjs`, Edge Function `demo-sign-in`, integration and end-to-end tests only (Section 18 #9) |
 | DEMO_LOGIN_ENABLED | `true` in local and preview, `false` in production; when false, `demo-sign-in` refuses every call | Set by hand; Supabase Edge Function secrets | Secret (server config) | Edge Function `demo-sign-in` |
 | OCR_PROVIDER | Which OCR provider the service interface uses; only `mock` exists | Set by hand | Secret (server config) | Edge Function `process-document` |
+| SUPABASE_ACCESS_TOKEN | Personal access token used to deploy Edge Functions and set their secrets without Docker (Section 18 #46) | Supabase dashboard → Account → Access Tokens | Secret | `scripts/deploy-functions.mjs` only |
 
 `.env.example` (committed to Git, placeholder values only):
 
@@ -457,6 +458,7 @@ SUPABASE_DB_URL=replace-with-project-postgres-connection-string
 DEMO_USER_PASSWORD=replace-with-a-demo-password
 DEMO_LOGIN_ENABLED=true
 OCR_PROVIDER=mock
+SUPABASE_ACCESS_TOKEN=replace-with-supabase-personal-access-token
 ```
 
 Rules:
@@ -1842,29 +1844,29 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | T-EDGE-15 | Integration | tests/integration/auth.test.ts | Given a user with two roles, then they see the union of both roles' permitted rows and nothing more |
 | T-C-5 | Component | tests/component/ui/PasswordField.test.tsx | Show/hide toggle, strength meter and requirement checklist work |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above are written, run, and fail for the expected reason.
 
 **Step 2: Backend (Green)**
 
-- [ ] Supabase Auth configured: email + password; password reset redirect to the S07 route; local email testing through the Supabase CLI mail inbox.
-- [ ] Migration `…_ops_auth.sql`: `my_capabilities()`; sign-up metadata handling in `handle_new_user` limited to claimant / legal practitioner.
+- [x] Supabase Auth configured: email + password; password reset redirect to the S07 route; local email testing through the Supabase CLI mail inbox.
+- [x] Migration `…_ops_auth.sql`: `my_capabilities()`; sign-up metadata handling in `handle_new_user` limited to claimant / legal practitioner.
 - [ ] Edge Function `demo-sign-in` (OP8): only when `DEMO_LOGIN_ENABLED` is true, only for the six `*.demo@example.com` accounts, using `DEMO_USER_PASSWORD` on the server; the S05 demo section renders only when `VITE_APP_ENV` is not `production`.
 
 **Step 3: Frontend (Green)**
 
-- [ ] `features/auth`: session provider, `useCapabilities`, route guards (logged out, disabled, role).
-- [ ] S05 Sign in: states Normal, Loading, Error, Offline, Demo accounts section.
-- [ ] S06 Register: states Normal, Legal practitioner fields, Loading, Inline validation error, Offline, Success.
-- [ ] S07 Password recovery: states Request, Loading, Confirmation, Set new password, Error, Offline, Success toast.
-- [ ] S08 Account disabled, Pending verification (TXT-11) and 403 variants.
-- [ ] S13 Profile: states Normal, Loading, Error, Offline, Success toast, Read-only fields; Security block (change password, active sessions list with "Sign out of other sessions").
-- [ ] AppShell shows the role badge, avatar menu with Sign out, and the role's sidebar items.
+- [x] `features/auth`: session provider, `useCapabilities`, route guards (logged out, disabled, role).
+- [x] S05 Sign in: states Normal, Loading, Error, Offline, Demo accounts section.
+- [x] S06 Register: states Normal, Legal practitioner fields, Loading, Inline validation error, Offline, Success.
+- [x] S07 Password recovery: states Request, Loading, Confirmation, Set new password, Error, Offline, Success toast.
+- [x] S08 Account disabled, Pending verification (TXT-11) and 403 variants.
+- [x] S13 Profile: states Normal, Loading, Error, Offline, Success toast, Read-only fields; Security block (change password, active sessions list with "Sign out of other sessions").
+- [x] AppShell shows the role badge, avatar menu with Sign out, and the role's sidebar items.
 
 **Step 4: Refactor and full check**
 
-- [ ] Code cleaned up; no duplicated logic; names use PRD key terms.
+- [x] Code cleaned up; no duplicated logic; names use PRD key terms.
 - [ ] Full check passes (lint, type check, every automated test from every phase so far).
-- [ ] `npm run test:e2e` passes.
+- [x] `npm run test:e2e` passes.
 
 **Step 5: Manual checks (human)**
 
@@ -1875,10 +1877,10 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 **Definition of Done**
 
 - [ ] Every test in Step 1 passes.
-- [ ] All earlier tests still pass.
-- [ ] Every screen in this phase shows all its required states.
+- [x] All earlier tests still pass.
+- [x] Every screen in this phase shows all its required states.
 - [ ] Manual checks are ticked by the human.
-- [ ] Progress log updated (Section 17).
+- [x] Progress log updated (Section 17).
 
 **Commit message:** `Phase 3: Authentication and profiles`
 
@@ -3137,6 +3139,7 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | --- | --- | --- | --- | --- | --- |
 | 1 | 08 Nov 2026 | Complete; manual checks confirmed by the human | 128 / 128 (124 unit + component, 1 pgTAP database, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 1: Foundation | Versions: Node 24.18.0, npm 11.16.0, Deno 2.9.8, gitleaks 8.30.1, React 19.3.1, React Router 8.5.1, TanStack Query 5.107.1, Lucide React 1.70.0, supabase-js 2.119.0, Vite 8.3.6, @vitejs/plugin-react 6.2.1, TypeScript 6.0.3 (7.0 not used: typescript-eslint supports < 6.1), Tailwind CSS 4.3.5, Vitest 5.1.0 (+ coverage-v8), React Testing Library 16.3.3 (+ jest-dom 7.0.1, user-event 14.6.8), jsdom 31.0.0, Playwright 1.65.0, @axe-core/playwright 4.14.0, ESLint 10.14.0, typescript-eslint 8.72.1, Supabase CLI 3.0.0, pg 8.23.1. Backend: hosted Supabase project (Section 18 #46, #48); pgTAP extension enabled there. T-SETUP-6 passed at the Red step because `.gitignore` and `.env.example` were created before the test |
 | 2 | 08 Nov 2026 | Complete; manual checks confirmed by the human | 374 / 374 (130 unit + component, 241 pgTAP assertions in 35 files, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 2: Data and security | Ten migrations and the seed applied to the hosted project with `npm run db:reset`. Summary views stay security invoker, and read checked definer functions, so managers and administrators have no base-table access (SEC5, SEC6). Beyond the listed tests, T-DB-8 also proves users cannot set server-owned fields (processing state, confirmation, timestamps). Checked through the real API: all demo roles sign in and see only their permitted claims |
+| 3 | 08 Nov 2026 | Committed with outstanding items: T-INT-5 and the Step 5 manual checks | 438 / 442 (176 unit + component, 241 pgTAP assertions, 12 of 16 integration, 9 end-to-end) | Phase 3: Authentication and profiles | OUTSTANDING: the 4 T-INT-5 tests fail because `demo-sign-in` is not deployed (needs `SUPABASE_ACCESS_TOKEN`, Section 18 #53), so `npm run check` exits with those 4 failures only and the S05 demo buttons show TXT-2. They are not skipped. The function code is written and passes `deno check`. To finish: add the token, run `npm run functions:deploy`, re-run `npm run check`. End-to-end: 9 / 9 |
 
 ---
 
@@ -3195,6 +3198,10 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | 47 | The project brief says data is "deleted for real", but #15 says no hard delete and document deletion is a Should item in Phase 11 | #15, US20, OP53 | Keep #15: documents are soft-deleted (hidden but kept for the audit history) in Phase 11; messages and accounts are never deleted. S01 also stays as built from the plan (#44) | Answered |
 | 48 | `supabase test db` needs Docker even with `--remote`, and `db query` runs only one statement per call | 4.1, 4.3, 12.2 | Add dev-only `pg` (node-postgres) and `scripts/test-db.mjs`, which runs the same pgTAP files over one connection per file and fails on any `not ok`, SQL error or plan mismatch. TLS is always verified using Supabase's public CA file `supabase/prod-ca-2021.crt`. `npm run db:push` and `npm run db:reset` still use the Supabase CLI | Answered |
 | 49 | S06, S07 and S13 were never exported from Stitch and Phase 3 needs them | 7.3, Phase 3 | The human asked the coding agent to create them. `S06_register`, `S07_password_recovery` and `S13_profile` (`.html` and `.png`) follow the S05 layout and AppShell, use the Section 7.1 tokens and PRD or catalogue wording, and show every state in 7.3. The S13 sessions list shows the current device only, because Supabase does not let the browser list other sessions; "Sign out of other sessions" still works | Answered |
+| 50 | Hosted Supabase rejects @example.com on the public sign-up endpoint, so T-US1-1 to T-US1-3 cannot call it with fictional emails | 12.4, T-US1 | The integration tests create accounts through the admin API with the same user metadata, so `handle_new_user` is still what is tested. The S06 form's call is covered by the component tests | Answered |
+| 51 | Should Supabase "Confirm email" stay on? The built-in mailer only sends to the project's team addresses, so with it on, other people cannot finish registering | OP1, S06, Phase 3 Step 5 | Turn it off: new users can sign in straight after registering. S06 still handles the "check your email" state (TXT-9) if it is ever turned back on | Answered |
+| 52 | "Request access" on S08 (T-S8-1) has no operation in Section 10 | S08, T-S8-1 | Show the button disabled; no new feature is added | Answered |
+| 53 | Deploying `demo-sign-in` needs `SUPABASE_ACCESS_TOKEN`, which the human will add later | OP8, T-INT-5, S05 | Deferred by the human. Until then the six demo buttons on S05 show TXT-2, the four T-INT-5 tests stay failing (they are not skipped) and `npm run check` exits with those failures only. To finish: add the token to `.env` and run `npm run functions:deploy` | Answered |
 
 ---
 
@@ -3202,6 +3209,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 
 | Plan version | Date | What changed | Why |
 | --- | --- | --- | --- |
+| v1.6 | 08 Nov 2026 | Section 6 adds `SUPABASE_ACCESS_TOKEN`. Section 18 #50, #51, #52 and #53 Answered | Found while building Phase 3 |
 | v1.5 | 08 Nov 2026 | Section 18 #49 added and Answered: S06, S07 and S13 designs created in the repository | The human asked for them to be created |
 | v1.4 | 08 Nov 2026 | Section 18 #48 added and Answered: `pg` and `scripts/test-db.mjs` run the pgTAP tests without Docker | `supabase test db` needs Docker |
 | v1.3 | 08 Nov 2026 | Section 18 #46 added and Answered: hosted Supabase replaces the local Docker stack (Sections 4.2, 4.3, 6). #47 added and Answered (keep #15) | Docker cannot run on the development laptop |

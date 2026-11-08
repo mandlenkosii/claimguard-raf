@@ -4,13 +4,13 @@ import { Link, NavLink } from 'react-router';
 import { Logo } from '@/components/domain/Logo';
 import { PrototypeNotice } from '@/components/domain/PrototypeNotice';
 import { OfflineBanner } from '@/components/ui/States';
-import { CLAIMANT_TAB_BAR, SEARCH_PLACEHOLDER, SIDEBAR_ITEMS } from '@/lib/access/navigation';
+import { CLAIMANT_TAB_BAR, SEARCH_PLACEHOLDER, sidebarItemsFor } from '@/lib/access/navigation';
 import { ROLE_LABELS, type RoleKey } from '@/lib/access/roles';
 import { cn } from '@/lib/cn';
 
 const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent';
 
-function Sidebar({ role, collapsed, onToggle }: { role: RoleKey; collapsed: boolean; onToggle: () => void }) {
+function Sidebar({ roles, collapsed, onToggle }: { roles: readonly RoleKey[]; collapsed: boolean; onToggle: () => void }) {
   return (
     <aside
       data-testid="sidebar"
@@ -21,7 +21,7 @@ function Sidebar({ role, collapsed, onToggle }: { role: RoleKey; collapsed: bool
         <Logo tone="light" compact={collapsed} />
       </div>
       <nav aria-label="Main" className="flex-1 space-y-1 px-3 py-4">
-        {SIDEBAR_ITEMS[role].map(({ label, to, icon: Icon }) => (
+        {sidebarItemsFor(roles).map(({ label, to, icon: Icon }) => (
           <NavLink
             key={to}
             to={to}
@@ -167,6 +167,8 @@ function MobileTabBar() {
 
 type AppShellProps = {
   role: RoleKey;
+  /** Every role the user holds; the sidebar shows them all (T-US4-2). Defaults to `role`. */
+  roles?: readonly RoleKey[];
   userName: string;
   unreadCount: number;
   onSignOut?: () => void;
@@ -174,14 +176,14 @@ type AppShellProps = {
 };
 
 /** Signed-in layout (S09–S43): notice bar, role sidebar, top bar, and the claimant mobile tab bar (S45). */
-export function AppShell({ role, userName, unreadCount, onSignOut, children }: AppShellProps) {
+export function AppShell({ role, roles, userName, unreadCount, onSignOut, children }: AppShellProps) {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <PrototypeNotice variant="app" />
       <OfflineBanner />
       <div className="flex flex-1">
-        <Sidebar role={role} collapsed={collapsed} onToggle={() => setCollapsed((current) => !current)} />
+        <Sidebar roles={roles ?? [role]} collapsed={collapsed} onToggle={() => setCollapsed((current) => !current)} />
         <div className="flex min-w-0 flex-1 flex-col">
           <TopBar role={role} userName={userName} unreadCount={unreadCount} onSignOut={onSignOut} />
           <main className={cn('flex-1 p-6', role === 'claimant' && 'pb-24 md:pb-6')}>{children}</main>

@@ -114,13 +114,15 @@ export function Toggle({ label, checked, onChange, disabled }: ToggleProps) {
 
 type SegmentedControlProps = {
   label: string;
+  /** Each segment takes an equal share of the full width (S06). */
+  fullWidth?: boolean;
   value: string;
   options: Option[];
   onChange: (value: string) => void;
   disabled?: boolean;
 };
 
-export function SegmentedControl({ label, value, options, onChange, disabled }: SegmentedControlProps) {
+export function SegmentedControl({ label, fullWidth, value, options, onChange, disabled }: SegmentedControlProps) {
   function onKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
     if (!step) return;
@@ -129,7 +131,7 @@ export function SegmentedControl({ label, value, options, onChange, disabled }: 
     if (next) onChange(next.value);
   }
   return (
-    <div role="radiogroup" aria-label={label} className="inline-flex rounded-input border border-border bg-surface-muted p-0.5">
+    <div role="radiogroup" aria-label={label} className={cn('rounded-input border border-border bg-surface-muted p-0.5', fullWidth ? 'flex w-full' : 'inline-flex')}>
       {options.map((option, index) => {
         const selected = option.value === value;
         return (
@@ -144,6 +146,7 @@ export function SegmentedControl({ label, value, options, onChange, disabled }: 
             onKeyDown={(event) => onKeyDown(event, index)}
             className={cn(
               'rounded-chip px-3 py-1 text-small font-semibold',
+              fullWidth && 'flex-1',
               selected ? 'bg-primary text-text-on-dark' : 'text-text-secondary hover:text-text',
               focusRing,
             )}

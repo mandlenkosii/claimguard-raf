@@ -9,6 +9,8 @@ export default defineConfig({
     environment: 'node',
     include: ['tests/integration/**/*.test.ts'],
     setupFiles: ['./tests/setup/integration.ts'],
-    testTimeout: 20000,
+    testTimeout: 30000,
+    // These tests share the hosted demo project and change demo accounts temporarily.
+    fileParallelism: false,
   },
 });
