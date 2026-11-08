@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed-variant":"#304864","surface":"#f8f9ff","on-surface":"#0d1c2e","on-error-container":"#93000a","surface-tint":"#48607d","surface-container-highest":"#d5e3fc","surface-bright":"#f8f9ff","surface-dim":"#ccdbf3","on-secondary":"#ffffff","secondary":"#006a69","inverse-primary":"#b0c9ea","on-primary-container":"#7992b1","surface-container":"#e6eeff","on-tertiary":"#ffffff","outline":"#74777e","on-primary-fixed":"#001d36","on-secondary-fixed":"#002020","error":"#ba1a1a","primary-fixed":"#d1e4ff","on-surface-variant":"#43474d","background":"#f8f9ff","on-tertiary-fixed":"#001551","tertiary-container":"#002070","on-tertiary-container":"#6888ff","on-secondary-fixed-variant":"#00504f","surface-variant":"#d5e3fc","primary-fixed-dim":"#b0c9ea","on-background":"#0d1c2e","on-primary":"#ffffff","tertiary":"#000f41","primary":"#00152a","error-container":"#ffdad6","on-error":"#ffffff","inverse-surface":"#233144","secondary-fixed-dim":"#7cd5d3","on-tertiary-fixed-variant":"#0039b5","on-secondary-container":"#00706f","tertiary-fixed-dim":"#b7c4ff","surface-container-lowest":"#ffffff","surface-container-low":"#eff4ff","primary-container":"#0f2a44","inverse-on-surface":"#eaf1ff","secondary-fixed":"#98f2f0","tertiary-fixed":"#dce1ff","secondary-container":"#98f2f0","surface-container-high":"#dce9ff","outline-variant":"#c3c6ce"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-lg":"1.5rem","gutter":"1.5rem","space-sm":"0.5rem","space-xl":"2rem","space-xs":"0.25rem","space-md":"1rem","margin":"2rem"},fontFamily:{"headline-h3":["Inter"],"reference-code":["IBM Plex Mono"],"headline-h2":["Inter"],"body-small":["Inter"],"body-regular":["Inter"],"headline-h1":["Inter"],"reference-code-sm":["IBM Plex Mono"],"body-medium":["Inter"],"label-caps":["Inter"]},fontSize:{"headline-h3":["18px",{lineHeight:"26px",letterSpacing:"-0.01em",fontWeight:"600"}],"reference-code":["13px",{lineHeight:"18px",letterSpacing:"-0.01em",fontWeight:"500"}],"headline-h2":["22px",{lineHeight:"30px",letterSpacing:"-0.015em",fontWeight:"600"}],"body-small":["12px",{lineHeight:"18px",letterSpacing:"0.01em",fontWeight:"400"}],"body-regular":["14px",{lineHeight:"22px",letterSpacing:"0em",fontWeight:"400"}],"headline-h1":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"600"}],"reference-code-sm":["11px",{lineHeight:"16px",letterSpacing:"0em",fontWeight:"500"}],"body-medium":["14px",{lineHeight:"22px",letterSpacing:"0em",fontWeight:"500"}],"label-caps":["11px",{lineHeight:"16px",letterSpacing:"0.05em",fontWeight:"600"}]}}}};</script></head><body class="bg-background font-body-regular text-body-regular text-on-surface"><div class="fixed top-0 left-0 w-full h-9 bg-amber-50 border-b border-amber-200 z-50 flex items-center justify-center gap-space-xs px-gutter"><span class="material-symbols-outlined text-amber-700 text-[16px]">warning</span><span class="font-label-caps text-label-caps text-amber-900 tracking-normal font-semibold">ClaimGuard RAF — Concept Prototype. Not an official RAF system. Demonstration data only.</span></div><aside class="fixed left-0 top-9 bottom-0 w-64 bg-primary-container z-40 flex flex-col justify-between pt-space-lg pb-space-lg px-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm px-space-xs"><div class="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-on-secondary shadow-sm"><span class="material-symbols-outlined text-[22px]">gavel</span></div><div class="flex flex-col"><span class="font-headline-h3 text-headline-h3 text-on-primary leading-tight font-bold tracking-tight">ClaimGuard RAF</span><span class="font-reference-code-sm text-reference-code-sm text-on-primary-container tracking-wider uppercase font-medium">LEGAL PRACTITIONER PORTAL</span></div></div><nav class="flex flex-col gap-space-xs w-full" data-active-classes="bg-primary text-on-primary font-body-medium"><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary/50 hover:text-on-primary transition-colors" data-path="dashboard" href="#"><span class="font-body-medium text-body-medium">Dashboard</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary/50 hover:text-on-primary transition-colors" data-path="clients" href="#"><span class="font-body-medium text-body-medium">Clients</span></a><a aria-current="page" class="flex items-center justify-between px-space-md py-space-sm rounded-lg transition-colors bg-primary text-on-primary font-body-medium" data-path="claims" href="#"><span class="font-body-medium text-body-medium">Claims</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary/50 hover:text-on-primary transition-colors" data-path="tasks" href="#"><span class="font-body-medium text-body-medium">Tasks</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary/50 hover:text-on-primary transition-colors" data-path="messages" href="#"><span class="font-body-medium text-body-medium">Messages</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary/50 hover:text-on-primary transition-colors" data-path="notifications" href="#"><span class="font-body-medium text-body-medium">Notifications</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary/50 hover:text-on-primary transition-colors" data-path="profile" href="#"><span class="font-body-medium text-body-medium">Profile</span></a></nav></div><div class="flex flex-col gap-space-md pt-space-md"><div class="flex flex-col gap-space-xs"><a class="flex items-center px-space-md py-space-xs rounded-lg text-on-primary-container hover:bg-primary/50 hover:text-on-primary transition-colors" data-path="help-and-support" href="#"><span class="font-body-medium text-body-medium">Help &amp; Support</span></a><a class="flex items-center px-space-md py-space-xs rounded-lg text-on-primary-container hover:bg-primary/50 hover:text-on-primary transition-colors" data-path="sign-out" href="#"><span class="font-body-medium text-body-medium">Sign out</span></a></div><div class="rounded-lg bg-primary/40 p-space-sm flex items-start gap-space-xs"><span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">verified_user</span><div class="flex flex-col"><span class="font-label-caps text-label-caps text-on-primary font-semibold uppercase tracking-wider">POPIA Act 4 &amp; LPC Compliance</span><span class="font-body-small text-body-small text-on-primary-container leading-tight">Statutory evidentiary safeguard and legal audit trail active</span></div></div></div></aside><div class="pl-64"><header class="fixed top-9 left-64 right-0 h-16 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-30 flex items-center justify-between px-margin"><div class="w-96"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[18px]">search</span><input class="w-full h-10 pl-10 pr-space-md rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-regular text-body-regular border-0 focus:outline-none focus:ring-1 focus:ring-secondary transition-all" placeholder="Search claims, claimants, dockets, LPC matters..." type="text"/></div></div><div class="flex items-center gap-space-md"><button class="relative p-space-sm rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant flex items-center justify-center" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-error text-on-error font-reference-code-sm text-reference-code-sm flex items-center justify-center font-bold">4</span></button><span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-label-caps font-semibold uppercase tracking-wider"><span class="material-symbols-outlined text-[14px]">balance</span>Lawyer</span><div class="flex items-center gap-space-sm pl-space-xs cursor-pointer select-none"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-body-medium text-body-medium font-semibold">MS</div><span class="font-body-medium text-body-medium text-on-surface font-semibold">Adv. M. Sithole</span><span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span></div></div></header><main class="relative pt-16 min-h-screen bg-background px-margin pb-space-xl max-w-[1440px] mx-auto"><div class="flex flex-col w-full">
+<!-- Top Command & Headline Strip -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md pb-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm">
+<span class="font-reference-code-sm text-reference-code-sm uppercase tracking-wider text-secondary font-semibold bg-secondary-container/60 px-space-xs py-0.5 rounded">RAF ACT 56 OF 1996 • LITIGATION TRIAGE</span>
+<span class="inline-flex items-center gap-1 font-reference-code-sm text-reference-code-sm text-on-surface-variant font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Live Synchronized Caseload
+        </span>
+</div>
+<h1 class="font-headline-h1 text-headline-h1 text-on-surface tracking-tight">Claims</h1>
+<p class="font-body-regular text-body-regular text-on-surface-variant leading-relaxed">
+        Manage statutory compensation dossiers, track lodgement readiness scores, and resolve evidentiary blockers across your firm’s RAF caseload.
+      </p>
+</div>
+<!-- Action Group -->
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="h-10 px-space-md rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors font-body-medium text-body-medium flex items-center gap-space-xs shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">file_download</span>
+        Export caseload (CSV)
+      </button>
+<button class="h-10 px-space-md rounded-lg bg-secondary text-on-secondary hover:bg-secondary/90 transition-all font-body-medium text-body-medium font-semibold flex items-center gap-space-xs shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+        New claim
+      </button>
+</div>
+</div>
+<!-- Caseload Forensic Metric Bar -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md pb-space-lg">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-primary-container"></div>
+<div class="flex items-start justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider uppercase font-semibold">Total Active Claims</span>
+<span class="p-1.5 rounded-md bg-surface-container text-primary-container">
+<span class="material-symbols-outlined text-[18px]">folder_special</span>
+</span>
+</div>
+<div class="flex items-baseline gap-space-sm pt-space-md">
+<span class="font-headline-h1 text-headline-h1 text-on-surface font-bold tracking-tight">48</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant font-medium">100% capacity</span>
+</div>
+<div class="pt-space-xs flex items-center gap-space-xs text-on-surface-variant font-body-small text-body-small">
+<span class="text-secondary font-medium">12 RAF dockets</span> scheduled for pre-trial
+      </div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-amber-500"></div>
+<div class="flex items-start justify-between">
+<span class="font-label-caps text-label-caps text-amber-900 tracking-wider uppercase font-semibold">Pending Documentation</span>
+<span class="p-1.5 rounded-md bg-amber-50 text-amber-800">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+</span>
+</div>
+<div class="flex items-baseline gap-space-sm pt-space-md">
+<span class="font-headline-h1 text-headline-h1 text-on-surface font-bold tracking-tight">14</span>
+<span class="font-reference-code-sm text-reference-code-sm text-amber-800 font-medium">RAF 1 / RAF 4 outstanding</span>
+</div>
+<div class="pt-space-xs flex items-center gap-space-xs text-on-surface-variant font-body-small text-body-small">
+<span>Awaiting SAPS docket or hospital records</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex items-start justify-between">
+<span class="font-label-caps text-label-caps text-error tracking-wider uppercase font-semibold">Blocking Issues</span>
+<span class="p-1.5 rounded-md bg-error-container text-on-error-container">
+<span class="material-symbols-outlined text-[18px]">error</span>
+</span>
+</div>
+<div class="flex items-baseline gap-space-sm pt-space-md">
+<span class="font-headline-h1 text-headline-h1 text-error font-bold tracking-tight">7</span>
+<span class="font-reference-code-sm text-reference-code-sm text-error font-semibold">Statutory hazard</span>
+</div>
+<div class="pt-space-xs flex items-center gap-space-xs text-on-surface-variant font-body-small text-body-small">
+<span>Requires immediate practitioner signoff</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<div class="flex items-start justify-between">
+<span class="font-label-caps text-label-caps text-secondary tracking-wider uppercase font-semibold">Lodgement Ready (&gt;90%)</span>
+<span class="p-1.5 rounded-md bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</span>
+</div>
+<div class="flex items-baseline gap-space-sm pt-space-md">
+<span class="font-headline-h1 text-headline-h1 text-on-surface font-bold tracking-tight">19</span>
+<span class="font-reference-code-sm text-reference-code-sm text-secondary font-medium">39.5% ready</span>
+</div>
+<div class="pt-space-xs flex items-center gap-space-xs text-on-surface-variant font-body-small text-body-small">
+<span>Section 24 statutory summons eligible</span>
+</div>
+</div>
+</div>
+<!-- Analytical Views & Custom Presets Tab Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-sm">
+<div class="flex items-center gap-1 overflow-x-auto pb-1">
+<button class="px-space-md py-space-sm rounded-lg bg-primary-container text-on-primary font-body-medium text-body-medium flex items-center gap-space-xs shadow-sm" type="button">
+<span>All Claims</span>
+<span class="bg-primary/50 text-primary-fixed text-reference-code-sm px-1.5 py-0.5 rounded-full font-semibold">48</span>
+</button>
+<button class="px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-medium text-body-medium flex items-center gap-space-xs" type="button">
+<span>My Assigned</span>
+<span class="bg-surface-container-high text-on-surface-variant text-reference-code-sm px-1.5 py-0.5 rounded-full font-semibold">22</span>
+</button>
+<button class="px-space-md py-space-sm rounded-lg text-error hover:bg-error-container/40 transition-colors font-body-medium text-body-medium flex items-center gap-space-xs" type="button">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>Critical Blockers</span>
+<span class="bg-error-container text-on-error-container text-reference-code-sm px-1.5 py-0.5 rounded-full font-bold">7</span>
+</button>
+<button class="px-space-md py-space-sm rounded-lg text-secondary hover:bg-secondary-container/40 transition-colors font-body-medium text-body-medium flex items-center gap-space-xs" type="button">
+<span>Ready to Lodge</span>
+<span class="bg-secondary-container text-on-secondary-container text-reference-code-sm px-1.5 py-0.5 rounded-full font-semibold">19</span>
+</button>
+<button class="px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface text-body-small font-medium flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">bookmark_add</span>
+        + Save view
+      </button>
+</div>
+<!-- Live Counter -->
+<div class="flex items-center gap-space-sm font-reference-code text-reference-code text-on-surface-variant shrink-0">
+<span>Showing <strong class="text-on-surface font-semibold">10</strong> of 48 claims</span>
+<span class="text-outline-variant">•</span>
+<button class="text-secondary hover:underline font-body-small text-body-small" type="button">Clear all filters</button>
+</div>
+</div>
+<!-- Primary Filter Bar Surface -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm mb-space-md flex flex-col gap-space-md">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-space-sm items-center">
+<!-- Search Input -->
+<div class="xl:col-span-4 relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-10 pl-10 pr-space-md rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-regular text-body-regular border-0 focus:outline-none focus:ring-1 focus:ring-secondary transition-all" placeholder="Search by claim reference (e.g. CG-2026-...) or claimant..." type="text" value=""/>
+</div>
+<!-- Status Dropdown Trigger -->
+<div class="xl:col-span-2">
+<button class="w-full h-10 px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-medium text-body-medium flex items-center justify-between text-left transition-colors" type="button">
+<span class="truncate text-body-small font-medium">Status: <span class="text-primary font-semibold">All active (5)</span></span>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span>
+</button>
+</div>
+<!-- Readiness Dropdown -->
+<div class="xl:col-span-2">
+<button class="w-full h-10 px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-medium text-body-medium flex items-center justify-between text-left transition-colors" type="button">
+<span class="truncate text-body-small font-medium">Readiness: <span class="text-on-surface-variant font-semibold">0% – 100%</span></span>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">tune</span>
+</button>
+</div>
+<!-- Practitioner Assigned -->
+<div class="xl:col-span-2">
+<button class="w-full h-10 px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-medium text-body-medium flex items-center justify-between text-left transition-colors" type="button">
+<span class="truncate text-body-small font-medium">Assigned: <span class="text-on-surface-variant font-semibold">All counsel</span></span>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span>
+</button>
+</div>
+<!-- Prescription / Accident Date Range -->
+<div class="xl:col-span-2">
+<button class="w-full h-10 px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-medium text-body-medium flex items-center justify-between text-left transition-colors" type="button">
+<span class="truncate text-body-small font-medium">Accident: <span class="text-on-surface-variant font-semibold">All dates</span></span>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_today</span>
+</button>
+</div>
+</div>
+<!-- Filter Toggle Pills Bar -->
+<div class="flex flex-wrap items-center justify-between pt-space-xs gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase font-semibold">Quick Filters:</span>
+<button class="h-7 px-space-sm rounded-full bg-error-container text-on-error-container font-label-caps text-label-caps font-semibold flex items-center gap-1 shadow-xs hover:bg-error-container/80 transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+          Has blocking issues (7)
+          <span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+<button class="h-7 px-space-sm rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps font-semibold flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+          RAF 3-Yr Prescription &lt; 180 Days (3)
+        </button>
+<button class="h-7 px-space-sm rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps font-semibold flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">assignment_turned_in</span>
+          Section 24 Compliant
+        </button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Compact layout" type="button">
+<span class="material-symbols-outlined text-[18px]">density_medium</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Table column settings" type="button">
+<span class="material-symbols-outlined text-[18px]">view_column</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Comprehensive Forensic Data Table Container -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-space-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-caps text-label-caps tracking-wider uppercase select-none">
+<th class="py-space-md pl-space-lg pr-space-sm w-44">Claim Reference</th>
+<th class="py-space-md px-space-md w-56">Claimant Details</th>
+<th class="py-space-md px-space-md w-48">Accident Date &amp; Locus</th>
+<th class="py-space-md px-space-md w-48">Procedural Status</th>
+<th class="py-space-md px-space-md w-40">Readiness</th>
+<th class="py-space-md px-space-sm w-32 text-center">Blockers</th>
+<th class="py-space-md px-space-sm w-28 text-center">Requests</th>
+<th class="py-space-md px-space-md w-44">Last Updated</th>
+<th class="py-space-md pr-space-lg pl-space-sm w-16 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low text-body-regular text-body-regular">
+<!-- ROW 1: Documents Needed -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2026-000142</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" title="Copy Claim Ref" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Direct Victim (Driver)</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Thandiwe Mokoena</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 880412••••085</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">14 Nov 2025</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">N1 Polokwane, LP</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 text-amber-900 font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                Documents Needed
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-amber-800">72%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">Tier 2</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 72%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-caps text-label-caps font-bold">
+<span class="material-symbols-outlined text-[13px]">gpp_maybe</span> 2 blockers
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-label-caps text-label-caps text-error font-bold tracking-tight">1 overdue</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">Today, 11:20</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">Adv. M. Sithole</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- ROW 2: Evidentiary Dossier Ready -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group bg-surface-container-low/20">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2025-009841</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Passenger (RAF 1)</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Bongani Ndlovu</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 940118••••081</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">28 Jul 2025</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">R21 Kempton Park, GP</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-secondary-container text-on-secondary-container font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Evidentiary Dossier Ready
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-secondary font-bold">96%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">Pre-lodged</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 96%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[15px] text-secondary">check_circle</span> 0
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-body-small text-body-small text-on-surface-variant">0 open</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">Yesterday</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">N. Dlamini</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- ROW 3: Pre-lodgement Validation -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2026-000215</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Loss of Support</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Keketso Moloi</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 910905••••083</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">19 Dec 2025</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">N3 Van Reenen, KZN</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container-highest text-primary-container font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-tint"></span>
+                Pre-lodgement Validation
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-amber-800">84%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">Actuary Review</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 84%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-caps text-label-caps font-bold">
+                1 blocker
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-body-small text-body-small text-on-surface font-semibold">2 open</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">26 Feb 2026</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">Adv. M. Sithole</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- ROW 4: Formally Submitted -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2024-004312</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Pedestrian Knockdown</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Johan Van der Merwe</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 760203••••082</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">04 Mar 2024</span>
+<span class="material-symbols-outlined text-[13px] text-amber-700" title="Prescription window within 12 months">timer</span>
+</div>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">N4 Witbank, MP</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-purple-100 text-purple-900 font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-700"></span>
+                Formally Submitted
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-secondary font-bold">100%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">Lodged</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[15px] text-secondary">check_circle</span> 0
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-body-small text-body-small text-on-surface-variant">0 open</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">25 Feb 2026</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">Adv. M. Sithole</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- ROW 5: RAF Assessment -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2025-011209</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Minor Dependent (Curator)</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Lerato Zwane</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 051121••••089</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">02 Sep 2025</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">N12 Springs, GP</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-900 font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
+                RAF Assessment
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-secondary font-bold">100%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">Claims Officer</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[15px] text-secondary">check_circle</span> 0
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-body-small text-body-small text-on-surface font-semibold">1 open</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">24 Feb 2026</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">C. Pieterse</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- ROW 6: Draft Intake -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2026-000301</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Motorcyclist Severe</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Fatima Patel</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 830329••••088</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">11 Jan 2026</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">M4 Durban, KZN</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                Draft Intake
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-error font-bold">38%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">Incomplete</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 38%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-caps text-label-caps font-bold">
+<span class="material-symbols-outlined text-[13px]">gpp_maybe</span> 3 blockers
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-body-small text-body-small text-on-surface font-semibold">3 open</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">23 Feb 2026</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">N. Dlamini</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- ROW 7: Settlement Offer -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2025-008764</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Direct Victim (General Dam.)</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Mandla Cele</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 800714••••080</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">15 May 2025</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">N2 Umlazi, KZN</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-900 font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                Settlement Offer
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-secondary font-bold">100%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">R 1,420,000</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[15px] text-secondary">check_circle</span> 0
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-body-small text-body-small text-on-surface-variant">0 open</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">22 Feb 2026</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">Adv. M. Sithole</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- ROW 8: Documents Needed -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2026-000188</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Loss of Support</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Annelize Coetzee</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 871109••••086</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">08 Dec 2025</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">N1 Worcester, WC</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 text-amber-900 font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                Documents Needed
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-amber-800">61%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">Inquest Req.</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 61%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-caps text-label-caps font-bold">
+                1 blocker
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-body-small text-body-small text-on-surface font-semibold">1 open</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">20 Feb 2026</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">C. Pieterse</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- ROW 9: Pre-lodgement Validation -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2025-010452</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Direct Victim (RAF 4 Serious)</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Zanele Sithole</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 900502••••087</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">14 Oct 2025</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">R55 Pretoria, GP</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container-highest text-primary-container font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-tint"></span>
+                Pre-lodgement Validation
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-secondary font-bold">88%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">WPI 34%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 88%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[15px] text-secondary">check_circle</span> 0
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-body-small text-body-small text-on-surface font-semibold">1 open</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">18 Feb 2026</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">Adv. M. Sithole</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- ROW 10: Documents Needed -->
+<tr class="hover:bg-surface-container-low/70 transition-colors group">
+<td class="py-3.5 pl-space-lg pr-space-sm align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<a class="font-reference-code text-reference-code font-bold text-primary hover:text-secondary tracking-tight" href="#">CG-2026-000094</a>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-secondary" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant mt-0.5">Driver (Collision)</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Wayne Hendricks</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">ID: 850819••••084</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-regular text-body-regular text-on-surface font-medium">05 Nov 2025</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">M5 Cape Town, WC</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 text-amber-900 font-label-caps text-label-caps font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                Documents Needed
+              </span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col gap-1 w-full max-w-[120px]">
+<div class="flex justify-between items-center text-reference-code-sm font-semibold">
+<span class="text-amber-800">54%</span>
+<span class="text-on-surface-variant font-normal text-[10px]">Tier 3</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 54%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-caps text-label-caps font-bold">
+<span class="material-symbols-outlined text-[13px]">gpp_maybe</span> 2 blockers
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center align-middle">
+<span class="font-label-caps text-label-caps text-error font-bold tracking-tight">2 overdue</span>
+</td>
+<td class="py-3.5 px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-small text-body-small text-on-surface font-medium">15 Feb 2026</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">N. Dlamini</span>
+</div>
+</td>
+<td class="py-3.5 pr-space-lg pl-space-sm text-right align-middle">
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Institutional Pagination Bar -->
+<div class="px-space-lg py-space-md bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-md border-t border-surface-container-low">
+<div class="flex items-center gap-space-md text-body-small text-body-small text-on-surface-variant">
+<span>Showing <strong class="text-on-surface font-semibold">1 – 10</strong> of <strong class="text-on-surface font-semibold">48</strong> claims</span>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-space-xs">
+<span>Rows per page:</span>
+<button class="h-8 px-2 rounded-md bg-surface-container-low text-on-surface font-semibold text-body-small flex items-center gap-1" type="button">
+            10 <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="h-8 px-space-sm rounded-md bg-surface-container-low text-outline cursor-not-allowed flex items-center justify-center font-body-small text-body-small font-medium" disabled="" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span> Previous
+        </button>
+<button class="h-8 w-8 rounded-md bg-primary-container text-on-primary font-body-small text-body-small font-semibold flex items-center justify-center shadow-xs" type="button">1</button>
+<button class="h-8 w-8 rounded-md hover:bg-surface-container text-on-surface font-body-small text-body-small font-medium flex items-center justify-center transition-colors" type="button">2</button>
+<button class="h-8 w-8 rounded-md hover:bg-surface-container text-on-surface font-body-small text-body-small font-medium flex items-center justify-center transition-colors" type="button">3</button>
+<button class="h-8 w-8 rounded-md hover:bg-surface-container text-on-surface font-body-small text-body-small font-medium flex items-center justify-center transition-colors" type="button">4</button>
+<button class="h-8 w-8 rounded-md hover:bg-surface-container text-on-surface font-body-small text-body-small font-medium flex items-center justify-center transition-colors" type="button">5</button>
+<button class="h-8 px-space-sm rounded-md hover:bg-surface-container text-on-surface flex items-center justify-center font-body-small text-body-small font-medium transition-colors" type="button">
+          Next <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Split Grid: Empty-State Preview & Evidentiary Governance Footnote -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Empty-State Filter Simulation Card -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-dashed border-outline-variant/60 flex flex-col justify-between">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container-low">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider font-semibold">
+<span class="material-symbols-outlined text-[16px] text-secondary">filter_alt_off</span>
+          Filter State Preview • Zero Matches Behavior
+        </div>
+<span class="text-reference-code-sm text-reference-code-sm text-outline font-medium">UX Sandbox</span>
+</div>
+<div class="py-space-md flex items-center gap-space-lg">
+<div class="w-16 h-16 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<svg class="w-9 h-9 text-on-surface-variant" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24">
+<path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+<circle cx="14" cy="14" r="3" stroke-width="1.75"></circle>
+<path d="M16.5 16.5L19 19" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-headline-h3 text-headline-h3 text-on-surface">No claims match these filters</h4>
+<p class="font-body-regular text-body-regular text-on-surface-variant">
+            No dossiers match your active criteria (Readiness &gt; 90% and 3+ blocking issues). Clear your query or broaden parameters to inspect legal dockets.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-md pt-space-xs">
+<button class="h-9 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium font-medium transition-colors" type="button">
+          Clear filters
+        </button>
+<button class="text-secondary hover:underline font-body-small text-body-small font-medium" type="button">
+          Reset to default view
+        </button>
+</div>
+</div>
+<!-- Statutory Evidentiary & Compliance Card -->
+<div class="lg:col-span-5 bg-primary-container text-on-primary p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-caps text-label-caps text-secondary-fixed uppercase tracking-wider font-semibold">POPIA ACT 4 &amp; SECTION 24 RAF GOVERNANCE</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">verified_user</span>
+</div>
+<div class="flex flex-col gap-space-xs py-space-xs">
+<h4 class="font-headline-h3 text-headline-h3 text-surface-bright">Evidentiary Chain-of-Custody Active</h4>
+<p class="font-body-small text-body-small text-on-primary-container leading-relaxed">
+          Every lodgement dossier update, RAF 1 statutory form export, and medical legal upload is cryptographically hashed with attorney signoff timestamps adhering to LPC practice directives.
+        </p>
+</div>
+<div class="pt-space-sm flex items-center justify-between font-reference-code-sm text-reference-code-sm text-on-primary-container border-t border-primary/60">
+<span>Session Audited: Adv. M. Sithole (LPC #48921)</span>
+<span class="text-secondary font-semibold">TLS 1.3 Immutable</span>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

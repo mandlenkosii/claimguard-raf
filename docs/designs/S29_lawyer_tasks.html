@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-tertiary-fixed-variant":"#0039b5","primary-container":"#0f2a44","on-primary-fixed":"#001d36","inverse-on-surface":"#eaf1ff","primary-fixed-dim":"#b0c9ea","secondary-container":"#98f2f0","surface-dim":"#ccdbf3","tertiary-container":"#002070","background":"#f8f9ff","secondary-fixed-dim":"#7cd5d3","inverse-primary":"#b0c9ea","on-secondary-fixed":"#002020","on-secondary-fixed-variant":"#00504f","tertiary-fixed":"#dce1ff","on-background":"#0d1c2e","tertiary":"#000f41","secondary-fixed":"#98f2f0","on-error":"#ffffff","surface-tint":"#48607d","error-container":"#ffdad6","surface-container":"#e6eeff","primary":"#00152a","on-secondary":"#ffffff","surface":"#f8f9ff","on-surface":"#0d1c2e","on-tertiary-fixed":"#001551","on-tertiary-container":"#6888ff","error":"#ba1a1a","on-secondary-container":"#00706f","inverse-surface":"#233144","on-primary-container":"#7992b1","outline":"#74777e","on-tertiary":"#ffffff","on-primary-fixed-variant":"#304864","surface-bright":"#f8f9ff","surface-container-high":"#dce9ff","on-error-container":"#93000a","surface-container-low":"#eff4ff","primary-fixed":"#d1e4ff","on-primary":"#ffffff","outline-variant":"#c3c6ce","tertiary-fixed-dim":"#b7c4ff","surface-container-lowest":"#ffffff","surface-container-highest":"#d5e3fc","secondary":"#006a69","on-surface-variant":"#43474d","surface-variant":"#d5e3fc"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"2rem","space-md":"1rem","space-xs":"0.25rem","space-xl":"2rem","space-lg":"1.5rem","gutter":"1.5rem","space-sm":"0.5rem"},"fontFamily":{"headline-h2":["Inter"],"reference-code":["IBM Plex Mono"],"label-caps":["Inter"],"headline-h3":["Inter"],"headline-h1":["Inter"],"body-small":["Inter"],"body-medium":["Inter"],"body-regular":["Inter"],"reference-code-sm":["IBM Plex Mono"]},"fontSize":{"headline-h2":["22px",{"lineHeight":"30px","letterSpacing":"-0.015em","fontWeight":"600"}],"reference-code":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"label-caps":["11px",{"lineHeight":"16px","letterSpacing":"0.05em","fontWeight":"600"}],"headline-h3":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-h1":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-small":["12px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"400"}],"body-medium":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"500"}],"body-regular":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"reference-code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}]}}}};</script></head><body class="bg-background font-body-regular text-body-regular text-on-surface antialiased"><div class="fixed top-0 left-0 right-0 h-[36px] bg-[#FFFBEB] border-b border-[#FDE68A] z-50 flex items-center justify-center px-gutter gap-space-xs"><span class="material-symbols-outlined text-[14px] text-[#92400E]">warning</span><span class="font-body-small text-body-small font-semibold text-[#92400E] tracking-tight">ClaimGuard RAF — Concept Prototype. Not an official RAF system. Demonstration data only.</span></div><aside class="fixed left-0 top-[36px] bottom-0 w-64 bg-primary-container z-40 flex flex-col justify-between select-none shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="px-space-lg py-space-md border-b border-outline-variant/20 flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-secondary text-[20px]">verified_user</span></div><div class="flex flex-col min-w-0"><span class="font-headline-h3 text-headline-h3 text-surface tracking-tight leading-tight truncate">ClaimGuard RAF</span><span class="font-label-caps text-label-caps text-on-primary-container uppercase tracking-wider">Forensic Portal</span></div></div><div class="px-space-md pt-space-md pb-space-xs"><span class="font-label-caps text-label-caps text-on-primary-container px-space-sm uppercase">Portal Navigation</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-secondary text-on-secondary font-medium shadow-sm"><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="font-body-medium text-body-medium">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-surface transition-all" data-path="clients" href="#"><span class="material-symbols-outlined text-[18px]">people</span><span class="font-body-medium text-body-medium">Clients</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-surface transition-all" data-path="claims" href="#"><span class="material-symbols-outlined text-[18px]">policy</span><span class="font-body-medium text-body-medium">Claims</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-surface transition-all" data-path="tasks" href="#"><span class="material-symbols-outlined text-[18px]">fact_check</span><span class="font-body-medium text-body-medium">Tasks</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-surface transition-all" data-path="messages" href="#"><span class="material-symbols-outlined text-[18px]">chat</span><span class="font-body-medium text-body-medium">Messages</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-surface transition-all" data-path="notifications" href="#"><span class="material-symbols-outlined text-[18px]">notifications</span><span class="font-body-medium text-body-medium">Notifications</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-surface transition-all" data-path="profile" href="#"><span class="material-symbols-outlined text-[18px]">badge</span><span class="font-body-medium text-body-medium">Profile</span></a></nav></div><div class="flex flex-col px-space-md pb-space-md gap-space-xs border-t border-outline-variant/20 pt-space-md"><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-surface transition-all" data-path="help-support" href="#"><span class="material-symbols-outlined text-[18px]">help</span><span class="font-body-medium text-body-medium">Help &amp; Support</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-surface transition-all" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span class="font-body-medium text-body-medium">Sign Out</span></a><div class="mt-space-sm px-space-sm py-space-xs rounded bg-primary/40 border border-outline-variant/20 flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[14px] text-secondary">lock</span><span class="font-reference-code-sm text-reference-code-sm text-on-primary-container">POPIA Act 4</span></div><span class="font-label-caps text-label-caps text-secondary-fixed-dim font-semibold uppercase">Compliant</span></div></div></aside><div class="pl-64"><header class="fixed top-[36px] left-64 right-0 h-16 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30 z-30 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex-1 max-w-xl pr-space-md"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-space-md text-[18px] text-on-surface-variant">search</span><input class="w-full h-10 pl-10 pr-space-md bg-surface-container-low border border-outline-variant/40 rounded-lg font-body-regular text-body-regular text-on-surface placeholder:text-on-surface-variant/60 focus:bg-surface-container-lowest focus:border-secondary focus:outline-none transition-colors" placeholder="Search claims, clients, RAF reference or ID..." type="text"/></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg border border-outline-variant/40 bg-surface-container-lowest cursor-pointer hover:bg-surface-container-low transition-colors"><div class="flex flex-col text-right"><span class="font-body-medium text-body-medium font-semibold text-on-surface leading-tight">Nkosi &amp; Partners Attorneys</span><span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">LPC Practice No: 44810</span></div><span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span></div><div class="relative flex items-center"><button aria-label="Statutory Notifications" class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-error text-on-error font-label-caps text-[9px] flex items-center justify-center font-bold">3</span></div><div class="h-8 w-px bg-outline-variant/40"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><div class="flex items-center justify-end gap-space-xs"><span class="font-body-medium text-body-medium font-semibold text-on-surface leading-tight">Adv. L. Nkosi</span><span class="font-label-caps text-label-caps bg-primary-container text-surface px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase">LAWYER</span></div><span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">Bar Roll #74492/GAU</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 mt-[36px] w-full px-space-xl py-space-xl bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Interactive State Engine Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Highlight sidebar active item strictly to 'tasks'
+      const navLinks = document.querySelectorAll('aside nav a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('data-path') === 'tasks') {
+          link.classList.remove('text-on-primary-container', 'hover:bg-primary');
+          link.classList.add('bg-secondary', 'text-on-secondary', 'font-medium', 'shadow-sm');
+        } else {
+          link.classList.remove('bg-secondary', 'text-on-secondary', 'font-medium', 'shadow-sm');
+          link.classList.add('text-on-primary-container');
+        }
+      });
+
+      // Quick filter pill toggles
+      const filterPills = document.querySelectorAll('.filter-pill');
+      filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach(p => {
+            p.classList.remove('bg-primary-container', 'text-surface-bright', 'ring-1', 'ring-secondary');
+            p.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+          });
+          pill.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+          pill.classList.add('bg-primary-container', 'text-surface-bright');
+        });
+      });
+
+      // View switcher
+      const boardBtn = document.getElementById('view-board-btn');
+      const listBtn = document.getElementById('view-list-btn');
+      const boardContainer = document.getElementById('board-view-container');
+      const listContainer = document.getElementById('list-view-container');
+
+      if (boardBtn && listBtn) {
+        boardBtn.addEventListener('click', () => {
+          boardBtn.classList.add('bg-secondary', 'text-on-secondary');
+          boardBtn.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+          listBtn.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+          listBtn.classList.remove('bg-secondary', 'text-on-secondary');
+          boardContainer.classList.remove('hidden');
+          listContainer.classList.add('hidden');
+        });
+
+        listBtn.addEventListener('click', () => {
+          listBtn.classList.add('bg-secondary', 'text-on-secondary');
+          listBtn.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+          boardBtn.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+          boardBtn.classList.remove('bg-secondary', 'text-on-secondary');
+          listContainer.classList.remove('hidden');
+          boardContainer.classList.add('hidden');
+        });
+      }
+
+      // Drag & Drop visual feedback emulation
+      const taskCards = document.querySelectorAll('.task-kanban-card');
+      taskCards.forEach(card => {
+        card.setAttribute('draggable', 'true');
+        card.addEventListener('dragstart', (e) => {
+          card.classList.add('opacity-40', 'scale-98');
+        });
+        card.addEventListener('dragend', (e) => {
+          card.classList.remove('opacity-40', 'scale-98');
+        });
+      });
+    });
+  </script>
+<!-- Top Page Header & Controls -->
+<div class="flex flex-col gap-space-lg mb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary px-2 py-0.5 rounded bg-surface-container font-semibold">Litigation Remediation Matrix</span>
+<span class="text-outline text-[12px]">•</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">LPC Rule 3.12 Compliance Active</span>
+</div>
+<h1 class="font-headline-h1 text-headline-h1 text-primary tracking-tight">Tasks &amp; Statutory Obligations</h1>
+<p class="font-body-regular text-body-regular text-on-surface-variant mt-1">
+          Remediation workflows, evidentiary requests, and compliance items across firm dossiers under LPC Rule 3.12
+        </p>
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-space-sm shrink-0">
+<!-- View Switcher -->
+<div class="flex items-center p-1 rounded-lg bg-surface-container-low">
+<button class="flex items-center gap-1.5 px-space-md py-1.5 rounded text-on-secondary bg-secondary font-body-medium text-body-medium shadow-sm transition-all" id="view-board-btn" title="Kanban Board View">
+<span class="material-symbols-outlined text-[18px]">view_kanban</span>
+<span>Board</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-md py-1.5 rounded text-on-surface-variant bg-surface-container-lowest font-body-medium text-body-medium hover:text-on-surface transition-all" id="view-list-btn" title="Tabular View">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+<span>List</span>
+</button>
+</div>
+<!-- Export CSV Secondary Button -->
+<button class="flex items-center gap-space-xs h-10 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-medium text-body-medium hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export tasks (CSV)</span>
+</button>
+<!-- New Task Primary Action Button -->
+<button class="flex items-center gap-space-xs h-10 px-space-md rounded-lg bg-secondary text-on-secondary font-body-medium text-body-medium hover:bg-on-secondary-container transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>New task</span>
+</button>
+</div>
+</div>
+<!-- Quick KPI Mini-Bar Strip -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+<!-- Total Active -->
+<div class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-[22px]">assignment</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Total Active Tasks</div>
+<div class="font-headline-h2 text-headline-h2 text-primary font-bold">28</div>
+</div>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-secondary px-2 py-0.5 rounded bg-surface-container-low">8 dossier files</span>
+</div>
+<!-- Overdue Critical -->
+<div class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-error-container flex items-center justify-center text-error shrink-0">
+<span class="material-symbols-outlined text-[22px]">error</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps uppercase tracking-wider text-on-error-container">Critical Overdue</div>
+<div class="font-headline-h2 text-headline-h2 text-error font-bold">4</div>
+</div>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-error bg-error-container/60 px-2 py-0.5 rounded font-semibold">Action needed</span>
+</div>
+<!-- Due This Week -->
+<div class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[22px]">event_upcoming</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Due This Week</div>
+<div class="font-headline-h2 text-headline-h2 text-primary font-bold">9</div>
+</div>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant px-2 py-0.5 rounded bg-surface-container-low">Ends 28 Feb</span>
+</div>
+<!-- Waiting on Client -->
+<div class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/40 flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]">hourglass_top</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Awaiting Client</div>
+<div class="font-headline-h2 text-headline-h2 text-primary font-bold">6</div>
+</div>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-secondary-container px-2 py-0.5 rounded bg-secondary-container/50">3 reminders sent</span>
+</div>
+</div>
+<!-- Filter & Search Console -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<!-- Search Field -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] text-outline">search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg bg-surface-container-low font-body-regular text-body-regular text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none transition-colors" placeholder="Search task title, claim ref, client or assignee..." type="text"/>
+</div>
+<!-- Filter Pill Selectors -->
+<div class="flex items-center flex-wrap gap-2">
+<button class="filter-pill px-3 py-1.5 rounded-lg bg-primary-container text-surface-bright font-body-medium text-body-medium transition-all shadow-sm">
+            All Tasks <span class="font-reference-code-sm ml-1 opacity-80">(28)</span>
+</button>
+<button class="filter-pill px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low font-body-medium text-body-medium transition-all flex items-center gap-1.5 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span>Overdue</span>
+<span class="font-reference-code-sm text-error font-semibold">(4)</span>
+</button>
+<button class="filter-pill px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low font-body-medium text-body-medium transition-all shadow-sm">
+            Due this week <span class="font-reference-code-sm ml-1 text-on-surface-variant">(9)</span>
+</button>
+</div>
+</div>
+<!-- Secondary Filter Row -->
+<div class="flex items-center flex-wrap justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center flex-wrap gap-space-sm">
+<!-- Filter by Claim -->
+<div class="relative">
+<select class="appearance-none h-9 pl-3 pr-8 rounded-lg bg-surface-container-low font-body-small text-body-small font-medium text-on-surface focus:outline-none cursor-pointer">
+<option>Filter by Claim: All Active Claims</option>
+<option>CG-2026-000142 (S. Ndlovu)</option>
+<option>CG-2026-000098 (N. Khumalo)</option>
+<option>CG-2026-000115 (P. van der Merwe)</option>
+<option>CG-2026-000084 (L. Mokoena)</option>
+<option>CG-2026-000210 (T. Dlamini)</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[18px] text-outline">unfold_more</span>
+</div>
+<!-- Assignee -->
+<div class="relative">
+<select class="appearance-none h-9 pl-3 pr-8 rounded-lg bg-surface-container-low font-body-small text-body-small font-medium text-on-surface focus:outline-none cursor-pointer">
+<option>Assignee: All Attorneys &amp; Staff</option>
+<option>Adv. L. Nkosi (Senior Partner)</option>
+<option>Adv. T. Khumalo (Associate)</option>
+<option>Cand. Att. Z. Sithole (Candidate Attorney)</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[18px] text-outline">unfold_more</span>
+</div>
+<!-- Source -->
+<div class="relative">
+<select class="appearance-none h-9 pl-3 pr-8 rounded-lg bg-surface-container-low font-body-small text-body-small font-medium text-on-surface focus:outline-none cursor-pointer">
+<option>Source: All Sources</option>
+<option>Readiness issue (Algorithm Flags)</option>
+<option>Information request (§19 / Statutory)</option>
+<option>Manual (Attorney Directive)</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[18px] text-outline">unfold_more</span>
+</div>
+</div>
+<button class="font-body-small text-body-small text-secondary hover:text-on-secondary-container font-semibold transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">filter_alt_off</span>
+<span>Clear filters</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Kanban Board View Container (Active View) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-lg items-start" id="board-view-container">
+<!-- ==================== COLUMN 1: TO DO ==================== -->
+<div class="flex flex-col gap-space-md bg-surface-container-low/60 rounded-xl p-space-md">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-3 h-3 rounded-full bg-outline"></div>
+<span class="font-headline-h3 text-headline-h3 text-primary">To do</span>
+<span class="font-reference-code-sm text-reference-code-sm px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-bold">8</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1" title="Column actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<!-- Cards Stack -->
+<div class="flex flex-col gap-space-md">
+<!-- Card 1.1: Upload proof of earnings -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<!-- Source Chip: Readiness issue -->
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-error-container text-on-error-container font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">warning</span>
+              Readiness issue
+            </span>
+<!-- Priority Badge -->
+<span class="font-label-caps text-label-caps text-error bg-error-container/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">High</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface hover:text-secondary transition-colors cursor-pointer leading-snug">
+            Upload proof of earnings (3-month salary slips)
+          </h3>
+<!-- Monospace Claim Link & Client -->
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-secondary hover:underline tracking-tight font-semibold" href="#">CG-2026-000084</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Lerato Mokoena</span>
+</div>
+</div>
+<!-- Overdue Badge (Red Critical) -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-error-container text-on-error-container font-body-small text-body-small font-semibold">
+<span class="material-symbols-outlined text-[16px] text-error">notification_important</span>
+<span>Overdue by 3d (21 Feb 2026)</span>
+</div>
+<!-- Card Footer: Assignee & Meta -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Cand. Att. Z. Sithole">
+<div class="w-7 h-7 rounded-full bg-primary-container text-surface flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                ZS
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Cand. Z. Sithole</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">checklist</span>
+                1/3
+              </span>
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">chat_bubble</span>
+                4
+              </span>
+</div>
+</div>
+</div>
+<!-- Card 1.2: Commission RAF Form 1 Medical Narrative affidavit -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<!-- Source Chip: Information request -->
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container-high text-primary-container font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">clinical_notes</span>
+              Information request
+            </span>
+<span class="font-label-caps text-label-caps text-error bg-error-container/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Critical</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface hover:text-secondary transition-colors cursor-pointer leading-snug">
+            Commission RAF Form 1 Medical Narrative affidavit
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-secondary hover:underline tracking-tight font-semibold" href="#">CG-2026-000142</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Sipho Ndlovu</span>
+</div>
+</div>
+<!-- Extra Auditor Note -->
+<div class="p-2 rounded bg-surface-container-low text-on-surface-variant font-body-small text-body-small flex items-start gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-outline shrink-0 mt-0.5">info</span>
+<span class="line-clamp-2">Attending superintendent signature seal missing from Page 4 annexure.</span>
+</div>
+<!-- Overdue Badge -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-error-container text-on-error-container font-body-small text-body-small font-semibold">
+<span class="material-symbols-outlined text-[16px] text-error">alarm_on</span>
+<span>Overdue by 2d (22 Feb 2026)</span>
+</div>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Adv. L. Nkosi">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                LN
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Adv. L. Nkosi</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">attachment</span>
+                2
+              </span>
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">chat_bubble</span>
+                1
+              </span>
+</div>
+</div>
+</div>
+<!-- Card 1.3: SAPS OAR sketch locus clarification -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-error-container/60 text-on-error-container font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">report_problem</span>
+              Readiness issue
+            </span>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider">Medium</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface hover:text-secondary transition-colors cursor-pointer leading-snug">
+            Obtain SAPS OAR sketch locus clarification
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-secondary hover:underline tracking-tight font-semibold" href="#">CG-2026-000115</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Pieter van der Merwe</span>
+</div>
+</div>
+<!-- Non-overdue Pill -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface font-body-small text-body-small">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_clock</span>
+<span>Due in 3 days (27 Feb 2026)</span>
+</div>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Adv. L. Nkosi">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                LN
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Adv. L. Nkosi</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">checklist</span>
+                0/2
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== COLUMN 2: IN PROGRESS ==================== -->
+<div class="flex flex-col gap-space-md bg-surface-container-low/60 rounded-xl p-space-md">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="font-headline-h3 text-headline-h3 text-primary">In progress</span>
+<span class="font-reference-code-sm text-reference-code-sm px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-bold">7</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1" title="Column actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<!-- Cards Stack -->
+<div class="flex flex-col gap-space-md">
+<!-- Card 2.1: Section 24 Statutory Demand Addendum -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<!-- Source Chip: Manual -->
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">edit_document</span>
+              Manual
+            </span>
+<span class="font-label-caps text-label-caps text-secondary bg-secondary-container/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">In Review</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface hover:text-secondary transition-colors cursor-pointer leading-snug">
+            Draft Section 24 Statutory Demand Addendum
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-secondary hover:underline tracking-tight font-semibold" href="#">CG-2026-000098</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Nomsa Khumalo</span>
+</div>
+</div>
+<!-- Urgency: Due Tomorrow -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container/30 text-on-secondary-container font-body-small text-body-small font-semibold">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>Due tomorrow (25 Feb 2026)</span>
+</div>
+<!-- Drafting Progress Visual Indicator -->
+<div class="flex flex-col gap-1 pt-1">
+<div class="flex justify-between items-center font-body-small text-body-small text-on-surface-variant">
+<span>Sectional review</span>
+<span class="font-reference-code-sm font-semibold">75%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 75%;"></div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Adv. T. Khumalo">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                TK
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Adv. T. Khumalo</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">chat_bubble</span>
+                2
+              </span>
+</div>
+</div>
+</div>
+<!-- Card 2.2: Neuro-psychological assessment -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-error-container/60 text-on-error-container font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">medical_services</span>
+              Readiness issue
+            </span>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider">Scheduled</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface hover:text-secondary transition-colors cursor-pointer leading-snug">
+            Schedule independent neuro-psychological assessment
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-secondary hover:underline tracking-tight font-semibold" href="#">CG-2026-000142</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Sipho Ndlovu</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface font-body-small text-body-small">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">event</span>
+<span>Due in 5 days (01 Mar 2026)</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Cand. Att. Z. Sithole">
+<div class="w-7 h-7 rounded-full bg-primary-container text-surface flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                ZS
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Cand. Z. Sithole</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">attachment</span>
+                1
+              </span>
+</div>
+</div>
+</div>
+<!-- Card 2.3: Reconcile past hospital vouchers -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">receipt_long</span>
+              Manual
+            </span>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider">Audit</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface hover:text-secondary transition-colors cursor-pointer leading-snug">
+            Reconcile past hospital vouchers vs claim schedule
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-secondary hover:underline tracking-tight font-semibold" href="#">CG-2026-000177</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Busisiwe Radebe</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface font-body-small text-body-small">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">event</span>
+<span>Due 04 Mar 2026</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Adv. T. Khumalo">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                TK
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Adv. T. Khumalo</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">checklist</span>
+                12/15
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== COLUMN 3: WAITING ON CLIENT ==================== -->
+<div class="flex flex-col gap-space-md bg-surface-container-low/60 rounded-xl p-space-md">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-3 h-3 rounded-full bg-on-secondary-container"></div>
+<span class="font-headline-h3 text-headline-h3 text-primary">Waiting on client</span>
+<span class="font-reference-code-sm text-reference-code-sm px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-bold">6</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1" title="Column actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<!-- Cards Stack -->
+<div class="flex flex-col gap-space-md">
+<!-- Card 3.1: Certified copy of national ID & utility bill -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container-high text-primary-container font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">badge</span>
+              Information request
+            </span>
+<span class="font-label-caps text-label-caps text-error bg-error-container/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">FICA Alert</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface hover:text-secondary transition-colors cursor-pointer leading-snug">
+            Certified copy of national ID document &amp; utility bill
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-secondary hover:underline tracking-tight font-semibold" href="#">CG-2026-000210</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Themba Dlamini</span>
+</div>
+</div>
+<!-- Overdue Badge -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-error-container text-on-error-container font-body-small text-body-small font-semibold">
+<span class="material-symbols-outlined text-[16px] text-error">notification_important</span>
+<span>Overdue by 1d (23 Feb 2026)</span>
+</div>
+<!-- Shortcut action button on card -->
+<button class="w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-surface-container-high hover:bg-secondary hover:text-on-secondary text-primary font-body-small text-body-small font-semibold transition-all">
+<span class="material-symbols-outlined text-[16px]">sms</span>
+<span>Resend SMS Reminder</span>
+</button>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Cand. Att. Z. Sithole">
+<div class="w-7 h-7 rounded-full bg-primary-container text-surface flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                ZS
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Cand. Z. Sithole</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm" title="2 dispatch dispatches sent">
+<span class="material-symbols-outlined text-[15px]">send</span>
+                2
+              </span>
+</div>
+</div>
+</div>
+<!-- Card 3.2: Signed Contingency Fee Agreement -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">handshake</span>
+              Manual
+            </span>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider">Rule 3.12</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface hover:text-secondary transition-colors cursor-pointer leading-snug">
+            Signed Contingency Fee Agreement (LPC Cap 25%)
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-secondary hover:underline tracking-tight font-semibold" href="#">CG-2026-000224</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Farai Chidzero</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface font-body-small text-body-small">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span>
+<span>Due in 4 days (28 Feb 2026)</span>
+</div>
+<!-- Channel Dispatch Pill -->
+<div class="flex items-center gap-1.5 text-secondary font-body-small text-body-small font-medium">
+<span class="material-symbols-outlined text-[15px]">mark_chat_read</span>
+<span>WhatsApp dispatch sent</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Adv. L. Nkosi">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                LN
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Adv. L. Nkosi</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">chat_bubble</span>
+                3
+              </span>
+</div>
+</div>
+</div>
+<!-- Card 3.3: Pre-accident employer absence verification letter -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-error-container/60 text-on-error-container font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">work_history</span>
+              Readiness issue
+            </span>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider">Earnings</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface hover:text-secondary transition-colors cursor-pointer leading-snug">
+            Pre-accident employer absence verification letter
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-secondary hover:underline tracking-tight font-semibold" href="#">CG-2026-000098</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Nomsa Khumalo</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface font-body-small text-body-small">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span>
+<span>Due 06 Mar 2026</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Adv. T. Khumalo">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                TK
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Adv. T. Khumalo</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">attachment</span>
+                0
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== COLUMN 4: DONE ==================== -->
+<div class="flex flex-col gap-space-md bg-surface-container-low/60 rounded-xl p-space-md">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-3 h-3 rounded-full bg-on-secondary-container"></div>
+<span class="font-headline-h3 text-headline-h3 text-primary">Done</span>
+<span class="font-reference-code-sm text-reference-code-sm px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-bold">7</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1" title="Column actions">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<!-- Cards Stack -->
+<div class="flex flex-col gap-space-md">
+<!-- Card 4.1: Banking confirmation letter -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest/80 opacity-95 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">account_balance</span>
+              Information request
+            </span>
+<span class="font-label-caps text-label-caps text-on-secondary-container bg-secondary-container/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">done_all</span> Verified
+            </span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface line-through decoration-outline-variant decoration-1 leading-snug">
+            Verify banking confirmation letter with Standard Bank
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-on-surface-variant hover:underline tracking-tight font-semibold" href="#">CG-2026-000098</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Lerato Khumalo</span>
+</div>
+</div>
+<!-- Completed Status Badge -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container/30 text-on-secondary-container font-body-small text-body-small font-medium">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+<span>Completed 23 Feb 2026</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Cand. Att. Z. Sithole">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                ZS
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Cand. Z. Sithole</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">verified</span>
+                FICA OK
+              </span>
+</div>
+</div>
+</div>
+<!-- Card 4.2: DHA HANIS Biometric match -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest/80 opacity-95 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">fingerprint</span>
+              Readiness issue
+            </span>
+<span class="font-label-caps text-label-caps text-on-secondary-container bg-secondary-container/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">verified_user</span> DHA Match
+            </span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface line-through decoration-outline-variant decoration-1 leading-snug">
+            DHA HANIS Biometric match verification
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-on-surface-variant hover:underline tracking-tight font-semibold" href="#">CG-2026-000142</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Sipho Ndlovu</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container/30 text-on-secondary-container font-body-small text-body-small font-medium">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+<span>Completed 18 Jan 2026</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Adv. L. Nkosi">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                LN
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Adv. L. Nkosi</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">attachment</span>
+                1
+              </span>
+</div>
+</div>
+</div>
+<!-- Card 4.3: Special Power of Attorney -->
+<div class="task-kanban-card group rounded-xl p-space-md bg-surface-container-lowest/80 opacity-95 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-semibold tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">gavel</span>
+              Manual
+            </span>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider">Executed</span>
+</div>
+<h3 class="font-body-medium text-body-medium font-semibold text-on-surface line-through decoration-outline-variant decoration-1 leading-snug">
+            Special Power of Attorney executed and notarised
+          </h3>
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">policy</span>
+<a class="font-reference-code text-reference-code text-on-surface-variant hover:underline tracking-tight font-semibold" href="#">CG-2026-000084</a>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">person</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Lerato Mokoena</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container/30 text-on-secondary-container font-body-small text-body-small font-medium">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+<span>Completed 20 Feb 2026</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2" title="Assignee: Adv. T. Khumalo">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-reference-code-sm text-[11px] font-bold">
+                TK
+              </div>
+<span class="font-body-small text-body-small text-on-surface-variant">Adv. T. Khumalo</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline">
+<span class="flex items-center gap-0.5 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[15px]">chat_bubble</span>
+                1
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Alternative List View Container (Hidden initially, toggled via JS) -->
+<div class="hidden flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden" id="list-view-container">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+<th class="py-3 px-4">Task Description</th>
+<th class="py-3 px-4">Claim Ref</th>
+<th class="py-3 px-4">Client</th>
+<th class="py-3 px-4">Source</th>
+<th class="py-3 px-4">Status</th>
+<th class="py-3 px-4">Due Date</th>
+<th class="py-3 px-4">Assignee</th>
+<th class="py-3 px-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-regular text-body-regular text-on-surface">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-4 font-body-medium font-semibold text-primary">Upload proof of earnings (3-month salary slips)</td>
+<td class="py-3.5 px-4 font-reference-code text-reference-code text-secondary">CG-2026-000084</td>
+<td class="py-3.5 px-4 text-on-surface-variant">Lerato Mokoena</td>
+<td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-caps text-label-caps font-semibold">Readiness issue</span></td>
+<td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-surface-container font-body-small text-body-small">To do</span></td>
+<td class="py-3.5 px-4 font-body-small text-error font-semibold">Overdue (21 Feb)</td>
+<td class="py-3.5 px-4"><span class="font-body-small text-on-surface-variant">Cand. Z. Sithole</span></td>
+<td class="py-3.5 px-4 text-right"><button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-4 font-body-medium font-semibold text-primary">Commission RAF Form 1 Medical Narrative affidavit</td>
+<td class="py-3.5 px-4 font-reference-code text-reference-code text-secondary">CG-2026-000142</td>
+<td class="py-3.5 px-4 text-on-surface-variant">Sipho Ndlovu</td>
+<td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-surface-container-high text-primary-container font-label-caps text-label-caps font-semibold">Information req</span></td>
+<td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-surface-container font-body-small text-body-small">To do</span></td>
+<td class="py-3.5 px-4 font-body-small text-error font-semibold">Overdue (22 Feb)</td>
+<td class="py-3.5 px-4"><span class="font-body-small text-on-surface-variant">Adv. L. Nkosi</span></td>
+<td class="py-3.5 px-4 text-right"><button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-4 font-body-medium font-semibold text-primary">Draft Section 24 Statutory Demand Addendum</td>
+<td class="py-3.5 px-4 font-reference-code text-reference-code text-secondary">CG-2026-000098</td>
+<td class="py-3.5 px-4 text-on-surface-variant">Nomsa Khumalo</td>
+<td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps font-semibold">Manual</span></td>
+<td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-secondary-container/40 text-secondary font-body-small text-body-small font-semibold">In progress</span></td>
+<td class="py-3.5 px-4 font-body-small text-on-secondary-container font-semibold">Due tomorrow</td>
+<td class="py-3.5 px-4"><span class="font-body-small text-on-surface-variant">Adv. T. Khumalo</span></td>
+<td class="py-3.5 px-4 text-right"><button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Analytical Institutional Footer Strip -->
+<div class="mt-space-xl pt-space-md border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-small text-body-small">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-secondary">balance</span>
+<span>Tasks managed under <strong>Legal Practice Act 28 of 2014</strong> &amp; LPC Code of Conduct §3.12. POPIA Act 4 §19 Audited Ledger.</span>
+</div>
+<div class="flex items-center gap-space-md font-reference-code-sm text-reference-code-sm">
+<span>Auto-Sync: <span class="text-secondary font-semibold">Live (RAF E-Portal)</span></span>
+<span>Ledger ID: <span class="text-primary font-semibold">74492-TASK-098</span></span>
+</div>
+</div>
+</div></main></div></body></html>

@@ -1,0 +1,16 @@
+# gitleaks configuration (Section 4.1, T-SETUP-8).
+# Uses the default rule set and skips folders that are installed or generated, never committed.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Installed and generated folders"
+paths = [
+  '''(^|/)node_modules/''',
+  '''(^|/)dist/''',
+  '''(^|/)coverage/''',
+  '''(^|/)playwright-report/''',
+  '''(^|/)test-results/''',
+  '''(^|/)\.git/''',
+  '''(^|/)\.env$''',
+]
