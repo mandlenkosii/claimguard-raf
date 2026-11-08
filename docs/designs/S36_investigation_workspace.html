@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-variant": "#d5e3fc", "primary-container": "#0f2a44", "surface-dim": "#ccdbf3", "on-error": "#ffffff", "error-container": "#ffdad6", "on-secondary-container": "#00706f", "error": "#ba1a1a", "surface-tint": "#48607d", "tertiary": "#000f41", "secondary": "#006a69", "surface-bright": "#f8f9ff", "on-primary-fixed": "#001d36", "inverse-on-surface": "#eaf1ff", "on-secondary-fixed": "#002020", "tertiary-fixed-dim": "#b7c4ff", "tertiary-fixed": "#dce1ff", "outline": "#74777e", "primary-fixed-dim": "#b0c9ea", "inverse-primary": "#b0c9ea", "background": "#f8f9ff", "outline-variant": "#c3c6ce", "on-error-container": "#93000a", "surface-container-lowest": "#ffffff", "on-surface-variant": "#43474d", "secondary-fixed-dim": "#7cd5d3", "surface-container": "#e6eeff", "inverse-surface": "#233144", "secondary-fixed": "#98f2f0", "on-primary-fixed-variant": "#304864", "on-secondary": "#ffffff", "surface-container-low": "#eff4ff", "on-secondary-fixed-variant": "#00504f", "on-primary-container": "#7992b1", "on-tertiary-container": "#6888ff", "surface-container-high": "#dce9ff", "on-background": "#0d1c2e", "surface": "#f8f9ff", "on-tertiary-fixed": "#001551", "on-tertiary-fixed-variant": "#0039b5", "secondary-container": "#98f2f0", "on-primary": "#ffffff", "primary-fixed": "#d1e4ff", "primary": "#00152a", "tertiary-container": "#002070", "on-tertiary": "#ffffff", "surface-container-highest": "#d5e3fc", "on-surface": "#0d1c2e" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-xs": "0.25rem", "space-lg": "1.5rem", "margin": "2rem", "gutter": "1.5rem", "space-xl": "2rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-h3": [ "Inter" ], "headline-h1": [ "Inter" ], "body-small": [ "Inter" ], "label-caps": [ "Inter" ], "reference-code": [ "IBM Plex Mono" ], "body-regular": [ "Inter" ], "body-medium": [ "Inter" ], "reference-code-sm": [ "IBM Plex Mono" ], "headline-h2": [ "Inter" ] }, "fontSize": { "headline-h3": [ "18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "headline-h1": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "body-small": [ "12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" } ], "label-caps": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" } ], "reference-code": [ "13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500" } ], "body-regular": [ "14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" } ], "body-medium": [ "14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "500" } ], "reference-code-sm": [ "11px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "500" } ], "headline-h2": [ "22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background font-body-regular text-on-surface min-h-screen"><div class="fixed top-0 left-0 right-0 z-50 bg-[#fffbeb] text-[#92400e] border-b border-[#fde68a] h-9 px-gutter flex items-center justify-center gap-space-xs font-body-small font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><span class="material-symbols-outlined text-[15px]">warning</span><span>ClaimGuard RAF — Concept Prototype. Not an official RAF system. Demonstration data only.</span></div><aside class="fixed left-0 top-9 bottom-0 w-64 bg-primary-container z-40 flex flex-col justify-between border-r border-[#1e3e60] select-none"><div class="flex flex-col flex-1 overflow-y-auto"><div class="p-space-lg border-b border-[#1e3e60]"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded bg-secondary flex items-center justify-center text-on-secondary shadow-sm"><span class="material-symbols-outlined text-[20px]">verified_user</span></div><div><div class="font-headline-h3 text-[15px] font-bold text-white tracking-tight leading-none">ClaimGuard RAF</div><div class="font-label-caps text-[9px] uppercase tracking-wider text-on-primary-container mt-1">Forensic Investigation Enclave</div></div></div></div><div class="px-space-md py-space-sm"><div class="font-label-caps text-on-primary-container px-space-sm py-space-xs uppercase text-[10px] tracking-widest font-semibold">Investigative Operations</div></div><nav class="flex flex-col gap-0.5 px-space-sm" data-active-classes="bg-[#1b3b5c] text-white font-medium border-l-2 border-secondary"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-r text-on-primary-container hover:bg-[#153452] hover:text-white transition-colors font-body-regular text-[13px]" data-path="investigator-dashboard" href="#"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-r text-on-primary-container hover:bg-[#153452] hover:text-white transition-colors font-body-regular text-[13px]" data-path="risk-queue" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">security</span><span>Risk queue</span></div><span class="px-1.5 py-0.5 text-[10px] font-reference-code-sm bg-error text-on-error rounded font-semibold">14 Act</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-r text-on-primary-container hover:bg-[#153452] hover:text-white transition-colors font-body-regular text-[13px]" data-path="my-investigations" href="#"><span class="material-symbols-outlined text-[18px]">folder_shared</span><span>My investigations</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-r text-on-primary-container hover:bg-[#153452] hover:text-white transition-colors font-body-regular text-[13px]" data-path="investigator-reports" href="#"><span class="material-symbols-outlined text-[18px]">assessment</span><span>Reports</span></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-r text-on-primary-container hover:bg-[#153452] hover:text-white transition-colors font-body-regular text-[13px]" data-path="notifications" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">notifications</span><span>Notifications</span></div><span class="w-2 h-2 rounded-full bg-secondary"></span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-r text-on-primary-container hover:bg-[#153452] hover:text-white transition-colors font-body-regular text-[13px]" data-path="profile" href="#"><span class="material-symbols-outlined text-[18px]">badge</span><span>Profile</span></a></nav></div><div class="flex flex-col border-t border-[#1e3e60] bg-[#0b2034]"><div class="px-space-md py-space-sm flex flex-col gap-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 text-on-primary-container hover:text-white text-[12px] font-body-small transition-colors" href="#"><span class="material-symbols-outlined text-[16px]">help</span><span>Help &amp; Support</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 text-on-primary-container hover:text-error text-[12px] font-body-small transition-colors" href="#"><span class="material-symbols-outlined text-[16px]">logout</span><span>Sign Out</span></a></div><div class="px-space-md py-space-sm bg-[#081827] border-t border-[#152e46]"><div class="flex items-start gap-1.5"><span class="material-symbols-outlined text-[#7992b1] text-[14px] mt-0.5">lock</span><p class="text-[10px] leading-tight font-reference-code-sm text-on-primary-container/80">POPIA &amp; RAF ACT 56 • Statutory Forensic Integrity Active • RSA SIU Data Enclave</p></div></div></div></aside><div class="pl-64"><header class="fixed top-9 left-64 right-0 h-16 bg-surface-container-lowest border-b border-surface-container-high z-30 px-gutter flex items-center justify-between gap-space-md shadow-[0_1px_3px_rgba(15,23,42,0.04)]"><div class="flex items-center gap-space-md min-w-0"><div class="flex items-center gap-space-xs font-body-small text-on-surface-variant truncate"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-medium text-on-surface truncate">Forensic Investigation Unit</span><span class="text-outline-variant">•</span><span class="text-[11px] text-on-surface-variant truncate font-reference-code-sm">SIU &amp; RAF Anti-Fraud Enclave</span></div></div><div class="flex-1 max-w-xl mx-space-md"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-3 text-outline text-[18px] pointer-events-none">search</span><input class="w-full h-10 pl-9 pr-space-md bg-surface border border-outline-variant/60 rounded-lg text-on-surface font-body-regular text-[13px] placeholder:text-outline focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" placeholder="Search alerts, alert ID, claim ref, hash, suspect entities..." type="text"/></div></div><div class="flex items-center gap-space-md shrink-0"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 flex h-4 min-w-4 px-1 items-center justify-center rounded-full bg-error text-on-error font-reference-code-sm text-[10px] font-bold">7</span></button><div class="h-7 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-sm pl-space-xs"><div class="flex flex-col text-right"><span class="font-body-medium text-[13px] text-on-surface font-semibold leading-tight">F. Mthembu</span><div class="flex items-center justify-end gap-1 mt-0.5"><span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-semibold bg-tertiary-fixed text-on-tertiary-fixed leading-none">Investigator</span><span class="font-reference-code-sm text-[10px] text-on-surface-variant">#INV-90412</span></div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-25 bg-background min-h-[calc(100vh-2.25rem)]"><div class="flex flex-col w-full">
+<!-- BREADCRUMB & CONTEXT TRACE -->
+<div class="px-margin pt-space-lg pb-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-xs font-body-small text-on-surface-variant">
+<a class="hover:text-secondary transition-colors font-medium" href="#">Risk Queue</a>
+<span class="text-outline-variant font-reference-code-sm">/</span>
+<a class="hover:text-secondary transition-colors font-medium" href="#">Alerts</a>
+<span class="text-outline-variant font-reference-code-sm">/</span>
+<span class="font-reference-code text-on-surface font-semibold bg-surface-container px-2 py-0.5 rounded">RA-2026-00031</span>
+</div>
+<div class="flex items-center gap-space-sm font-reference-code-sm text-[11px] text-on-surface-variant bg-surface-container-low px-space-md py-1 rounded">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary"></span>
+<span>Ledger Anchor: SHA256:7f4a...91ce</span>
+<span class="text-outline-variant">|</span>
+<span>Jurisdiction: Gauteng &amp; Limpopo Cross-Node</span>
+</div>
+</div>
+<!-- WORKSPACE COMMAND HEADER -->
+<div class="px-margin pb-space-md">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-wrap items-start justify-between gap-space-md">
+<!-- Title & Metadata Cluster -->
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded font-label-caps text-error bg-error-container/60 font-bold uppercase tracking-wider text-[11px]">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+              High Severity Alert
+            </span>
+<span class="font-reference-code text-body-small text-on-surface font-semibold bg-surface-container-high px-2 py-0.5 rounded">
+              RA-2026-00031
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-body-small font-medium text-[12px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              Under review
+            </span>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-small text-[12px] bg-surface-container px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[15px] text-secondary">folder_shared</span>
+<span>Claim Ref:</span>
+<a class="font-reference-code font-semibold text-secondary hover:underline inline-flex items-center gap-0.5" href="#">
+                CG-2026-000142
+                <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</a>
+</div>
+</div>
+<h1 class="font-headline-h1 text-on-surface tracking-tight mt-1">
+            Conflicting accident dates across documents
+          </h1>
+<div class="flex flex-wrap items-center gap-space-md font-body-small text-on-surface-variant mt-0.5">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">account_circle</span>
+<span>Assigned: <strong class="text-on-surface font-body-medium">F. Mthembu</strong> (#INV-90412)</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">schedule</span>
+<span>Created: 18 Feb 2026, 11:24 SAST (7 days ago)</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1.5 font-reference-code-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">gavel</span>
+<span>RAF Act 56 § 19(a)</span>
+</div>
+</div>
+</div>
+<!-- Action Strip -->
+<div class="flex items-center gap-space-sm shrink-0 self-start">
+<button class="h-10 px-4 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-[13px] transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+<span>Assign / Transfer</span>
+</button>
+<button class="h-10 px-4 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-medium text-[13px] transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px] text-error">gavel</span>
+<span>Escalate to SIU</span>
+</button>
+<button class="h-10 px-5 rounded-lg bg-secondary hover:bg-[#085453] text-on-secondary font-body-medium text-[13px] shadow-sm transition-all flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-semibold">Record outcome</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 3-COLUMN WORKSPACE CANVAS -->
+<div class="px-margin pb-space-lg">
+<div class="grid grid-cols-12 gap-gutter items-start">
+<!-- ==========================================
+           LEFT COLUMN: ALERT TRIGGER & EVIDENCE ITEMS (3 cols)
+           ========================================== -->
+<div class="col-span-12 xl:col-span-3 flex flex-col gap-space-md">
+<!-- Trigger Card -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">policy</span>
+<h2 class="font-headline-h3 text-[15px] text-on-surface font-bold">Alert Trigger &amp; Forensic Rule</h2>
+</div>
+<span class="text-[10px] font-reference-code-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">GATE 03</span>
+</div>
+<!-- Rule Identity Pill -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-1">
+<div class="font-label-caps text-[10px] uppercase tracking-wider text-secondary font-bold">Statutory Integrity Rule</div>
+<div class="font-reference-code text-[12px] font-semibold text-primary leading-tight">
+              RULE-003 v1.3 • Cross-Document Temporal Discrepancy Gate
+            </div>
+</div>
+<!-- Plain Language Context -->
+<div class="bg-surface-container-lowest text-on-surface-variant font-body-regular text-[13px] leading-relaxed">
+            Automated document ingestion detected a <strong class="text-on-surface font-semibold">9-day chronological disparity</strong> between the official SAPS South African Police Accident Report (OAR) and the Tembisa Provincial Hospital Trauma Ingress Admission Record. Under RAF Act 56 § 19(a) and LPC evidential criteria, conflicting crash chronology invalidates statutory causation until reconciled.
+          </div>
+<!-- Metrics Panel -->
+<div class="bg-surface-container p-space-sm rounded-lg flex flex-col gap-2">
+<div class="flex items-center justify-between text-[12px]">
+<span class="font-body-small text-on-surface-variant">Heuristic Confidence</span>
+<div class="flex items-center gap-1.5 font-reference-code font-semibold text-secondary">
+<span>99.4%</span>
+<span class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden inline-block">
+<span class="h-full bg-secondary block" style="width: 99.4%;"></span>
+</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[12px]">
+<span class="font-body-small text-on-surface-variant">Discrepancy Vector</span>
+<span class="font-reference-code-sm font-semibold text-error bg-error-container/40 px-1.5 py-0.2 rounded">+9 calendar days</span>
+</div>
+<div class="flex items-center justify-between text-[12px]">
+<span class="font-body-small text-on-surface-variant">Forensic Ingestion</span>
+<span class="font-reference-code-sm text-on-surface">OCR Engine v4.2 (Verified)</span>
+</div>
+</div>
+</div>
+<!-- Evidence Items Selector List -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<h3 class="font-headline-h3 text-[14px] text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">attach_file</span>
+              Evidence Items (3)
+            </h3>
+<span class="text-[11px] font-body-small text-on-surface-variant">Select to compare</span>
+</div>
+<!-- Item 1 (Selected) -->
+<div class="p-space-sm rounded-lg bg-surface-container-high transition-all cursor-pointer relative group shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">description</span>
+<div>
+<div class="font-body-medium text-[13px] text-on-surface font-semibold leading-snug">SAPS Accident Report (OAR)</div>
+<div class="font-reference-code-sm text-[11px] text-on-surface-variant">DOC-2026-00412</div>
+</div>
+</div>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-caps uppercase bg-secondary text-on-secondary font-semibold">Active A</span>
+</div>
+<div class="mt-2 pt-2 grid grid-cols-2 gap-1 text-[11px] font-reference-code-sm text-on-surface-variant">
+<span>Uploaded: 14 Feb 2026</span>
+<span class="text-right">4 Pages • Parsed</span>
+<span class="col-span-2 truncate">SHA: 9f8a84c...c32d91</span>
+</div>
+</div>
+<!-- Item 2 (Selected) -->
+<div class="p-space-sm rounded-lg bg-surface-container-high transition-all cursor-pointer relative group shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">local_hospital</span>
+<div>
+<div class="font-body-medium text-[13px] text-on-surface font-semibold leading-snug">Tembisa Hospital Ingress Record</div>
+<div class="font-reference-code-sm text-[11px] text-on-surface-variant">DOC-2026-00508</div>
+</div>
+</div>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-caps uppercase bg-secondary text-on-secondary font-semibold">Active B</span>
+</div>
+<div class="mt-2 pt-2 grid grid-cols-2 gap-1 text-[11px] font-reference-code-sm text-on-surface-variant">
+<span>Uploaded: 16 Feb 2026</span>
+<span class="text-right">2 Pages • Parsed</span>
+<span class="col-span-2 truncate">SHA: 7b120c4...a90432</span>
+</div>
+</div>
+<!-- Item 3 (Supporting) -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-outline">assignment</span>
+<div>
+<div class="font-body-medium text-[13px] text-on-surface font-medium leading-snug">RAF Form 1 Statutory Affidavit</div>
+<div class="font-reference-code-sm text-[11px] text-on-surface-variant">DOC-2026-00102</div>
+</div>
+</div>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-caps uppercase bg-surface-container-highest text-on-surface-variant">Supporting</span>
+</div>
+<div class="mt-2 pt-2 grid grid-cols-2 gap-1 text-[11px] font-reference-code-sm text-on-surface-variant">
+<span>Uploaded: 10 Feb 2026</span>
+<span class="text-right">6 Pages</span>
+<span class="col-span-2 truncate">Lodged by: M. Chauke Attorneys</span>
+</div>
+</div>
+<!-- Statutory Cross-reference Notice -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-2 mt-1">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5 shrink-0">info</span>
+<p class="font-body-small text-[11px] text-on-surface-variant leading-relaxed">
+              Statutory mandate under <strong class="text-on-surface font-medium">RAF Act 56 of 1996 § 19(a) &amp; § 24</strong> requires accident details on medical invoices to correlate exactly with police records.
+            </p>
+</div>
+</div>
+</div>
+<!-- ==========================================
+           CENTRE COLUMN: EVIDENCE COMPARISON (6 cols)
+           ========================================== -->
+<div class="col-span-12 xl:col-span-6 flex flex-col gap-space-md">
+<!-- Evidence Inspection Deck -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<!-- Deck Header & Interaction Controls -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-xs">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">compare</span>
+<h2 class="font-headline-h3 text-on-surface font-bold">Evidentiary Comparison &amp; OCR Verification</h2>
+</div>
+<p class="font-body-small text-on-surface-variant mt-0.5">Side-by-side bounding box inspection across extracted primary artifacts</p>
+</div>
+<!-- Possible Extraction Error Toggle -->
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-lg">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="ocrToggle" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+<span class="ml-2 font-body-small text-[12px] font-medium text-on-surface select-none">Possible OCR error?</span>
+</label>
+<a class="text-[11px] font-reference-code-sm text-secondary hover:underline flex items-center gap-0.5" href="#">
+                PDF Viewer <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Dual Side-by-Side Simulated Scans -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Document A: SAPS OAR -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm relative overflow-hidden">
+<div class="absolute top-2 right-2 opacity-15 pointer-events-none select-none">
+<span class="font-reference-code-sm text-[10px] font-bold tracking-widest text-primary uppercase">SAPS OFFICIAL DOCKET</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[10px] tracking-wider uppercase text-secondary font-bold">Source A: Official Police OAR</span>
+<span class="font-reference-code-sm text-[10px] text-on-surface-variant">AR 204/11/2025</span>
+</div>
+<!-- Mini Doc Card Look -->
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex flex-col gap-2 text-[12px]">
+<div class="flex items-center justify-between pb-1">
+<span class="font-body-small text-on-surface-variant">Station: Polokwane Central</span>
+<span class="font-reference-code-sm text-[10px] text-on-surface-variant">Const. D. Sithole</span>
+</div>
+<!-- Callout Box Bounding Box (Discrepancy) -->
+<div class="p-2.5 rounded bg-error-container/40 flex flex-col gap-1 relative">
+<span class="absolute top-1.5 right-1.5 bg-error text-on-error font-label-caps text-[9px] px-1.5 py-0.2 rounded font-bold uppercase">
+                    Extracted Value
+                  </span>
+<span class="text-[11px] font-body-small text-on-surface-variant font-medium">Date of Incident / Botsing Datum:</span>
+<div class="font-reference-code text-[15px] font-bold text-error tracking-tight">
+                    12 March 2026
+                  </div>
+<div class="font-body-small text-[11px] text-on-surface-variant mt-0.5">
+                    Time: <span class="font-reference-code font-semibold text-on-surface">19:45 SAST</span>
+</div>
+</div>
+<div class="text-[11px] font-body-small text-on-surface-variant flex flex-col gap-0.5 pt-1">
+<div>Location: <strong class="text-on-surface font-medium">R101 Polokwane North Intersection</strong></div>
+<div>Vehicles: <strong class="text-on-surface font-medium">Toyota HiAce (GP 449 NW)</strong></div>
+</div>
+</div>
+<div class="flex items-center justify-between font-reference-code-sm text-[10px] text-on-surface-variant">
+<span>Confidence: 98.7% (Digital Font)</span>
+<span class="text-secondary font-medium">Page 1, Box [x:142, y:210]</span>
+</div>
+</div>
+<!-- Document B: Hospital Ingress -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm relative overflow-hidden">
+<div class="absolute top-2 right-2 opacity-15 pointer-events-none select-none">
+<span class="font-reference-code-sm text-[10px] font-bold tracking-widest text-primary uppercase">GAUTENG HEALTH</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[10px] tracking-wider uppercase text-secondary font-bold">Source B: Hospital Trauma Ingress</span>
+<span class="font-reference-code-sm text-[10px] text-on-surface-variant">MED-TEMB-9021</span>
+</div>
+<!-- Mini Doc Card Look -->
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex flex-col gap-2 text-[12px]">
+<div class="flex items-center justify-between pb-1">
+<span class="font-body-small text-on-surface-variant">Ward 4B Trauma Intake</span>
+<span class="font-reference-code-sm text-[10px] text-on-surface-variant">Dr. K. Naidoo (MO)</span>
+</div>
+<!-- Callout Box Bounding Box (Discrepancy) -->
+<div class="p-2.5 rounded bg-error-container/40 flex flex-col gap-1 relative">
+<span class="absolute top-1.5 right-1.5 bg-error text-on-error font-label-caps text-[9px] px-1.5 py-0.2 rounded font-bold uppercase">
+                    Extracted Value
+                  </span>
+<span class="text-[11px] font-body-small text-on-surface-variant font-medium">Incident Date as Reported by Patient:</span>
+<div class="font-reference-code text-[15px] font-bold text-error tracking-tight">
+                    21 March 2026
+                  </div>
+<div class="font-body-small text-[11px] text-on-surface-variant mt-0.5">
+                    Admission: <span class="font-reference-code font-semibold text-on-surface">21 Mar 2026, 21:15 SAST</span>
+</div>
+</div>
+<div class="text-[11px] font-body-small text-on-surface-variant flex flex-col gap-0.5 pt-1">
+<div>Injury: <strong class="text-on-surface font-medium">Cervical hyperextension, clavicle fracture</strong></div>
+<div>Origin: <strong class="text-on-surface font-medium">Transfer Limpopo EMS (R101 MVA)</strong></div>
+</div>
+</div>
+<div class="flex items-center justify-between font-reference-code-sm text-[10px] text-on-surface-variant">
+<span>Confidence: 94.1% (Handwritten)</span>
+<span class="text-secondary font-medium">Page 1, Box [x:180, y:342]</span>
+</div>
+</div>
+</div>
+<!-- Chronology Discrepancy Table -->
+<div class="flex flex-col gap-2">
+<h3 class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface font-bold">
+              Extraction Discrepancy Matrix
+            </h3>
+<div class="overflow-x-auto rounded-lg bg-surface-container-lowest shadow-sm">
+<table class="w-full text-left font-body-regular text-[13px]">
+<thead class="bg-surface-container text-on-surface-variant font-label-caps text-[11px] uppercase tracking-wider">
+<tr>
+<th class="py-2.5 px-space-md font-semibold">Analyzed Attribute</th>
+<th class="py-2.5 px-space-md font-semibold">Source A: SAPS OAR</th>
+<th class="py-2.5 px-space-md font-semibold">Source B: Hospital Form</th>
+<th class="py-2.5 px-space-md font-semibold text-right">Verification Status</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-on-surface">
+<!-- Row 1: Date Mismatch -->
+<tr class="bg-error-container/20">
+<td class="py-3 px-space-md font-body-medium font-semibold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-error">event_busy</span>
+                      Accident / Incident Date
+                    </td>
+<td class="py-3 px-space-md font-reference-code text-[12px] font-semibold text-on-surface">
+                      12 Mar 2026, 19:45
+                    </td>
+<td class="py-3 px-space-md font-reference-code text-[12px] font-semibold text-on-surface">
+                      21 Mar 2026, 21:15
+                    </td>
+<td class="py-3 px-space-md text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-error-container text-error">
+<span class="material-symbols-outlined text-[13px]">close</span>
+                        MISMATCH (-9 days)
+                      </span>
+</td>
+</tr>
+<!-- Row 2: Claimant Name -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-body-medium">Claimant Full Legal Name</td>
+<td class="py-3 px-space-md font-body-regular">Sipho Ndlovu</td>
+<td class="py-3 px-space-md font-body-regular">Sipho Ndlovu</td>
+<td class="py-3 px-space-md text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container text-secondary">
+<span class="material-symbols-outlined text-[13px]">check</span>
+                        EXACT MATCH (100%)
+                      </span>
+</td>
+</tr>
+<!-- Row 3: ID Number -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-body-medium">RSA Identity Number</td>
+<td class="py-3 px-space-md font-reference-code text-[12px]">880412 5182 082</td>
+<td class="py-3 px-space-md font-reference-code text-[12px]">880412 5182 082</td>
+<td class="py-3 px-space-md text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container text-secondary">
+<span class="material-symbols-outlined text-[13px]">check</span>
+                        EXACT MATCH (100%)
+                      </span>
+</td>
+</tr>
+<!-- Row 4: Accident Location -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-body-medium">Accident Location</td>
+<td class="py-3 px-space-md font-body-regular">R101 Polokwane North</td>
+<td class="py-3 px-space-md font-body-regular">Limpopo EMS Transfer (R101)</td>
+<td class="py-3 px-space-md text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container text-secondary">
+<span class="material-symbols-outlined text-[13px]">done_all</span>
+                        CORROBORATED
+                      </span>
+</td>
+</tr>
+<!-- Row 5: Vehicle Registration -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-body-medium">Vehicle Registration</td>
+<td class="py-3 px-space-md font-reference-code text-[12px]">GP 449 NW (Toyota HiAce)</td>
+<td class="py-3 px-space-md font-body-regular">Taxi passenger collision noted</td>
+<td class="py-3 px-space-md text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container text-secondary">
+<span class="material-symbols-outlined text-[13px]">done_all</span>
+                        CONSISTENT
+                      </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- OCR Forensic Analyst Note -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-start gap-3">
+<span class="material-symbols-outlined text-[20px] text-secondary mt-0.5 shrink-0">psychology</span>
+<div class="flex flex-col gap-1 text-[12px] font-body-regular text-on-surface-variant">
+<span class="font-body-medium text-on-surface font-semibold">Forensic Heuristic Assessment:</span>
+<p class="leading-relaxed">
+                OCR character confidence: SAPS OAR date field has <strong>98.7%</strong> confidence (digital typewriter typography). Hospital admission date carries <strong>94.1%</strong> confidence (handwritten clinical intake note transcribed by casualty triage clerk). Note strong indicator of a <strong>transposition error</strong> (12 vs 21 March) committed during hospital admitting intake rather than fraudulent pre-existing injury staging.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- ==========================================
+           RIGHT COLUMN: NOTES & ALERT AUDIT TRAIL (3 cols)
+           ========================================== -->
+<div class="col-span-12 xl:col-span-3 flex flex-col gap-space-md">
+<!-- Upper: Append-Only Investigation Notes -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-md">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-headline-h3 text-[15px] text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">history_edu</span>
+                Investigation Notes
+              </h3>
+<span class="text-[10px] font-label-caps uppercase bg-surface-container text-on-surface-variant px-1.5 py-0.5 rounded font-bold">Immutable Ledger</span>
+</div>
+<p class="font-body-small text-[11px] text-on-surface-variant mt-1 leading-snug">
+              Append-only evidentiary ledger. Notes cannot be deleted or modified; corrections require follow-up entry.
+            </p>
+</div>
+<!-- Note Items Stream -->
+<div class="flex flex-col gap-space-sm max-h-[360px] overflow-y-auto pr-1">
+<!-- Note 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1.5 text-[12px]">
+<div class="flex items-center justify-between">
+<span class="font-body-medium text-on-surface font-semibold text-[11px]">F. Mthembu (#INV-90412)</span>
+<span class="font-label-caps text-[9px] uppercase px-1.5 py-0.2 rounded bg-surface-container text-secondary font-bold">Initial Finding</span>
+</div>
+<p class="font-body-regular text-on-surface-variant leading-relaxed">
+                Initial docket inspection completed. Note that digits ‘12’ and ‘21’ represent an exact reverse transposition. Requested verified hospital admission ledger photocopy from Tembisa Medical Records Dept.
+              </p>
+<div class="font-reference-code-sm text-[10px] text-on-surface-variant">
+                21 Feb 2026, 14:05 SAST
+              </div>
+</div>
+<!-- Note 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1.5 text-[12px]">
+<div class="flex items-center justify-between">
+<span class="font-body-medium text-on-surface font-semibold text-[11px]">S. Khanyile (#INV-88104)</span>
+<span class="font-label-caps text-[9px] uppercase px-1.5 py-0.2 rounded bg-surface-container text-secondary font-bold">Corroboration</span>
+</div>
+<p class="font-body-regular text-on-surface-variant leading-relaxed">
+                Cross-checked Polokwane SAPS occurrence book (OB 884/2026). SAPS records confirm collision date 12 March 2026 with 3 fatalities. Discrepancy appears confined to hospital intake paperwork.
+              </p>
+<div class="font-reference-code-sm text-[10px] text-on-surface-variant">
+                22 Feb 2026, 09:30 SAST
+              </div>
+</div>
+<!-- Note 3: Addendum -->
+<div class="p-space-sm rounded-lg bg-surface-container-high flex flex-col gap-1.5 text-[12px]">
+<div class="flex items-center justify-between">
+<span class="font-body-medium text-on-surface font-semibold text-[11px]">F. Mthembu (#INV-90412)</span>
+<span class="font-label-caps text-[9px] uppercase px-1.5 py-0.2 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-bold">Addendum</span>
+</div>
+<p class="font-body-regular text-on-surface-variant leading-relaxed">
+                Follow-up to Note #1: Awaiting formal affidavit from Dr. K. Naidoo regarding handwriting clarification on Form 1 Annexure B.
+              </p>
+<div class="font-reference-code-sm text-[10px] text-on-surface-variant">
+                23 Feb 2026, 16:15 SAST
+              </div>
+</div>
+</div>
+<!-- Note Composer Form -->
+<div class="bg-surface-container p-space-sm rounded-lg flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[10px] uppercase font-bold text-on-surface">Add New Forensic Note</span>
+<select class="text-[11px] font-body-small bg-surface-container-lowest text-on-surface rounded px-2 py-0.5 focus:outline-none">
+<option>Observation / Finding</option>
+<option>Corroboration Note</option>
+<option>Correction to Prior Entry</option>
+</select>
+</div>
+<textarea class="w-full p-2 bg-surface-container-lowest rounded text-[12px] font-body-regular text-on-surface placeholder:text-outline focus:outline-none resize-none" placeholder="Enter objective forensic note or evidentiary update..." rows="3"></textarea>
+<div class="flex items-center justify-between pt-1">
+<span class="text-[10px] font-reference-code-sm text-on-surface-variant">Logged under officer roll</span>
+<button class="h-7 px-3 rounded bg-secondary hover:bg-[#085453] text-on-secondary font-body-medium text-[11px] font-semibold transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+<span>Append Note</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Lower: Alert History & Audit Trail -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<h3 class="font-headline-h3 text-[14px] text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-on-surface-variant">timeline</span>
+              Alert State Audit Trail
+            </h3>
+<span class="text-[11px] font-reference-code-sm text-secondary">4 Events</span>
+</div>
+<!-- Vertical Timeline -->
+<div class="relative pl-4 space-y-3 before:absolute before:left-1.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-highest">
+<!-- Event 1 -->
+<div class="relative text-[11px]">
+<div class="absolute -left-[19px] top-1 w-2.5 h-2.5 rounded-full bg-secondary"></div>
+<div class="font-body-medium text-on-surface font-semibold leading-tight">Status set to ‘Under review’</div>
+<div class="font-body-small text-on-surface-variant">By F. Mthembu (#INV-90412)</div>
+<div class="font-reference-code-sm text-[10px] text-on-surface-variant">23 Feb 2026, 16:15 SAST</div>
+</div>
+<!-- Event 2 -->
+<div class="relative text-[11px]">
+<div class="absolute -left-[19px] top-1 w-2.5 h-2.5 rounded-full bg-surface-container-highest"></div>
+<div class="font-body-medium text-on-surface font-semibold leading-tight">Dossier assigned to F. Mthembu</div>
+<div class="font-body-small text-on-surface-variant">By Lead Investigator D. Naicker</div>
+<div class="font-reference-code-sm text-[10px] text-on-surface-variant">20 Feb 2026, 11:00 SAST</div>
+</div>
+<!-- Event 3 -->
+<div class="relative text-[11px]">
+<div class="absolute -left-[19px] top-1 w-2.5 h-2.5 rounded-full bg-surface-container-highest"></div>
+<div class="font-body-medium text-on-surface font-semibold leading-tight">Severity escalated to HIGH</div>
+<div class="font-body-small text-on-surface-variant">RULE-003 multi-document conflict rule</div>
+<div class="font-reference-code-sm text-[10px] text-on-surface-variant">18 Feb 2026, 11:24 SAST</div>
+</div>
+<!-- Event 4 -->
+<div class="relative text-[11px]">
+<div class="absolute -left-[19px] top-1 w-2.5 h-2.5 rounded-full bg-surface-container-highest"></div>
+<div class="font-body-medium text-on-surface font-semibold leading-tight">Alert RA-2026-00031 generated</div>
+<div class="font-body-small text-on-surface-variant">Autonomous Ingestion Engine v4.2</div>
+<div class="font-reference-code-sm text-[10px] text-on-surface-variant">18 Feb 2026, 11:24 SAST</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- STATUTORY SAFEGUARD FOOTER BANNER -->
+<div class="px-margin pb-space-xl">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="flex items-start gap-space-md max-w-4xl">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[24px]">verified_user</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="font-headline-h3 text-[15px] font-bold text-on-surface flex items-center gap-2">
+            Closing this alert does not close or reject the claim. Human decision required.
+          </div>
+<p class="font-body-small text-[12px] text-on-surface-variant leading-relaxed">
+            In accordance with <strong class="text-on-surface font-medium">Road Accident Fund Act 56 of 1996 § 19</strong>, risk indicators and forensic conflict alerts represent procedural triage flags. Formal repudiation, adverse quantum determination, or referral to the Special Investigating Unit (SIU) mandates an executive sworn affidavit and formal legal representation hearing.
+          </p>
+</div>
+</div>
+<!-- Quick Action Triggers -->
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<button class="h-10 px-3.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-[12px] transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Download Evidentiary Docket (PDF)</span>
+</button>
+<button class="h-10 px-3.5 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-medium text-[12px] transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">contact_support</span>
+<span>Request Requisition §19(f)</span>
+</button>
+<button class="h-10 px-4 rounded-lg bg-secondary hover:bg-[#085453] text-on-secondary font-body-medium text-[12px] shadow-sm transition-colors flex items-center gap-1.5 font-semibold" type="button">
+<span class="material-symbols-outlined text-[16px]">assignment_turned_in</span>
+<span>Mark as Verified Transposition Error</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for OCR calibration toggle
+  const ocrToggle = document.getElementById('ocrToggle');
+  if (ocrToggle) {
+    ocrToggle.addEventListener('change', function(e) {
+      const isChecked = e.target.checked;
+      const calloutBoxes = document.querySelectorAll('.bg-error-container\\/40');
+      calloutBoxes.forEach(box => {
+        if (!isChecked) {
+          box.classList.remove('bg-error-container/40');
+          box.classList.add('bg-surface-container');
+        } else {
+          box.classList.add('bg-error-container/40');
+          box.classList.remove('bg-surface-container');
+        }
+      });
+    });
+  }
+</script></main></div></body></html>

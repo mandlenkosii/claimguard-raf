@@ -9,10 +9,10 @@
 | App name | ClaimGuard RAF (Claim Intelligence & Assurance Platform) |
 | Built from PRD version | v1.1 (4 November 2026): PRD v1.0 plus the Section 18 answers, recorded in the PRD Change log. Must match the version in docs/PRD.md |
 | Screen designs | Stitch project: https://stitch.withgoogle.com/projects/3126694362497483814 (screens S01–S46 from the ClaimGuard RAF Stitch prompt pack). Exported screens are saved in `docs/designs/` with the file names in Section 7.3 |
-| Plan version | v1.1 |
+| Plan version | v1.4 |
 | Repository | https://github.com/mandlenkosii/claimguard-raf |
 | Status | Ready to build. All 42 Section 18 rows are Answered |
-| Last updated | 04 Nov 2026 |
+| Last updated | 08 Nov 2026 |
 
 ---
 
@@ -321,7 +321,7 @@ The PRD (11.1, 11.2, 11.6) names the app, backend and hosting tools. It names no
 | Server functions | Supabase Edge Functions (Deno) | latest stable at setup | Privileged operations: `process-document`, `run-readiness`, `admin-invite-user`, `demo-sign-in` (PRD 11.2, Section 18 #9) |
 | Data fetching and caching | TanStack Query | latest stable at setup | Server state in the frontend (PRD 11.1) |
 | Unit and component tests | Vitest + React Testing Library + jsdom (Section 18 #1) | latest stable at setup | Rules, helpers, components and screens |
-| Database and permission tests | pgTAP via `supabase test db` (Section 18 #1) | bundled with Supabase CLI | Constraints, triggers, RLS allow/deny |
+| Database and permission tests | pgTAP, run by `scripts/test-db.mjs` with `pg` (node-postgres, Section 18 #48; the plan originally used `supabase test db`, Section 18 #1) | pgTAP on the Supabase project; `pg` 8.23.1 | Constraints, triggers, RLS allow/deny |
 | Integration tests | Vitest + supabase-js against the local backend (Section 18 #1) | latest stable at setup | Backend operations and Edge Functions |
 | End-to-end tests | Playwright + @axe-core/playwright (Section 18 #1) | latest stable at setup | User flows, accessibility, timing |
 | Lint and type check | ESLint, TypeScript compiler (`tsc --noEmit`) (Section 18 #1) | latest stable at setup | Code quality |
@@ -332,7 +332,7 @@ The PRD (11.1, 11.2, 11.6) names the app, backend and hosting tools. It names no
 
 - [ ] Node.js (current LTS)
 - [ ] Git, with a GitHub account
-- [ ] Docker Desktop (the local Supabase stack runs in Docker)
+- Docker Desktop is not required: development uses the hosted Supabase project (Section 18 #46)
 - [ ] Supabase CLI (run through `npx supabase`)
 - [ ] Deno (for Edge Function type checks; the Supabase CLI runs functions itself)
 - [ ] gitleaks (Section 18 #1)
@@ -342,16 +342,16 @@ The PRD (11.1, 11.2, 11.6) names the app, backend and hosting tools. It names no
 
 ### 4.3 Commands
 
-The local backend (`npm run db:start`) and the Edge Functions (`npm run functions:serve`, in a second terminal) must be running before the full check. End-to-end tests also need the app running (`npm run dev`), so they are left out of the full check and run in Step 4 of each feature phase.
+The backend is the hosted Supabase project (Section 18 #46); `.env` must point at it before the full check. Edge Functions are deployed to it with `npm run functions:deploy`. End-to-end tests also need the app running (`npm run dev`), so they are left out of the full check and run in Step 4 of each feature phase.
 
 | Purpose | Command |
 | --- | --- |
 | Install dependencies | `npm install` |
-| Start the local backend | `npm run db:start` (runs `npx supabase start`) and `npm run functions:serve` (runs `npx supabase functions serve --env-file .env`) |
-| Reset the database (migrations + seed data) | `npm run db:reset` (runs `npx supabase db reset`, then `node scripts/seed-demo-users.mjs`) |
+| Apply migrations / deploy functions to the hosted project | `npm run db:push` (runs `supabase db push --remote`) and `npm run functions:deploy` (runs `supabase functions deploy --use-api`) |
+| Reset the database (migrations + seed data) | `npm run db:reset` (runs `supabase db reset --remote` on the hosted project, then `node scripts/seed-demo-users.mjs`) |
 | Start the app | `npm run dev` |
 | Unit and component tests | `npm run test:unit` (Vitest: `tests/unit`, `tests/component`) |
-| Database and permission tests | `npm run test:db` (runs `npx supabase test db`) |
+| Database and permission tests | `npm run test:db` (runs `node scripts/test-db.mjs`, Section 18 #48) |
 | Integration tests | `npm run test:integration` (Vitest with `vitest.integration.config.ts`) |
 | End-to-end tests | `npm run test:e2e` (Playwright) |
 | Lint | `npm run lint` |
@@ -449,12 +449,12 @@ claimguard-raf/
 `.env.example` (committed to Git, placeholder values only):
 
 ```
-VITE_SUPABASE_URL=http://127.0.0.1:54321
-VITE_SUPABASE_ANON_KEY=replace-with-local-anon-key
+VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+VITE_SUPABASE_ANON_KEY=replace-with-project-anon-key
 VITE_APP_ENV=development
-SUPABASE_SERVICE_ROLE_KEY=replace-with-local-service-role-key
-SUPABASE_DB_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
-DEMO_USER_PASSWORD=replace-with-a-local-demo-password
+SUPABASE_SERVICE_ROLE_KEY=replace-with-project-service-role-key
+SUPABASE_DB_URL=replace-with-project-postgres-connection-string
+DEMO_USER_PASSWORD=replace-with-a-demo-password
 DEMO_LOGIN_ENABLED=true
 OCR_PROVIDER=mock
 ```
@@ -537,7 +537,7 @@ The PRD has no visual design section. Every value below comes from the design ma
 
 ### 7.3 Screens
 
-Design files are the exported Stitch screens, saved as `docs/designs/<file>` with the names below (Section 18 #29). "Tab bar" means the claimant mobile bottom tab bar from S45. Every other screen uses the AppShell sidebar.
+Design files are the exported Stitch screens, saved as `docs/designs/<file>` with the names below (Section 18 #29). Some screens were exported as Stitch HTML code, so their file uses the same base name with `.html` instead of `.png` (e.g. `S05_sign_in.html`). S46 has three files: `S46_lawyer_tablet_claims.png`, `S46_lawyer_tablet_claims.html` and `S46_lawyer_tablet_readiness.png`. `design_system_reference.png` is the Stitch design-system sheet used for Section 7.1 values. Where design text conflicts with the PRD or this plan, the PRD/plan wording wins (Section 18 #45). "Tab bar" means the claimant mobile bottom tab bar from S45. Every other screen uses the AppShell sidebar.
 
 Logged-in roles: C = claimant, L = lawyer, O = RAF officer, I = investigator, Mg = manager, A = administrator. "Dashboard" in a redirect means the user's role dashboard (Section 11).
 
@@ -1640,43 +1640,43 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | T-NAV-1 | Component | tests/component/router.test.tsx | Given a logged-out user, when they open `/`, `/about`, `/how-it-works` or `/security`, then the page opens |
 | T-NAV-2 | Component | tests/component/router.test.tsx | Given a logged-out user, when they open `/claims`, then they are sent to `/login` |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above are written, run, and fail for the expected reason.
 
 **Step 2: Backend (Green)**
 
-- [ ] `npx supabase init`; `supabase/config.toml` committed; `npm run db:start` starts the local stack.
-- [ ] `.env.example` created exactly as in Section 6; `.env` in `.gitignore`.
-- [ ] `supabase/tests/database/setup.test.sql` runs under `npm run test:db`.
+- [x] `npx supabase init`; `supabase/config.toml` committed; `.env` points at the hosted Supabase project (Section 18 #46).
+- [x] `.env.example` created exactly as in Section 6; `.env` in `.gitignore`.
+- [x] `supabase/tests/database/setup.test.sql` runs under `npm run test:db`.
 
 **Step 3: Frontend (Green)**
 
-- [ ] Vite + React + TypeScript + Tailwind + React Router + TanStack Query + Lucide React set up; path aliases `@`, `@rules`.
-- [ ] `src/theme/tokens.ts` and the Tailwind preset built from Section 7.1; ESLint rule bans raw hex colours and pixel sizes in `src/pages` and `src/components`.
-- [ ] Base components T-C-1 … 9 and T-C-14 … 21 built to S44 and the master prompt.
-- [ ] PublicLayout and an AppShell skeleton (sidebar and top bar with no data yet).
-- [ ] S01–S04 built to their designs: state Normal (S03 also the role-journey tab state). No invented performance statistics.
-- [ ] Router with a route guard that sends logged-out users to `/login` (placeholder page until Phase 3).
-- [ ] `npm run check` script wired as in Section 4.3.
+- [x] Vite + React + TypeScript + Tailwind + React Router + TanStack Query + Lucide React set up; path aliases `@`, `@rules`.
+- [x] `src/theme/tokens.ts` and the Tailwind preset built from Section 7.1; ESLint rule bans raw hex colours and pixel sizes in `src/pages` and `src/components`.
+- [x] Base components T-C-1 … 9 and T-C-14 … 21 built to S44 and the master prompt.
+- [x] PublicLayout and an AppShell skeleton (sidebar and top bar with no data yet).
+- [x] S01–S04 built to their designs: state Normal (S03 also the role-journey tab state). No invented performance statistics.
+- [x] Router with a route guard that sends logged-out users to `/login` (placeholder page until Phase 3).
+- [x] `npm run check` script wired as in Section 4.3.
 
 **Step 4: Refactor and full check**
 
-- [ ] Code cleaned up; no duplicated logic; names use PRD key terms.
-- [ ] Full check passes (lint, type check, every automated test from every phase so far).
-- [ ] `npm run test:e2e` passes (T-SETUP-5).
+- [x] Code cleaned up; no duplicated logic; names use PRD key terms.
+- [x] Full check passes (lint, type check, every automated test from every phase so far).
+- [x] `npm run test:e2e` passes (T-SETUP-5).
 
 **Step 5: Manual checks (human)**
 
-- [ ] In a desktop browser at 1440px: S01–S04 open, links work, the notice bar is on every page.
-- [ ] No official RAF logo, crest or government branding appears anywhere.
-- [ ] Each screen in this phase matches its design side by side: layout, text, colours, spacing.
+- [x] In a desktop browser at 1440px: S01–S04 open, links work, the notice bar is on every page.
+- [x] No official RAF logo, crest or government branding appears anywhere.
+- [x] Each screen in this phase matches its design side by side: layout, text, colours, spacing.
 
 **Definition of Done**
 
-- [ ] Every test in Step 1 passes.
-- [ ] All earlier tests still pass.
-- [ ] Every screen in this phase shows all its required states.
-- [ ] Manual checks are ticked by the human.
-- [ ] Progress log updated (Section 17), including the exact versions installed.
+- [x] Every test in Step 1 passes.
+- [x] All earlier tests still pass.
+- [x] Every screen in this phase shows all its required states.
+- [x] Manual checks are ticked by the human.
+- [x] Progress log updated (Section 17), including the exact versions installed.
 
 **Commit message:** `Phase 1: Foundation`
 
@@ -3135,7 +3135,7 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 
 | Phase | Date | Status | Automated tests (passed / total) | Commit | Notes |
 | --- | --- | --- | --- | --- | --- |
-| 1 | — | Not started | — | — | Record the exact tool versions installed here |
+| 1 | 08 Nov 2026 | Complete; manual checks confirmed by the human | 128 / 128 (124 unit + component, 1 pgTAP database, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 1: Foundation | Versions: Node 24.18.0, npm 11.16.0, Deno 2.9.8, gitleaks 8.30.1, React 19.3.1, React Router 8.5.1, TanStack Query 5.107.1, Lucide React 1.70.0, supabase-js 2.119.0, Vite 8.3.6, @vitejs/plugin-react 6.2.1, TypeScript 6.0.3 (7.0 not used: typescript-eslint supports < 6.1), Tailwind CSS 4.3.5, Vitest 5.1.0 (+ coverage-v8), React Testing Library 16.3.3 (+ jest-dom 7.0.1, user-event 14.6.8), jsdom 31.0.0, Playwright 1.65.0, @axe-core/playwright 4.14.0, ESLint 10.14.0, typescript-eslint 8.72.1, Supabase CLI 3.0.0, pg 8.23.1. Backend: hosted Supabase project (Section 18 #46, #48); pgTAP extension enabled there. T-SETUP-6 passed at the Red step because `.gitignore` and `.env.example` were created before the test |
 
 ---
 
@@ -3187,6 +3187,12 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | 40 | Saved views on S10 | S10, US13 | Not in v1 (Deferred) | Answered |
 | 41 | Seed claim ownership and staff and firm names | 8.7 | CG-2026-000142 = Sipho Ndlovu (identity conflict); Thandiwe Mokoena owns the missing-documents claim. Staff: Demo RAF Officer, Ayesha Patel (investigator), Demo Manager, Demo Administrator. Second firm: Demo Firm B Attorneys | Answered |
 | 42 | Export formats | OP60, S24, S34, S38, S42 | CSV only | Answered |
+| 43 | Only the PRD v1.0 PDF exists; the plan needs v1.1 at `docs/PRD.md` | 0, 1 | `docs/PRD.md` is built from the v1.0 PDF text, plus a v1.1 Change log that copies answers #1–#42. The PDF stays in `docs/` as the original | Answered |
+| 44 | The S01 Landing design was not exported, and several exports are Stitch HTML code rather than PNG images | 7.3, Phase 1 | S01 is built from the T-S1-1 section list and hero text, in the same visual style as S02–S04. Design files may be `.png` or `.html` with the 7.3 base names (Section 7.3 note). Still missing and needed in later phases: S06, S07, S11, S12, S13, S22, S26, S30, S33, S34, S35, S37 (M3), S38, S43, S45; S41 needs a new export because its PNG has no styling | Answered |
+| 45 | Design text conflicts with the PRD and this plan (fraud language, a 15-minute signed-link time instead of 5 minutes, invented statistics and certifications such as "< 14ms" and "FIPS 140-3") | 7.3, rules 7 and 9 | Layout, order, colours, spacing and components follow the designs exactly. Where design text conflicts with the PRD or this plan, the PRD/plan wording is used, and invented statistics, certifications, legal citations and fraud language are left out | Answered |
+| 46 | Docker cannot run on the development laptop (WSL 2 will not start: Windows component store corrupted) | 4.2, 4.3, 6, Phase 1 | Use the real hosted Supabase project for development and tests instead of the local Docker stack. Migrations and pgTAP tests run with the CLI's `--remote` option and Edge Functions deploy with `--use-api`. Wherever this plan says "local backend" or "local database", it means this hosted development project. Only fictional data is used | Answered |
+| 47 | The project brief says data is "deleted for real", but #15 says no hard delete and document deletion is a Should item in Phase 11 | #15, US20, OP53 | Keep #15: documents are soft-deleted (hidden but kept for the audit history) in Phase 11; messages and accounts are never deleted. S01 also stays as built from the plan (#44) | Answered |
+| 48 | `supabase test db` needs Docker even with `--remote`, and `db query` runs only one statement per call | 4.1, 4.3, 12.2 | Add dev-only `pg` (node-postgres) and `scripts/test-db.mjs`, which runs the same pgTAP files over one connection per file and fails on any `not ok`, SQL error or plan mismatch. TLS is always verified using Supabase's public CA file `supabase/prod-ca-2021.crt`. `npm run db:push` and `npm run db:reset` still use the Supabase CLI | Answered |
 
 ---
 
@@ -3194,5 +3200,8 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 
 | Plan version | Date | What changed | Why |
 | --- | --- | --- | --- |
+| v1.4 | 08 Nov 2026 | Section 18 #48 added and Answered: `pg` and `scripts/test-db.mjs` run the pgTAP tests without Docker | `supabase test db` needs Docker |
+| v1.3 | 08 Nov 2026 | Section 18 #46 added and Answered: hosted Supabase replaces the local Docker stack (Sections 4.2, 4.3, 6). #47 added and Answered (keep #15) | Docker cannot run on the development laptop |
+| v1.2 | 07 Nov 2026 | Section 18 #43–#45 added and Answered: `docs/PRD.md` built from the v1.0 PDF plus the v1.1 answers; S01 built from the plan because its design is missing; `.html` design exports allowed (Section 7.3 note); PRD/plan wording wins over design text | Design files and PRD uploaded on 07 Nov 2026 |
 | v1.1 | 04 Nov 2026 | All 42 Section 18 rows Answered and applied to Sections 3.3, 6–11 and 13. Section 0 has the Stitch link and the GitHub repository URL. One start rule used in Section 1, Phase 1 and Section 18. Message catalogue TXT-1 … TXT-64 replaces every deferred wording reference; T-US1-4 and T-S6-1 test exact text. `notificationText` / `notification_text()` and T-BR22-1 moved to Phase 2 (new T-BR22-2). Append-only foreign keys changed to on delete restrict; users are deactivated, never deleted (new T-DB-11). Demo sign-in Edge Function and `DEMO_LOGIN_ENABLED` added (T-INT-5). New tests T-S8-2 and T-S40-2 | Mentor feedback of 3 November 2026; PRD updated to v1.1 |
 | v1.0 | 03 Nov 2026 | First version | Generated from PRD v1.0 (2 November 2026) and the ClaimGuard RAF Stitch prompt pack (S01–S46) |

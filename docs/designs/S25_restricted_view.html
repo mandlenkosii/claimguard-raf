@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-lowest":"#ffffff","on-secondary":"#ffffff","on-primary-fixed-variant":"#304864","secondary-container":"#98f2f0","surface-tint":"#48607d","tertiary":"#000f41","outline-variant":"#c3c6ce","background":"#f8f9ff","on-secondary-container":"#00706f","tertiary-fixed-dim":"#b7c4ff","on-surface":"#0d1c2e","error-container":"#ffdad6","secondary-fixed":"#98f2f0","on-tertiary-fixed":"#001551","surface-container-low":"#eff4ff","on-tertiary-container":"#6888ff","on-background":"#0d1c2e","error":"#ba1a1a","outline":"#74777e","on-primary":"#ffffff","surface-variant":"#d5e3fc","on-tertiary-fixed-variant":"#0039b5","surface":"#f8f9ff","on-primary-container":"#7992b1","on-primary-fixed":"#001d36","surface-bright":"#f8f9ff","on-secondary-fixed-variant":"#00504f","inverse-primary":"#b0c9ea","primary-container":"#0f2a44","tertiary-fixed":"#dce1ff","surface-container-high":"#dce9ff","on-error":"#ffffff","surface-container":"#e6eeff","secondary-fixed-dim":"#7cd5d3","surface-dim":"#ccdbf3","surface-container-highest":"#d5e3fc","tertiary-container":"#002070","on-surface-variant":"#43474d","primary-fixed":"#d1e4ff","primary-fixed-dim":"#b0c9ea","on-tertiary":"#ffffff","secondary":"#006a69","inverse-on-surface":"#eaf1ff","inverse-surface":"#233144","primary":"#00152a","on-error-container":"#93000a","on-secondary-fixed":"#002020"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-sm":"0.5rem","space-xs":"0.25rem","margin":"2rem","space-md":"1rem","space-xl":"2rem","space-lg":"1.5rem","gutter":"1.5rem"},fontFamily:{"body-medium":["Inter"],"headline-h1":["Inter"],"reference-code-sm":["IBM Plex Mono"],"reference-code":["IBM Plex Mono"],"headline-h3":["Inter"],"body-regular":["Inter"],"label-caps":["Inter"],"headline-h2":["Inter"],"body-small":["Inter"]},fontSize:{"body-medium":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"500"}],"headline-h1":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"reference-code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}],"reference-code":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-h3":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-regular":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"label-caps":["11px",{"lineHeight":"16px","letterSpacing":"0.05em","fontWeight":"600"}],"headline-h2":["22px",{"lineHeight":"30px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-small":["12px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-regular text-body-regular text-on-surface antialiased"><div class="fixed top-0 inset-x-0 h-9 bg-[#FFFBEB] border-b border-[#FDE68A] z-50 flex items-center justify-center px-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-xs text-[#92400E] font-body-medium text-body-small"><span class="material-symbols-outlined text-[16px]">warning</span><span>ClaimGuard RAF — Concept Prototype. Not an official RAF system. Demonstration data only.</span></div></div><aside class="fixed left-0 top-9 bottom-0 w-64 bg-surface-container-lowest z-40 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-primary-container text-on-primary"><div class="w-8 h-8 rounded bg-secondary flex items-center justify-center text-on-secondary font-headline-h3 text-headline-h3"><span>C</span></div><div class="flex flex-col"><span class="font-headline-h3 text-headline-h3 leading-none tracking-tight">ClaimGuard</span><span class="font-label-caps text-label-caps text-on-primary-container uppercase tracking-wider mt-0.5">RAF Forensic Portal</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Operations Core</div></div><nav class="px-space-md flex flex-col gap-space-xs" data-active-classes="bg-surface-container-high text-on-surface font-body-medium rounded-lg"><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-body-medium text-body-medium">Dashboard</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-md py-space-sm transition-colors bg-surface-container-high text-on-surface font-body-medium rounded-lg" data-path="claims-queue" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">inbox</span><span class="font-body-medium text-body-medium">Claims Queue</span></div><span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-reference-code-sm text-reference-code-sm">42</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="tasks" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">assignment_turned_in</span><span class="font-body-medium text-body-medium">Tasks</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="reports" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-body-medium text-body-medium">Reports</span></div></a></nav><div class="px-space-md pt-space-md pb-space-xs"><div class="px-space-sm py-space-xs font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Governance</div></div><nav class="px-space-md flex flex-col gap-space-xs" data-active-classes="bg-surface-container-high text-on-surface font-body-medium rounded-lg"><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="access-and-rbac-governance" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span><span class="font-body-medium text-body-medium">Access &amp; RBAC Governance</span></div></a></nav></div><div class="p-space-md flex flex-col gap-space-xs bg-surface-container-lowest"><nav class="flex flex-col gap-space-xs" data-active-classes="bg-surface-container-high text-on-surface font-body-medium rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="help-and-support" href="#"><span class="material-symbols-outlined text-[20px]">help</span><span class="font-body-medium text-body-medium">Help &amp; Support</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-error hover:bg-error-container hover:text-on-error-container transition-colors" data-path="sign-out" href="#"><span class="material-symbols-outlined text-[20px]">logout</span><span class="font-body-medium text-body-medium">Sign Out</span></a></nav></div></aside><div class="pl-64"><header class="fixed top-9 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-full px-space-xl flex items-center justify-between gap-space-lg"><div class="flex-1 max-w-lg"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-space-md text-on-surface-variant text-[20px]">search</span><input class="w-full h-10 pl-10 pr-space-md rounded-lg bg-surface text-on-surface placeholder:text-on-surface-variant font-reference-code text-reference-code focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Search Claim ID (e.g. RAF-2024-8841), ID Number, or Claimant..." type="text"/></div></div><div class="flex items-center gap-space-lg"><button aria-label="Notifications" class="relative p-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="h-8 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-md"><div class="flex flex-col text-right"><div class="flex items-center justify-end gap-space-xs"><span class="font-body-medium text-body-medium text-on-surface">M. Sithole</span><span class="px-1.5 py-0.5 rounded bg-primary text-on-primary font-label-caps text-label-caps tracking-wider">MANAGER</span></div><span class="font-body-small text-body-small text-on-surface-variant">Senior Claims Operations Manager</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-25 bg-background min-h-screen px-space-xl pb-space-xl"><div class="flex flex-col w-full">
+<div class="flex flex-col gap-space-lg w-full max-w-[1440px] mx-auto">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-headline-h2 text-headline-h2 text-on-surface tracking-tight">Claim CG-2026-000142</span>
+<span class="font-reference-code-sm text-reference-code-sm px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface-variant font-medium">Sipho Ndlovu (Pedestrian Injury)</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Validation
+          </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-error-container text-on-error-container">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+            1 Action Pending
+          </span>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant flex-wrap font-body-small text-body-small">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">hourglass_top</span>
+<span class="font-medium text-on-surface">882 days</span> to prescription (RAF Act 56/1996 § 23)
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+            Incident: 14 Nov 2025
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+            Midrand R51 / Kyalami Jct, Gauteng
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-auto">
+<div class="inline-flex items-center p-1 bg-surface-container rounded-lg">
+<button class="px-space-md py-1.5 rounded text-xs font-medium bg-surface-container-lowest text-primary shadow-sm transition-all flex items-center gap-1.5" id="btn-state-main" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+            Active Manager View
+          </button>
+<button class="px-space-md py-1.5 rounded text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-1.5" id="btn-state-403" type="button">
+<span class="material-symbols-outlined text-[16px] text-error">lock</span>
+            403 RBAC Simulation
+          </button>
+</div>
+<button class="h-10 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium flex items-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+          Export Brief
+        </button>
+</div>
+</div>
+<div class="bg-primary-container text-on-primary p-space-md rounded-xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start md:items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px] text-secondary-container">shield_person</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-body-medium text-body-medium font-semibold text-surface-container-lowest">Manager Role Clearance (Tier-2 Administrative Scope)</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-mono tracking-wider bg-secondary text-on-secondary font-medium uppercase">POPIA §14 RESTRICTED</span>
+</div>
+<p class="font-body-small text-body-small text-surface-variant mt-0.5 leading-relaxed">
+            Evidentiary scans, biometric identity validations, and forensic risk Merkle trees are restricted under MISS (Minimum Information Security Standards). Operational managers hold dossier supervision and financial requisition sign-off only.
+          </p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-space-xs self-end md:self-center">
+<span class="font-reference-code-sm text-reference-code-sm text-surface-variant">Auth Node: JHB-OPS-T2-441</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-start gap-space-md">
+<div class="w-9 h-9 rounded bg-surface-container flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[20px]">person_check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Assigned Assessor</span>
+<span class="font-body-medium text-body-medium text-on-surface font-semibold truncate">K. Botha</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">Gauteng Central Hub</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-start gap-space-md">
+<div class="w-9 h-9 rounded bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Claimant Legal Rep</span>
+<span class="font-body-medium text-body-medium text-on-surface font-semibold truncate">Adv. L. Nkosi</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">Nkosi &amp; Associates Inc.</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-start gap-space-md">
+<div class="w-9 h-9 rounded bg-surface-container flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[20px]">local_hospital</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Medical Facility</span>
+<span class="font-body-medium text-body-medium text-on-surface font-semibold truncate">Tembisa Prov. Hosp.</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">Trauma Ward 4B Admission</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-start gap-space-md">
+<div class="w-9 h-9 rounded bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">policy</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">SAPS &amp; Collision Case</span>
+<span class="font-reference-code text-reference-code text-on-surface font-semibold truncate">CAS 319/11/2025</span>
+<span class="font-body-small text-body-small text-on-surface-variant truncate">Midrand Police Stn</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest px-space-md py-space-xs rounded-xl shadow-sm overflow-x-auto">
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-high text-on-surface font-body-medium text-body-medium font-semibold flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">overview</span>
+          Overview
+        </button>
+<button class="px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">folder_shared</span>
+          Documents
+          <span class="px-1.5 py-0.2 rounded-full bg-surface-container text-on-surface-variant font-reference-code-sm text-reference-code-sm">6 Aggregated</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">checklist_rtl</span>
+          Readiness
+          <span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-reference-code-sm text-reference-code-sm font-semibold">84%</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+          Messages
+          <span class="px-1.5 py-0.2 rounded-full bg-surface-container text-on-surface-variant font-reference-code-sm text-reference-code-sm">2</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">outgoing_mail</span>
+          Requests
+          <span class="px-1.5 py-0.2 rounded-full bg-error-container text-on-error-container font-reference-code-sm text-reference-code-sm">1 Pending</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">timeline</span>
+          Timeline
+        </button>
+</div>
+<div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">lock</span>
+<span class="font-body-small text-body-small">Risk scoring &amp; forensic Merkle audit tabs restricted for Manager role</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-lg w-full" id="view-manager">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Readiness Index</span>
+<span class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px]">done</span>
+</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-h1 text-headline-h1 font-bold text-on-surface">84%</span>
+<span class="font-body-small text-body-small text-secondary font-medium">Tier-2 Benchmark Met</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 84%;"></div>
+</div>
+<span class="font-body-small text-body-small text-on-surface-variant mt-space-xs">Audit minimum threshold is 75.0%</span>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Stage Gate</span>
+<span class="w-6 h-6 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[14px]">priority_high</span>
+</span>
+</div>
+<div class="my-space-sm flex flex-col">
+<span class="font-headline-h2 text-headline-h2 font-semibold text-on-surface">Gate 4</span>
+<span class="font-body-small text-body-small text-error font-medium">Pending Statutory Form 1 Remediation</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="w-2 h-2 rounded-full bg-surface-container-high"></span>
+</div>
+<span class="font-body-small text-body-small text-on-surface-variant mt-space-xs">4 of 5 governance gates verified</span>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Procedural SLA</span>
+<span class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[14px]">speed</span>
+</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-h1 text-headline-h1 font-bold text-on-surface">68d</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Active Elapsed</span>
+</div>
+<div class="flex items-center justify-between text-xs text-on-surface-variant">
+<span>Stage Mean: 21 days</span>
+<span class="text-secondary font-medium">Within 120d statutory</span>
+</div>
+<span class="font-body-small text-body-small text-on-surface-variant mt-space-xs">Assigned to regional hub on Day 4</span>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Reserve Provision</span>
+<span class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[14px]">payments</span>
+</span>
+</div>
+<div class="my-space-sm flex flex-col">
+<span class="font-headline-h2 text-headline-h2 font-bold text-on-surface">ZAR 420,000</span>
+<span class="font-body-small text-body-small text-secondary font-medium">Actuarial Stage Allocation</span>
+</div>
+<div class="flex items-center justify-between text-xs text-on-surface-variant">
+<span>Disbursement Cap: ZAR 650k</span>
+<span class="text-on-surface font-semibold">Tier-2 Auth</span>
+</div>
+<span class="font-body-small text-body-small text-on-surface-variant mt-space-xs">Requires CFO approval above ZAR 500k</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex flex-col">
+<span class="font-headline-h3 text-headline-h3 text-on-surface">Statutory Verification Progress</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Aggregated milestones for Claim CG-2026-000142 under RAF Act 56 of 1996</span>
+</div>
+<span class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-caps text-label-caps tracking-wider">AGGREGATED TELEMETRY</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Identity &amp; Home Affairs Telemetry Check</span>
+<span class="font-body-small text-body-small text-on-surface-variant">DHA Identity confirmation match returned positive; deceased cross-reference negative.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md self-end md:self-auto shrink-0">
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-secondary-container text-on-secondary-container">CONFIRMED</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">19 Nov 2025</span>
+</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Accident Verification &amp; Collision Indexing</span>
+<span class="font-body-small text-body-small text-on-surface-variant">SAPS collision report registered under CAS 319/11/2025. Vehicle ownership resolved via eNaTIS.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md self-end md:self-auto shrink-0">
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-secondary-container text-on-secondary-container">VERIFIED</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">02 Dec 2025</span>
+</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">RAF Form 1 (Medical Narrative Submission)</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Attending surgeon signature stamp incomplete. Formal statutory demand letter issued to Adv. L. Nkosi.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md self-end md:self-auto shrink-0">
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-error-container text-on-error-container">OUTSTANDING</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">Action Required</span>
+</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-surface-container text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Actuarial Quantum Computation</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Initial provisional reserve registered at ZAR 420,000. Final quantum queued pending completed Form 1 submission.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md self-end md:self-auto shrink-0">
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-surface-container-high text-on-surface-variant">PROVISIONAL</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">10 Jan 2026</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex flex-col">
+<span class="font-headline-h3 text-headline-h3 text-on-surface">Active Statutory Requisitions</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Procedural document requests dispatched to legal counsel and institutional actors</span>
+</div>
+<span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-error-container text-on-error-container">1 Active Demand</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant text-label-caps font-label-caps uppercase">
+<th class="px-space-md py-space-sm rounded-l-lg">Requisition Code</th>
+<th class="px-space-md py-space-sm">Required Document</th>
+<th class="px-space-md py-space-sm">Addressee</th>
+<th class="px-space-md py-space-sm">Dispatch Date</th>
+<th class="px-space-md py-space-sm">Statutory SLA</th>
+<th class="px-space-md py-space-sm rounded-r-lg">State</th>
+</tr>
+</thead>
+<tbody class="font-body-small text-body-small divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-md py-space-md font-reference-code-sm text-reference-code-sm font-semibold text-primary">REQ-RAF-2026-992</td>
+<td class="px-space-md py-space-md">
+<span class="font-medium text-on-surface">Original Form 1 Medical Annexure B</span>
+<span class="block text-on-surface-variant text-xs">Section 24(1)(a) Attending Doctor Affidavit</span>
+</td>
+<td class="px-space-md py-space-md text-on-surface">Adv. L. Nkosi (Claimant Attorney)</td>
+<td class="px-space-md py-space-md text-on-surface-variant">14 Jan 2026</td>
+<td class="px-space-md py-space-md text-error font-medium">8 days remaining (30d SLA)</td>
+<td class="px-space-md py-space-md">
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-error-container text-on-error-container">PENDING REPLY</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-md py-space-md font-reference-code-sm text-reference-code-sm text-on-surface-variant">REQ-RAF-2025-441</td>
+<td class="px-space-md py-space-md">
+<span class="font-medium text-on-surface">Certified Copy of Identity Document</span>
+<span class="block text-on-surface-variant text-xs">Commissioner of Oaths Verified</span>
+</td>
+<td class="px-space-md py-space-md text-on-surface">Claimant / Adv. L. Nkosi</td>
+<td class="px-space-md py-space-md text-on-surface-variant">18 Nov 2025</td>
+<td class="px-space-md py-space-md text-secondary font-medium">Fulfilled within SLA</td>
+<td class="px-space-md py-space-md">
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-secondary-container text-on-secondary-container">ACCEPTED</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-md py-space-md font-reference-code-sm text-reference-code-sm text-on-surface-variant">REQ-RAF-2025-312</td>
+<td class="px-space-md py-space-md">
+<span class="font-medium text-on-surface">SAPS Collision Diagram &amp; OAR Form</span>
+<span class="block text-on-surface-variant text-xs">Officer Accident Report Ref Midrand</span>
+</td>
+<td class="px-space-md py-space-md text-on-surface">Midrand SAPS Records Bureau</td>
+<td class="px-space-md py-space-md text-on-surface-variant">20 Nov 2025</td>
+<td class="px-space-md py-space-md text-secondary font-medium">Fulfilled within SLA</td>
+<td class="px-space-md py-space-md">
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-secondary-container text-on-secondary-container">ACCEPTED</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<span class="font-headline-h3 text-headline-h3 text-on-surface">Case Team &amp; Contacts</span>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">contacts</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs">
+                    KB
+                  </div>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">K. Botha</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Investigating Assessor</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</button>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-xs">
+                    LN
+                  </div>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Adv. L. Nkosi</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Claimant Attorney</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+</button>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs">
+                    MS
+                  </div>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">M. Sithole</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Claims Operations Mgr (You)</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] bg-primary text-on-primary font-semibold">LEAD</span>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant text-xs font-semibold">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span>Role Operational Limit</span>
+</div>
+<p class="font-body-small text-body-small text-on-surface-variant">
+                You possess settlement delegation authority up to <strong class="text-on-surface">ZAR 500,000.00</strong>. This claim reserve sits at ZAR 420,000.00 and does not require executive escalation.
+              </p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-h3 text-headline-h3 text-on-surface">Governing Authority</span>
+<span class="font-reference-code-sm text-reference-code-sm text-secondary font-semibold">RAF ACT 56/1996</span>
+</div>
+<div class="flex flex-col gap-space-sm text-body-small font-body-small text-on-surface-variant">
+<div class="flex items-center justify-between">
+<span>Prescription Statute:</span>
+<span class="font-reference-code text-reference-code text-on-surface font-semibold">3 Years (Identified)</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Prescription Expiry:</span>
+<span class="font-reference-code text-reference-code text-on-surface font-semibold">14 Nov 2028</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Statutory Waiting Period:</span>
+<span class="font-body-small text-body-small text-secondary font-semibold">120 Days (§19 compliant)</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Jurisdiction:</span>
+<span class="font-body-small text-body-small text-on-surface">Gauteng Division, Pretoria</span>
+</div>
+</div>
+<div class="mt-space-xs pt-space-sm">
+<button class="w-full h-10 rounded-lg bg-secondary hover:bg-on-secondary-container text-on-secondary font-body-medium text-body-medium flex items-center justify-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                Issue Section 24 Demand Notice
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden flex flex-col gap-space-lg w-full" id="view-403">
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-xl flex flex-col items-center justify-center text-center max-w-3xl mx-auto my-space-lg">
+<div class="relative mb-space-lg">
+<div class="w-20 h-20 rounded-2xl bg-error-container text-on-error-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[42px] text-error">gpp_maybe</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs px-space-md py-1 rounded-full bg-error-container text-on-error-container font-reference-code-sm text-reference-code-sm font-semibold mb-space-sm">
+<span>HTTP 403 FORBIDDEN — MISS LEVEL 4 RESTRICTED</span>
+</div>
+<h2 class="font-headline-h1 text-headline-h1 text-on-surface font-bold tracking-tight">
+          You don't have permission to view this claim
+        </h2>
+<div class="my-space-md px-space-md py-space-xs rounded bg-surface-container text-on-surface font-reference-code text-reference-code font-semibold">
+          Dossier Reference: CG-2026-000088 (Special Investigations Enclave / High-Risk Fraud Ring)
+        </div>
+<p class="font-body-regular text-body-regular text-on-surface-variant max-w-xl leading-relaxed mb-space-lg">
+          Your role (<strong class="text-on-surface">Manager — Operations</strong>) does not hold evidentiary or forensic clearance to inspect this claim dossier. Under Road Accident Fund Internal Security Regulations §42 and POPIA Act 4 of 2013, access is strictly limited to Authorised Special Investigation Unit (SIU) Officers and Designated Fraud Examiners.
+        </p>
+<div class="w-full bg-surface-container-low rounded-xl p-space-md mb-space-xl text-left">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md font-reference-code-sm text-reference-code-sm">
+<div>
+<span class="block uppercase text-on-surface-variant text-[10px] tracking-wider mb-0.5">Clearance Required</span>
+<span class="font-semibold text-error">TIER-1 FORENSIC ENCLAVE</span>
+</div>
+<div>
+<span class="block uppercase text-on-surface-variant text-[10px] tracking-wider mb-0.5">Incident Classification</span>
+<span class="font-semibold text-primary">RESTRICTED DOSSIER</span>
+</div>
+<div>
+<span class="block uppercase text-on-surface-variant text-[10px] tracking-wider mb-0.5">Authorization Trace</span>
+<span class="font-semibold text-on-surface">SEC-AUTH-88219</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-space-md w-full justify-center">
+<button class="w-full sm:w-auto h-11 px-space-xl rounded-lg bg-primary hover:bg-primary-container text-on-primary font-body-medium text-body-medium flex items-center justify-center gap-space-sm transition-colors shadow-sm" id="btn-back-dashboard" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            Back to Active Overview
+          </button>
+<a class="w-full sm:w-auto h-11 px-space-lg rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium flex items-center justify-center gap-space-xs transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">key</span>
+            Request role elevation from System Administrator
+          </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initRbacToggle() {
+    const btnMain = document.getElementById('btn-state-main');
+    const btn403 = document.getElementById('btn-state-403');
+    const btnBack = document.getElementById('btn-back-dashboard');
+    const viewManager = document.getElementById('view-manager');
+    const view403 = document.getElementById('view-403');
+
+    function showMain() {
+      viewManager.classList.remove('hidden');
+      view403.classList.add('hidden');
+      btnMain.className = 'px-space-md py-1.5 rounded text-xs font-medium bg-surface-container-lowest text-primary shadow-sm transition-all flex items-center gap-1.5';
+      btn403.className = 'px-space-md py-1.5 rounded text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-1.5';
+    }
+
+    function show403() {
+      viewManager.classList.add('hidden');
+      view403.classList.remove('hidden');
+      btn403.className = 'px-space-md py-1.5 rounded text-xs font-medium bg-surface-container-lowest text-error shadow-sm transition-all flex items-center gap-1.5';
+      btnMain.className = 'px-space-md py-1.5 rounded text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-1.5';
+    }
+
+    if (btnMain && btn403 && viewManager && view403) {
+      btnMain.addEventListener('click', showMain);
+      btn403.addEventListener('click', show403);
+    }
+    if (btnBack) {
+      btnBack.addEventListener('click', showMain);
+    }
+  })();
+</script></main></div></body></html>

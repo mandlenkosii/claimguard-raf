@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container-high":"#dce9ff","surface-variant":"#d5e3fc","on-tertiary-fixed-variant":"#0039b5","on-surface":"#0d1c2e","on-tertiary-fixed":"#001551","on-primary-fixed-variant":"#304864","outline-variant":"#c3c6ce","on-secondary-container":"#00706f","on-error-container":"#93000a","primary-fixed":"#d1e4ff","outline":"#74777e","tertiary":"#000f41","on-error":"#ffffff","surface-dim":"#ccdbf3","surface-bright":"#f8f9ff","surface-container-lowest":"#ffffff","tertiary-fixed-dim":"#b7c4ff","on-secondary-fixed-variant":"#00504f","on-surface-variant":"#43474d","inverse-surface":"#233144","surface-tint":"#48607d","on-primary":"#ffffff","on-secondary":"#ffffff","on-background":"#0d1c2e","error-container":"#ffdad6","inverse-on-surface":"#eaf1ff","secondary-fixed":"#98f2f0","background":"#f8f9ff","primary-container":"#0f2a44","secondary":"#006a69","tertiary-fixed":"#dce1ff","tertiary-container":"#002070","primary-fixed-dim":"#b0c9ea","inverse-primary":"#b0c9ea","secondary-fixed-dim":"#7cd5d3","primary":"#00152a","surface":"#f8f9ff","on-secondary-fixed":"#002020","on-tertiary-container":"#6888ff","surface-container":"#e6eeff","error":"#ba1a1a","surface-container-highest":"#d5e3fc","secondary-container":"#98f2f0","surface-container-low":"#eff4ff","on-primary-fixed":"#001d36","on-primary-container":"#7992b1","on-tertiary":"#ffffff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-sm":"0.5rem","space-xl":"2rem","gutter":"1.5rem","space-lg":"1.5rem","margin":"2rem","space-md":"1rem","space-xs":"0.25rem"},"fontFamily":{"headline-h2":["Inter"],"label-caps":["Inter"],"headline-h3":["Inter"],"headline-h1":["Inter"],"body-small":["Inter"],"body-medium":["Inter"],"body-regular":["Inter"],"reference-code":["IBM Plex Mono"],"reference-code-sm":["IBM Plex Mono"]},"fontSize":{"headline-h2":["22px",{"lineHeight":"30px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-caps":["11px",{"lineHeight":"16px","letterSpacing":"0.05em","fontWeight":"600"}],"headline-h3":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-h1":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-small":["12px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"400"}],"body-medium":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"500"}],"body-regular":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"reference-code":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"reference-code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}]}}}};</script></head><body class="bg-surface font-body-regular text-body-regular text-on-surface min-h-screen"><div class="fixed top-0 left-0 right-0 z-50 h-9 bg-amber-50 border-b border-amber-200 flex items-center justify-center px-4"><div class="flex items-center gap-space-xs text-amber-900 font-body-small text-body-small font-semibold tracking-wide"><span class="material-symbols-outlined text-[16px] text-amber-800 leading-none">warning</span><span>ClaimGuard RAF — Concept Prototype. Not an official RAF system. Demonstration data only.</span></div></div><aside class="fixed left-0 top-9 bottom-0 w-64 bg-primary-container z-40 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="flex flex-col"><div class="px-space-lg pt-space-lg pb-space-md border-b border-white/10"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded bg-secondary flex items-center justify-center"><span class="material-symbols-outlined text-on-secondary text-[20px]">verified_user</span></div><div class="flex flex-col"><span class="font-headline-h3 text-headline-h3 text-on-primary tracking-tight font-bold">ClaimGuard</span><span class="font-reference-code-sm text-reference-code-sm text-on-primary-container uppercase tracking-wider">RAF Admin Enclave</span></div></div><div class="mt-space-md flex items-center gap-space-xs"><span class="inline-flex items-center px-2 py-0.5 rounded bg-white/10 text-on-primary font-reference-code-sm text-reference-code-sm border border-white/20">ROLE</span><span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary text-on-secondary font-label-caps text-label-caps uppercase tracking-wider font-semibold">Administrator</span></div></div><div class="px-space-md py-space-sm"><p class="px-space-sm py-space-xs font-label-caps text-label-caps uppercase text-on-primary-container tracking-wider">Administration</p></div><nav class="flex flex-col gap-1 px-space-md" data-active-classes="bg-white/10 text-on-primary font-semibold shadow-inner"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded text-on-primary-container hover:bg-white/5 hover:text-on-primary transition-all font-body-medium text-body-medium" data-path="users" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span>Users</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded text-on-primary-container hover:bg-white/5 hover:text-on-primary transition-all font-body-medium text-body-medium" data-path="roles-and-permissions" href="#"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span><span>Roles &amp; permissions</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded text-on-primary-container hover:bg-white/5 hover:text-on-primary transition-all font-body-medium text-body-medium" data-path="organisations" href="#"><span class="material-symbols-outlined text-[20px]">apartment</span><span>Organisations</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded text-on-primary-container hover:bg-white/5 hover:text-on-primary transition-all font-body-medium text-body-medium" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded text-on-primary-container hover:bg-white/5 hover:text-on-primary transition-all font-body-medium text-body-medium" data-path="audit-log" href="#"><span class="material-symbols-outlined text-[20px]">history_edu</span><span>Audit log</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded text-on-primary-container hover:bg-white/5 hover:text-on-primary transition-all font-body-medium text-body-medium" data-path="system-health" href="#"><span class="material-symbols-outlined text-[20px]">monitor_heart</span><span>System health</span></a></nav></div><div class="p-space-md border-t border-white/10"><div class="bg-white/5 rounded p-space-sm flex flex-col gap-1"><div class="flex items-center justify-between text-on-primary-container font-reference-code-sm text-reference-code-sm"><span>NODE ID</span><span class="font-mono text-on-primary">JHB-ADM-04</span></div><div class="flex items-center justify-between text-on-primary-container font-reference-code-sm text-reference-code-sm"><span>AUDIT ENGINE</span><span class="text-secondary-fixed flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed inline-block"></span>ONLINE</span></div></div></div></aside><div class="pl-64 pt-9"><header class="fixed top-9 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-30 border-b border-surface-container-high flex items-center justify-between px-space-lg shadow-[0_1px_4px_rgba(15,23,42,0.03)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded border border-surface-variant"><span class="material-symbols-outlined text-secondary text-[16px]">lock</span><span class="font-reference-code-sm text-reference-code-sm text-on-surface uppercase tracking-wider font-semibold">ENCLAVE LEVEL 4</span></div><div class="h-4 w-px bg-outline-variant"></div><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">fingerprint</span><span class="font-reference-code-sm text-reference-code-sm">STAMP: 2024-RAF-SEC-00918</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs text-on-surface-variant bg-surface-container-low px-space-sm py-1 rounded border border-outline-variant/50"><span class="material-symbols-outlined text-[18px] text-secondary">shield</span><span class="font-body-small text-body-small font-medium">Forensic Audit Active</span></div><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="text-right"><div class="font-body-medium text-body-medium text-on-surface font-semibold leading-tight">K. Mokoena</div><div class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">SecOps Administrator</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-6.25rem)]"><div class="flex flex-col w-full">
+<div class="w-full max-w-[1440px] mx-auto p-space-lg flex flex-col gap-space-lg">
+<!-- Sub-header Breadcrumb / Metadata Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low px-space-md py-2.5 rounded-lg shadow-sm">
+<div class="flex items-center gap-space-xs font-reference-code-sm text-reference-code-sm text-on-surface-variant flex-wrap">
+<span class="text-on-surface font-medium">Administration Directorate</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-medium">Identity &amp; Access Governance</span>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary font-mono font-semibold bg-surface-container-highest px-1.5 py-0.5 rounded">/admin/roles</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface font-medium uppercase tracking-wider">RLS Policy Active (PostgreSQL Enclave)</span>
+</div>
+<div class="text-on-surface-variant font-reference-code-sm text-reference-code-sm">
+          Policy Rev: <span class="font-mono text-on-surface font-semibold">2024.11-RLS-v2.4</span>
+</div>
+</div>
+</div>
+<!-- Architectural Security Banner -->
+<div class="bg-primary-container text-on-primary rounded-xl p-space-lg shadow-md relative overflow-hidden">
+<div class="absolute right-0 top-0 bottom-0 w-80 bg-gradient-to-l from-white/5 to-transparent pointer-events-none"></div>
+<div class="flex items-start gap-space-md relative z-10">
+<div class="w-10 h-10 rounded-lg bg-secondary text-on-secondary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div class="flex flex-col gap-1 max-w-4xl">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h2 class="font-headline-h3 text-headline-h3 text-on-primary font-bold tracking-tight">Permissions are enforced on the server and database, not only in the interface.</h2>
+<span class="font-reference-code-sm text-reference-code-sm bg-secondary-fixed text-on-secondary-fixed font-semibold px-2 py-0.5 rounded uppercase tracking-wider">Statutory Isolation</span>
+</div>
+<p class="font-body-regular text-body-regular text-on-primary-container leading-relaxed">
+            Cryptographic Row-Level Security (RLS) policies and Attribute-Based Access Control (ABAC) enforce tamper-resistant isolation across PostgreSQL enclaves. Modifications invalidate cached JWT grants immediately across all active cluster nodes.
+          </p>
+</div>
+</div>
+</div>
+<!-- Header & Action Controls -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-h1 text-headline-h1 text-on-surface font-bold tracking-tight">Roles &amp; Permissions Governance</h1>
+<span class="font-reference-code-sm text-reference-code-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-semibold">Matrix Version: v2.4 (Active)</span>
+</div>
+<p class="font-body-regular text-body-regular text-on-surface-variant max-w-3xl">
+          Role-Based Access Control (RBAC) matrix defining functional boundaries across statutory claimants, legal representatives, and RAF operational units under the RAF Act No. 56 of 1996.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 flex-wrap">
+<button class="h-10 px-4 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container font-body-medium text-body-medium shadow-sm transition-all flex items-center gap-2" id="btn-export-spec">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">download</span>
+<span>Export Specification (JSON/PDF)</span>
+</button>
+<button class="h-10 px-5 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container font-body-medium text-body-medium font-semibold shadow-sm transition-all flex items-center gap-2" id="btn-save-schema-top">
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+<span>Save Permission Schema</span>
+</button>
+</div>
+</div>
+<!-- Filter & Toggles Bar -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex-wrap gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase font-semibold px-2">Matrix View:</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-body-medium text-body-medium font-semibold flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+<span>All Capabilities (9)</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low font-body-medium text-body-medium transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">compare_arrows</span>
+<span>Compare Roles</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low font-body-medium text-body-medium transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span>Revision Delta</span>
+</button>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant font-reference-code-sm text-reference-code-sm px-2">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded bg-secondary-container"></span>
+<span>Authorised Scope</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded bg-amber-100"></span>
+<span>Restricted / Limited</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded bg-surface-container"></span>
+<span>No Access</span>
+</div>
+</div>
+</div>
+<!-- Main Workspace Layout: Matrix (Left) + Role Inspector (Right) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Core Permissions Matrix (Left / Center Grid) -->
+<div class="xl:col-span-8 flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">table_chart</span>
+<span class="font-headline-h3 text-headline-h3 text-on-surface font-bold">Statutory Capability Matrix</span>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">PostgreSQL Security Enclave Level 4</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-caps text-label-caps tracking-wider uppercase">
+<th class="py-3.5 px-space-md font-semibold w-52 sticky left-0 bg-surface-container z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">Functional Capability</th>
+<th class="py-3.5 px-2 text-center font-semibold">Claimant</th>
+<th class="py-3.5 px-2 text-center font-semibold">Lawyer</th>
+<!-- Selected / Highlighted Role Column: RAF Officer -->
+<th class="py-3.5 px-2 text-center font-semibold bg-secondary/10 text-secondary">
+<div class="flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+<span>RAF Officer</span>
+</div>
+</th>
+<th class="py-3.5 px-2 text-center font-semibold">Investigator</th>
+<th class="py-3.5 px-2 text-center font-semibold">Manager</th>
+<th class="py-3.5 px-2 text-center font-semibold">Admin</th>
+</tr>
+</thead>
+<tbody class="font-body-medium text-body-medium divide-y-0">
+<!-- Row 1: View claims -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-space-md font-medium text-on-surface sticky left-0 bg-surface-container-lowest z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">visibility</span>
+<span>View claims</span>
+</div>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Own</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Assigned</span>
+</td>
+<!-- Highlighted Cell -->
+<td class="py-3.5 px-2 text-center bg-secondary/5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary text-on-secondary shadow-sm">Authorised</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Authorised</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-900">Summary</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+</tr>
+<!-- Row 2: Create claims -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-low/30">
+<td class="py-3.5 px-space-md font-medium text-on-surface sticky left-0 bg-surface-container-low/30 z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">post_add</span>
+<span>Create claims</span>
+</div>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Own</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Yes</span>
+</td>
+<td class="py-3.5 px-2 text-center bg-secondary/5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+</tr>
+<!-- Row 3: Upload documents -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-space-md font-medium text-on-surface sticky left-0 bg-surface-container-lowest z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">upload_file</span>
+<span>Upload documents</span>
+</div>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Own</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Assigned</span>
+</td>
+<td class="py-3.5 px-2 text-center bg-secondary/5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary text-on-secondary shadow-sm">Authorised</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Authorised</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+</tr>
+<!-- Row 4: View readiness -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-low/30">
+<td class="py-3.5 px-space-md font-medium text-on-surface sticky left-0 bg-surface-container-low/30 z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">fact_check</span>
+<span>View readiness</span>
+</div>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-900">Summary</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Yes</span>
+</td>
+<td class="py-3.5 px-2 text-center bg-secondary/5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary text-on-secondary shadow-sm">Yes</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-900">Limited</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-900">Summary</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+</tr>
+<!-- Row 5: View risk evidence -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-space-md font-medium text-on-surface sticky left-0 bg-surface-container-lowest z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">shield_with_heart</span>
+<span>View risk evidence</span>
+</div>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center bg-secondary/5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-900">Limited</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Authorised</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-800">Restricted</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-800">Restricted</span>
+</td>
+</tr>
+<!-- Row 6: Create information requests -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-low/30">
+<td class="py-3.5 px-space-md font-medium text-on-surface sticky left-0 bg-surface-container-low/30 z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">contact_support</span>
+<span>Create info requests</span>
+</div>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center bg-secondary/5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary text-on-secondary shadow-sm">Yes</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Yes</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+</tr>
+<!-- Row 7: Review investigations -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-space-md font-medium text-on-surface sticky left-0 bg-surface-container-lowest z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">policy</span>
+<span>Review investigations</span>
+</div>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center bg-secondary/5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Yes</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-900">Summary</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+</tr>
+<!-- Row 8: View reports -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-low/30">
+<td class="py-3.5 px-space-md font-medium text-on-surface sticky left-0 bg-surface-container-low/30 z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">monitoring</span>
+<span>View reports</span>
+</div>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Own</span>
+</td>
+<td class="py-3.5 px-2 text-center bg-secondary/5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary text-on-secondary shadow-sm">Assigned</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Assigned</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Yes</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-900">Limited</span>
+</td>
+</tr>
+<!-- Row 9: Manage users and roles -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-space-md font-medium text-on-surface sticky left-0 bg-surface-container-lowest z-10 shadow-[1px_0_0_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">admin_panel_settings</span>
+<span>Manage users &amp; roles</span>
+</div>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center bg-secondary/5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant">No</span>
+</td>
+<td class="py-3.5 px-2 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">Yes</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Capability Matrix Footer Metadata -->
+<div class="px-space-md py-3 bg-surface-container-low text-on-surface-variant flex items-center justify-between text-body-small font-body-small flex-wrap gap-2">
+<div class="flex items-center gap-2 font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">database</span>
+<span>RLS Policies: 42 active functions · Enforced at storage layer</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span>Last synchronized: Today at 08:42:19 SAST</span>
+</div>
+</div>
+</div>
+<!-- Right Panel: Selected Role Scope Inspector -->
+<div class="xl:col-span-4 flex flex-col gap-space-md sticky top-20">
+<!-- Inspector Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col gap-space-md">
+<!-- Role selector tabs / Pills -->
+<div class="flex flex-col gap-1 pb-2">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider font-semibold">Active Enclave Inspector</span>
+<div class="flex items-center justify-between mt-1">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">shield_person</span>
+</div>
+<div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface font-bold">RAF Claims Officer</h3>
+<p class="font-reference-code-sm text-reference-code-sm text-secondary font-semibold">ROLE_RAF_OFFICER</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-secondary-container text-on-secondary-container">Selected</span>
+</div>
+</div>
+<!-- Role Description -->
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant font-semibold">Statutory Mandate</span>
+<p class="font-body-regular text-body-regular text-on-surface leading-relaxed">
+              Operational assessor responsible for procedural readiness verification, lodging statutory § 19(f) requisitions, and progressing claims towards settlement.
+            </p>
+</div>
+<!-- Scope & Guardrails -->
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant font-semibold tracking-wider">Statutory &amp; Scope Rules</span>
+<!-- Rule 1 -->
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex items-start gap-space-sm shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-secondary mt-0.5 shrink-0">pin_drop</span>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Strict Jurisdictional Allocation</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Access bounded to assigned regional adjudication hub (e.g. Menlyn, Durban, Cape Town).</span>
+</div>
+</div>
+<!-- Rule 2 -->
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex items-start gap-space-sm shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-secondary mt-0.5 shrink-0">clinical_notes</span>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Evidentiary Inspection</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Permitted to inspect sworn medical and SAPS records only for active claims in assessment stage.</span>
+</div>
+</div>
+<!-- Rule 3 -->
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex items-start gap-space-sm shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-amber-700 mt-0.5 shrink-0">security</span>
+<div class="flex flex-col">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Anti-Fraud Isolation</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Excluded from forensic investigation notes and confidential SIU syndicate markers to prevent assessor compromise.</span>
+</div>
+</div>
+</div>
+<!-- Visual Distribution Chart / Activity Metrics -->
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant font-semibold">Active Population</span>
+<span class="font-reference-code-sm text-reference-code-sm font-semibold text-secondary">42 Active Identities</span>
+</div>
+<!-- Inline Mini Regional Distribution Chart -->
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center justify-between text-body-small font-body-small">
+<span class="text-on-surface">Menlyn (Head Office)</span>
+<span class="font-mono font-medium text-on-surface-variant">18 (43%)</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 43%;"></div>
+</div>
+<div class="flex items-center justify-between text-body-small font-body-small pt-1">
+<span class="text-on-surface">Durban &amp; KZN Coastal</span>
+<span class="font-mono font-medium text-on-surface-variant">12 (29%)</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 29%;"></div>
+</div>
+<div class="flex items-center justify-between text-body-small font-body-small pt-1">
+<span class="text-on-surface">Western Cape &amp; Regional Hubs</span>
+<span class="font-mono font-medium text-on-surface-variant">12 (28%)</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 28%;"></div>
+</div>
+</div>
+</div>
+<!-- Active Token Bindings -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-1 font-reference-code-sm text-reference-code-sm text-on-surface-variant">
+<div class="flex items-center justify-between">
+<span>Policy Specification:</span>
+<span class="font-mono font-semibold text-on-surface">POL-RAF-OFFICER-v2</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Session Hard-Limit:</span>
+<span class="font-mono font-semibold text-on-surface">15 min</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Hardware Token:</span>
+<span class="font-mono font-semibold text-secondary">FIDO2 / YubiKey (Enforced)</span>
+</div>
+</div>
+</div>
+<!-- Quick Switch Roles Carousel / Selector -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-xs">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant font-semibold px-1">Switch Inspector Focus</span>
+<div class="grid grid-cols-3 gap-1.5 pt-1">
+<button class="px-2 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-small text-body-small font-medium transition-colors text-center">Claimant</button>
+<button class="px-2 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-small text-body-small font-medium transition-colors text-center">Lawyer</button>
+<button class="px-2 py-1.5 rounded-lg bg-secondary text-on-secondary font-body-small text-body-small font-semibold shadow-sm text-center">Officer</button>
+<button class="px-2 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-small text-body-small font-medium transition-colors text-center">Investigator</button>
+<button class="px-2 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-small text-body-small font-medium transition-colors text-center">Manager</button>
+<button class="px-2 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-small text-body-small font-medium transition-colors text-center">Admin</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Change Control & Mandatory Audit Reason Box (Bottom Enclave Action Panel) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm bg-surface-container-low -mx-space-lg -mt-space-lg px-space-lg pt-space-lg rounded-t-xl">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-amber-100 text-amber-900 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-h3 text-headline-h3 text-on-surface font-bold">Dual-Key Governance &amp; Change Control</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Schema alterations trigger dual-key signing and notify all Enclave SecOps officers.</span>
+</div>
+</div>
+<div class="flex items-center gap-2 font-reference-code-sm text-reference-code-sm text-on-surface-variant bg-surface-container-highest px-3 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-secondary">token</span>
+<span>Logged under Admin: <strong class="text-on-surface">K. Mokoena (Cert #ADM-002)</strong></span>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm pt-2">
+<label class="font-body-medium text-body-medium text-on-surface font-semibold flex items-center justify-between" for="audit-reason-input">
+<span>Reason for schema modification (Mandatory Audit Requirement) <span class="text-error">*</span></span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant font-normal">SHA-256 Merkle anchored commit</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 px-4 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-regular text-body-regular focus:bg-surface-container-lowest focus:shadow-sm focus:outline-none transition-all" id="audit-reason-input" placeholder="Provide statutory governance justification or change ticket reference (e.g. RAF-SEC-CR-2026-081)..." type="text"/>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pt-2">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-reference-code-sm text-reference-code-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">fingerprint</span>
+<span>Commit will invalidate 6,104 active session cache blocks globally.</span>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="h-10 px-4 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-medium text-body-medium transition-colors" id="btn-revert-schema">
+            Revert to Last Approved Version
+          </button>
+<button class="h-10 px-6 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container font-body-medium text-body-medium font-semibold shadow-sm transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" id="btn-commit-schema">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Commit Permission Changes</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple interaction for the Change Control box and notification
+  const auditInput = document.getElementById('audit-reason-input');
+  const commitBtn = document.getElementById('btn-commit-schema');
+  const saveTopBtn = document.getElementById('btn-save-schema-top');
+  const exportBtn = document.getElementById('btn-export-spec');
+
+  if (commitBtn && auditInput) {
+    commitBtn.addEventListener('click', () => {
+      const reason = auditInput.value.trim();
+      if (!reason) {
+        auditInput.focus();
+        auditInput.classList.add('bg-error-container');
+        setTimeout(() => {
+          auditInput.classList.remove('bg-error-container');
+        }, 1500);
+        return;
+      }
+      alert('Statutory Audit Logged: Change ticket anchored under SHA-256 Merkle root. Enclave nodes alerted.');
+      auditInput.value = '';
+    });
+  }
+
+  if (saveTopBtn && auditInput) {
+    saveTopBtn.addEventListener('click', () => {
+      auditInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      auditInput.focus();
+    });
+  }
+
+  if (exportBtn) {
+    exportBtn.addEventListener('click', () => {
+      const timestamp = new Date().toISOString();
+      const specData = {
+        enclave: "ClaimGuard RAF - Enclave Level 4",
+        policyVersion: "v2.4",
+        cryptographicStamp: "2024-RAF-SEC-00918",
+        exportedAt: timestamp,
+        roles: ["Claimant", "Lawyer", "RAF Officer", "Investigator", "Manager", "Admin"],
+        capabilitiesCount: 9
+      };
+      const blob = new Blob([JSON.stringify(specData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `ClaimGuard-RBAC-Matrix-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+</script></main></div></body></html>

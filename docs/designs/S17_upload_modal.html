@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-dim":"#ccdbf3","on-primary-container":"#7992b1","on-secondary-fixed-variant":"#00504f","surface-container-low":"#eff4ff","surface-container-highest":"#d5e3fc","primary":"#00152a","on-tertiary":"#ffffff","on-tertiary-container":"#6888ff","on-secondary":"#ffffff","on-secondary-fixed":"#002020","secondary-fixed-dim":"#7cd5d3","on-primary-fixed-variant":"#304864","primary-fixed":"#d1e4ff","on-tertiary-fixed":"#001551","on-tertiary-fixed-variant":"#0039b5","tertiary-container":"#002070","inverse-surface":"#233144","inverse-on-surface":"#eaf1ff","surface-variant":"#d5e3fc","surface-container":"#e6eeff","tertiary-fixed":"#dce1ff","tertiary":"#000f41","surface-container-high":"#dce9ff","error-container":"#ffdad6","on-secondary-container":"#00706f","secondary-container":"#98f2f0","on-surface-variant":"#43474d","on-error-container":"#93000a","on-error":"#ffffff","outline":"#74777e","outline-variant":"#c3c6ce","on-background":"#0d1c2e","background":"#f8f9ff","surface-tint":"#48607d","inverse-primary":"#b0c9ea","on-primary":"#ffffff","primary-container":"#0f2a44","surface-container-lowest":"#ffffff","tertiary-fixed-dim":"#b7c4ff","surface":"#f8f9ff","primary-fixed-dim":"#b0c9ea","surface-bright":"#f8f9ff","on-surface":"#0d1c2e","secondary-fixed":"#98f2f0","error":"#ba1a1a","secondary":"#006a69","on-primary-fixed":"#001d36"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-sm":"0.5rem","margin":"2rem","space-xl":"2rem","gutter":"1.5rem","space-xs":"0.25rem","space-lg":"1.5rem","space-md":"1rem"},"fontFamily":{"headline-h2":["Inter"],"body-small":["Inter"],"body-regular":["Inter"],"label-caps":["Inter"],"reference-code":["IBM Plex Mono"],"body-medium":["Inter"],"reference-code-sm":["IBM Plex Mono"],"headline-h3":["Inter"],"headline-h1":["Inter"]},"fontSize":{"headline-h2":["22px",{"lineHeight":"30px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-small":["12px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"400"}],"body-regular":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"label-caps":["11px",{"lineHeight":"16px","letterSpacing":"0.05em","fontWeight":"600"}],"reference-code":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"body-medium":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"500"}],"reference-code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}],"headline-h3":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-h1":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}]}}}};</script></head><body class="bg-surface font-body-regular text-on-surface antialiased"><div class="fixed top-0 inset-x-0 h-9 bg-[#FFFBEB] z-50 flex items-center justify-center gap-2 px-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><span class="material-symbols-outlined text-[14px] text-[#92400E]">warning</span><span class="font-label-caps text-label-caps text-[#92400E] uppercase tracking-wider">ClaimGuard RAF — Concept Prototype. Not an official RAF system. Demonstration data only.</span></div><aside class="fixed left-0 top-9 bottom-0 w-64 bg-surface-container-low z-40 flex flex-col pt-space-md pb-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="px-space-lg mb-space-lg flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-secondary text-[20px]">verified_user</span></div><div class="flex flex-col"><span class="font-headline-h3 text-headline-h3 text-primary leading-tight">ClaimGuard</span><span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant uppercase">RAF Audit Core</span></div></div><div class="px-space-lg mb-space-sm"><span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Forensic Modules</span></div><nav class="flex-1 px-space-sm flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-medium rounded-lg"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-all bg-primary-container text-on-primary font-medium rounded-lg" data-path="claim-workspace" href="#"><span class="material-symbols-outlined text-[20px]">folder_shared</span><span class="font-body-medium text-body-medium">Claim Workspace</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="forensic-audit-review" href="#"><span class="material-symbols-outlined text-[20px]">fact_check</span><span class="font-body-medium text-body-medium">Forensic Audit Review</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="claimant-verification-dossier" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-body-medium text-body-medium">Claimant Dossier</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="actuarial-exposure-summary" href="#"><span class="material-symbols-outlined text-[20px]">calculate</span><span class="font-body-medium text-body-medium">Actuarial Exposure</span></a></nav><div class="px-space-md pt-space-md"><div class="p-space-md rounded-lg bg-surface-container flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Assigned Queue</span><span class="font-reference-code-sm text-reference-code-sm text-secondary font-medium">ACTIVE</span></div><span class="font-headline-h3 text-headline-h3 text-on-surface">42 Claims</span><span class="font-body-small text-body-small text-on-surface-variant">Pretoria Central Cluster</span></div></div></aside><div class="pl-64"><header class="fixed top-9 left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl z-30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-full px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container"><span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Triage Stage:</span><span class="font-body-small text-body-small text-secondary font-medium">Forensic Medical Review</span></div><span class="font-reference-code text-reference-code text-on-surface-variant">RAF-2024-8841-B</span></div><div class="flex items-center gap-space-md"><button class="h-10 px-space-md rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors flex items-center gap-space-xs" type="button"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-regular text-body-regular">Query Docket...</span></button><button class="h-10 px-space-md rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors flex items-center gap-space-xs" type="button"><span class="material-symbols-outlined text-[18px]">history</span><span class="font-body-regular text-body-regular">Chain of Custody</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-2.25rem)]"><div class="w-full px-space-lg py-space-xl"><div class="flex flex-col w-full relative">
+<!-- =========================================================================
+       DIMMED & BLURRED BACKGROUND WORKSPACE CONTEXT:
+       Claim CG-2026-000142 | Sipho Ndlovu | Documents Ledger
+       ========================================================================= -->
+<div aria-hidden="true" class="w-full filter blur-[3.5px] opacity-40 pointer-events-none select-none">
+<!-- Workspace Sub-Header & Metadata -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg mb-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-headline-h2 text-headline-h2">
+            SN
+          </div>
+<div>
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-h2 text-headline-h2 text-primary">Sipho Ndlovu</h2>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-surface-container text-secondary">
+                RSA ID Verified (840214 5219 088)
+              </span>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant font-reference-code-sm text-reference-code-sm">
+<span>DOCKET: CG-2026-000142</span>
+<span>•</span>
+<span>ACCIDENT DATE: 12 NOV 2025</span>
+<span>•</span>
+<span>JURISDICTION: GAUTENG HIGH COURT</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="h-10 px-4 rounded-lg bg-surface-container text-on-surface font-body-medium text-body-medium flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+            Actuarial Assessment
+          </button>
+<button class="h-10 px-4 rounded-lg bg-secondary text-on-secondary font-body-medium text-body-medium flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+            Upload Document
+          </button>
+</div>
+</div>
+<!-- Tab Navigation strip -->
+<div class="flex items-center gap-space-lg border-b border-surface-container-high pt-2">
+<span class="pb-2 text-on-surface-variant font-body-medium text-body-medium">Overview & Triage</span>
+<span class="pb-2 text-on-surface-variant font-body-medium text-body-medium">Medical Assessments</span>
+<span class="pb-2 text-secondary font-body-medium text-body-medium font-semibold border-b-2 border-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+          Documents & Evidence (18)
+        </span>
+<span class="pb-2 text-on-surface-variant font-body-medium text-body-medium">Actuarial Quantum</span>
+<span class="pb-2 text-on-surface-variant font-body-medium text-body-medium">Chain of Custody</span>
+</div>
+</div>
+<!-- Workspace Documents Table Mockup -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-h3 text-headline-h3 text-primary">Evidentiary File Registry</span>
+<span class="px-2 py-0.5 rounded text-xs bg-surface-container text-on-surface-variant">18 Records Anchored</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-9 px-3 rounded bg-surface-container-low text-xs flex items-center text-on-surface-variant gap-2">
+<span class="material-symbols-outlined text-[16px]">filter_list</span> Filter by RAF statutory tier
+          </div>
+</div>
+</div>
+<div class="w-full flex flex-col gap-2">
+<div class="h-11 bg-surface-container-low rounded-lg px-4 flex items-center justify-between text-xs font-semibold text-on-surface-variant">
+<span class="w-1/3">DOCUMENT IDENTIFIER & FILE</span>
+<span class="w-1/4">CATEGORY / STATUTORY FORM</span>
+<span class="w-1/6">INTEGRITY HASH</span>
+<span class="w-1/6">UPLOAD TIMESTAMP</span>
+<span class="w-20 text-right">VERSION</span>
+</div>
+<div class="h-14 bg-surface-container-lowest rounded-lg px-4 flex items-center justify-between text-xs">
+<span class="w-1/3 font-medium text-primary">Hospital_Trauma_Intake_Scan_p4.pdf</span>
+<span class="w-1/4 text-on-surface-variant">RAF 1 - Medical Report (Section D)</span>
+<span class="w-1/6 font-reference-code-sm text-secondary">0x4a92c81...</span>
+<span class="w-1/6 text-on-surface-variant">14 Jan 2026, 09:12</span>
+<span class="w-20 text-right"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono text-[11px]">v1</span></span>
+</div>
+<div class="h-14 bg-surface-container-lowest rounded-lg px-4 flex items-center justify-between text-xs">
+<span class="w-1/3 font-medium text-primary">SAPS_OAR_Accident_Collision_Sketch.pdf</span>
+<span class="w-1/4 text-on-surface-variant">SAPS Accident Report (OAR)</span>
+<span class="w-1/6 font-reference-code-sm text-secondary">0x71e3d09...</span>
+<span class="w-1/6 text-on-surface-variant">12 Jan 2026, 14:48</span>
+<span class="w-20 text-right"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono text-[11px]">v1</span></span>
+</div>
+<div class="h-14 bg-surface-container-lowest rounded-lg px-4 flex items-center justify-between text-xs">
+<span class="w-1/3 font-medium text-primary">Certified_Copy_RSA_ID_Booklet.pdf</span>
+<span class="w-1/4 text-on-surface-variant">Identity Document (RSA ID / Passport)</span>
+<span class="w-1/6 font-reference-code-sm text-secondary">0x992b15e...</span>
+<span class="w-1/6 text-on-surface-variant">08 Jan 2026, 11:05</span>
+<span class="w-20 text-right"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono text-[11px]">v1</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- =========================================================================
+       MODAL DIALOG OVERLAY CONTAINER
+       Centered exactly, 640px width modal card with Level 3 Elevation
+       ========================================================================= -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-md transition-opacity" id="upload-modal-backdrop">
+<!-- Modal Card (Strictly 640px max width) -->
+<div aria-labelledby="modal-headline" aria-modal="true" class="w-full max-w-[640px] bg-surface-container-lowest rounded-2xl shadow-2xl overflow-hidden flex flex-col transform transition-all animate-in fade-in zoom-in-95 duration-200" role="dialog">
+<!-- Modal Header -->
+<div class="p-space-lg pb-space-md bg-surface-container-lowest flex items-start justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+</div>
+<h1 class="font-headline-h2 text-headline-h2 text-primary font-bold" id="modal-headline">
+              Upload document
+            </h1>
+</div>
+<p class="mt-1 font-body-small text-body-small text-on-surface-variant leading-snug">
+            Secure evidentiary ingestion under POPIA Act 4 & RAF Act §17 verification rules.
+          </p>
+</div>
+<button aria-label="Close dialog" class="w-8 h-8 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors flex items-center justify-center focus:outline-none" onclick="document.getElementById('upload-modal-backdrop').classList.toggle('hidden')" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Form Body -->
+<div class="px-space-lg pb-space-lg flex flex-col gap-space-md max-h-[calc(85vh-130px)] overflow-y-auto">
+<!-- Case Docket Indicator Ribbon -->
+<div class="py-1.5 px-3 rounded-lg bg-surface-container-low flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Target Claim:</span>
+<span class="font-reference-code-sm text-reference-code-sm font-semibold text-primary">CG-2026-000142</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-body-small text-body-small text-on-surface-variant">Sipho Ndlovu</span>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-secondary font-medium">ENCLAVE #ZA-PTA-04</span>
+</div>
+<!-- Category Dropdown Field -->
+<div class="flex flex-col gap-1.5">
+<label class="flex items-center justify-between text-xs font-semibold text-primary" for="doc-category">
+<span class="flex items-center gap-1">
+              Document category <span class="text-error">*</span>
+</span>
+<span class="font-body-small text-[11px] text-on-surface-variant font-normal">Mandatory for RAF indexing</span>
+</label>
+<div class="relative">
+<select class="w-full h-10 pl-3 pr-10 rounded-lg bg-surface-container-lowest text-on-surface text-sm font-body-medium focus:outline-none focus:bg-surface-container-lowest transition-all appearance-none cursor-pointer shadow-sm" id="doc-category">
+<option selected="" value="raf1">Hospital Medical Report (RAF Form 1 Section D)</option>
+<option value="rsa-id">Identity Document (RSA ID / Passport)</option>
+<option value="saps-oar">SAPS Accident Report (OAR)</option>
+<option value="raf4">Serious Injury Assessment (RAF 4)</option>
+<option value="earnings">Proof of Earnings / Employer Certificate</option>
+<option value="poa">Power of Attorney (Form 1)</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+<p class="font-body-small text-[11px] text-on-surface-variant">
+            Categorisation triggers automated medical terminology validation and signature OCR validation.
+          </p>
+</div>
+<!-- Evidentiary Drop Zone -->
+<div class="group relative rounded-xl p-5 bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col items-center justify-center text-center" id="drop-zone">
+<input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" multiple="" title="Click or drag files here" type="file"/>
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest text-secondary shadow-sm flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">cloud_upload</span>
+</div>
+<div class="flex items-center gap-1.5 font-body-medium text-sm text-primary font-semibold">
+<span>Drag and drop evidentiary files here, or</span>
+<span class="text-secondary underline decoration-secondary underline-offset-2">browse files</span>
+</div>
+<p class="mt-1 font-body-small text-[11px] text-on-surface-variant max-w-md">
+            Supported formats: <span class="font-medium text-on-surface">PDF, TIFF, JPG, PNG</span> (Max 10 MB per file). End-to-end encrypted with SHA-256 hash anchoring.
+          </p>
+</div>
+<!-- Active Files Queue (4 Demonstrative States) -->
+<div class="flex flex-col gap-2 pt-1">
+<div class="flex items-center justify-between text-xs font-semibold text-on-surface-variant">
+<span>Queued Files (4)</span>
+<span class="text-[11px] font-normal text-on-surface-variant">2 valid • 1 in progress • 1 rejected</span>
+</div>
+<!-- File Item 1: UPLOADING STATE -->
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-2 shadow-sm transition-all">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-medium text-xs font-semibold text-primary truncate" title="Tembisa_Hospital_RAF1_Addendum_p2.pdf">
+                    Tembisa_Hospital_RAF1_Addendum_p2.pdf
+                  </span>
+<div class="flex items-center gap-2 font-reference-code-sm text-[11px] text-on-surface-variant">
+<span>3.4 MB</span>
+<span>•</span>
+<span class="text-secondary font-medium">Uploading 64%... (1.8 MB/s)</span>
+</div>
+</div>
+</div>
+<button aria-label="Cancel upload" class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-surface-container-highest transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-300" style="width: 64%;"></div>
+</div>
+</div>
+<!-- File Item 2: MALWARE & INTEGRITY SCANNING STATE -->
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-2 shadow-sm transition-all">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-[#FEF3C7] text-[#B45309] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px] animate-spin">shield_with_heart</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-medium text-xs font-semibold text-primary truncate" title="Surgeon_Specialist_Endorsement_Stamp.pdf">
+                    Surgeon_Specialist_Endorsement_Stamp.pdf
+                  </span>
+<div class="flex items-center gap-2 font-reference-code-sm text-[11px] text-on-surface-variant">
+<span>1.9 MB</span>
+<span>•</span>
+<span class="inline-flex items-center gap-1 text-[#B45309] font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B45309] animate-ping"></span>
+                      Scanning for malware & virus telemetry...
+                    </span>
+</div>
+</div>
+</div>
+<button aria-label="Cancel inspection" class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-surface-container-highest transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Pulsing Scan Bar -->
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden relative">
+<div class="absolute inset-0 bg-[#B45309]/30 rounded-full animate-pulse"></div>
+<div class="bg-[#B45309] h-full rounded-full w-2/3"></div>
+</div>
+</div>
+<!-- File Item 3: CONFIRMED & READY STATE -->
+<div class="p-3 rounded-xl bg-surface-container-low flex items-start justify-between gap-3 shadow-sm transition-all">
+<div class="flex items-start gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-body-medium text-xs font-semibold text-primary truncate" title="RSA_ID_Biometric_Clearance_Certified.pdf">
+                    RSA_ID_Biometric_Clearance_Certified.pdf
+                  </span>
+<span class="inline-flex items-center gap-0.5 px-1.5 py-0.2 rounded text-[10px] font-semibold bg-surface-container-lowest text-secondary">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Confirmed
+                  </span>
+</div>
+<div class="flex flex-wrap items-center gap-2 mt-0.5 font-reference-code-sm text-[11px] text-on-surface-variant">
+<span>1.2 MB</span>
+<span>•</span>
+<span class="text-on-surface-variant font-mono">SHA-256: 0x89f4b1...e72a</span>
+<span>•</span>
+<span class="text-secondary font-medium">Ready for OCR extraction</span>
+</div>
+</div>
+</div>
+<button aria-label="Remove confirmed file" class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-surface-container-highest transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+<!-- File Item 4: REJECTED STATE -->
+<div class="p-3 rounded-xl bg-[#FEE2E2] flex items-start justify-between gap-3 shadow-sm transition-all">
+<div class="flex items-start gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">dangerous</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-body-medium text-xs font-semibold text-error truncate" title="Diagnostic_Viewer_Installer.exe">
+                    Diagnostic_Viewer_Installer.exe
+                  </span>
+<span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-surface-container-lowest text-error">
+                    Rejected
+                  </span>
+</div>
+<p class="font-body-small text-[11px] text-error font-medium mt-0.5 flex items-center gap-1">
+<span>File type not supported (.exe). Executable binaries strictly prohibited by POPIA Sec 19 protocols.</span>
+</p>
+</div>
+</div>
+<button aria-label="Remove rejected file" class="p-1 rounded text-error hover:bg-surface-container-lowest transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Version Control & Replacement Option -->
+<div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col gap-2">
+<label class="flex items-start gap-2.5 cursor-pointer">
+<input checked="" class="mt-0.5 w-4 h-4 rounded text-secondary focus:ring-0 focus:outline-none cursor-pointer" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-body-medium text-xs font-semibold text-primary">
+                This replaces an existing document (keeps the previous version)
+              </span>
+<span class="font-body-small text-[11px] text-on-surface-variant leading-relaxed mt-0.5">
+                Will archive current v1 as an immutable historical record and register incoming document as v2 in the evidentiary audit ledger.
+              </span>
+</div>
+</label>
+<!-- Selected target document chip -->
+<div class="ml-6 flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest text-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary">history</span>
+<span class="text-on-surface-variant font-body-small">Replacing target:</span>
+<span class="font-mono font-medium text-primary text-[11px] truncate">Hospital_Trauma_Intake_Scan_p4.pdf</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant text-[10px] font-mono">v1</span>
+</div>
+</div>
+</div>
+<!-- Modal Footer Action Bar -->
+<div class="px-space-lg py-space-md bg-surface-container-lowest flex flex-wrap items-center justify-between gap-space-md shadow-inner">
+<!-- Security & Legal Badging -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-small text-[11px]">
+<span class="material-symbols-outlined text-[15px] text-secondary">lock</span>
+<span>256-bit encrypted POPIA enclave upload</span>
+</div>
+<!-- Primary & Secondary Buttons -->
+<div class="flex items-center gap-2.5">
+<button class="h-10 px-4 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-body-medium text-xs font-semibold" onclick="document.getElementById('upload-modal-backdrop').classList.toggle('hidden')" type="button">
+            Cancel
+          </button>
+<button class="h-10 px-5 rounded-lg bg-secondary text-on-secondary hover:bg-secondary/90 transition-all font-body-medium text-xs font-semibold shadow-sm flex items-center gap-1.5 focus:outline-none" id="submit-upload-btn" title="2 valid evidentiary documents ready for ledger commit" type="button">
+<span class="material-symbols-outlined text-[16px]">cloud_done</span>
+<span>Upload 2 files</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Demonstration Logic for Drag & Drop and Dialog Feedback -->
+<script>
+  (function() {
+    const dropZone = document.getElementById('drop-zone');
+    const categorySelect = document.getElementById('doc-category');
+    const uploadBtn = document.getElementById('submit-upload-btn');
+
+    if (dropZone) {
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.add('bg-surface-container');
+        }, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.remove('bg-surface-container');
+        }, false);
+      });
+    }
+
+    // Toggle button state demonstration
+    if (categorySelect && uploadBtn) {
+      categorySelect.addEventListener('change', () => {
+        if (!categorySelect.value) {
+          uploadBtn.setAttribute('disabled', 'true');
+          uploadBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+          uploadBtn.removeAttribute('disabled');
+          uploadBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      });
+    }
+  })();
+</script></div></main></div></body></html>

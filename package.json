@@ -1,0 +1,61 @@
+{
+  "name": "claimguard-raf",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "ClaimGuard RAF — Concept Prototype. Not an official RAF system. Demonstration data only.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p tsconfig.json && vite build",
+    "preview": "vite preview",
+    "db:reset": "node scripts/supabase-remote.mjs db reset",
+    "test:unit": "vitest run",
+    "test:db": "node scripts/test-db.mjs",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.json && npm run typecheck:functions",
+    "typecheck:functions": "node scripts/typecheck-functions.mjs",
+    "scan:secrets": "gitleaks git --no-banner --redact . && gitleaks dir --no-banner --redact --config .gitleaks.toml .",
+    "check": "npm run lint && npm run typecheck && npm run scan:secrets && npm run test:unit && npm run test:db && npm run test:integration",
+    "db:push": "node scripts/supabase-remote.mjs db push",
+    "functions:deploy": "supabase functions deploy --use-api"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.119.0",
+    "@tanstack/react-query": "5.107.1",
+    "lucide-react": "1.70.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router": "8.5.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.65.0",
+    "@tailwindcss/vite": "4.3.5",
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.2.1",
+    "@vitest/coverage-v8": "5.1.0",
+    "eslint": "10.14.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.14.0",
+    "jsdom": "31.0.0",
+    "pg": "8.23.1",
+    "supabase": "3.0.0",
+    "tailwindcss": "4.3.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1",
+    "vite": "8.3.6",
+    "vitest": "5.1.0"
+  }
+}

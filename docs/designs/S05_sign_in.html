@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"outline":"#74777e","on-tertiary":"#ffffff","surface-tint":"#48607d","inverse-primary":"#b0c9ea","error":"#ba1a1a","surface-container":"#e6eeff","surface-dim":"#ccdbf3","on-primary-container":"#7992b1","secondary-fixed-dim":"#7cd5d3","tertiary-fixed":"#dce1ff","background":"#f8f9ff","surface-container-highest":"#d5e3fc","tertiary-fixed-dim":"#b7c4ff","error-container":"#ffdad6","tertiary-container":"#002070","surface-container-low":"#eff4ff","primary-fixed-dim":"#b0c9ea","primary":"#00152a","primary-fixed":"#d1e4ff","on-error":"#ffffff","on-secondary-container":"#00706f","surface-container-lowest":"#ffffff","on-surface":"#0d1c2e","on-error-container":"#93000a","secondary-container":"#98f2f0","surface-bright":"#f8f9ff","on-secondary-fixed-variant":"#00504f","secondary":"#006a69","surface":"#f8f9ff","on-background":"#0d1c2e","on-secondary":"#ffffff","on-secondary-fixed":"#002020","tertiary":"#000f41","surface-variant":"#d5e3fc","surface-container-high":"#dce9ff","on-primary-fixed":"#001d36","on-surface-variant":"#43474d","secondary-fixed":"#98f2f0","primary-container":"#0f2a44","on-tertiary-fixed":"#001551","on-tertiary-container":"#6888ff","inverse-surface":"#233144","outline-variant":"#c3c6ce","inverse-on-surface":"#eaf1ff","on-primary-fixed-variant":"#304864","on-primary":"#ffffff","on-tertiary-fixed-variant":"#0039b5"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xs":"0.25rem","gutter":"1.5rem","space-md":"1rem","margin":"2rem","space-sm":"0.5rem","space-xl":"2rem","space-lg":"1.5rem"},fontFamily:{"body-medium":["Inter"],"headline-h1":["Inter"],"headline-h2":["Inter"],"body-regular":["Inter"],"headline-h3":["Inter"],"body-small":["Inter"],"reference-code-sm":["IBM Plex Mono"],"reference-code":["IBM Plex Mono"],"label-caps":["Inter"]},fontSize:{"body-medium":["14px",{lineHeight:"22px",letterSpacing:"0em",fontWeight:"500"}],"headline-h1":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-h2":["22px",{lineHeight:"30px",letterSpacing:"-0.015em",fontWeight:"600"}],"body-regular":["14px",{lineHeight:"22px",letterSpacing:"0em",fontWeight:"400"}],"headline-h3":["18px",{lineHeight:"26px",letterSpacing:"-0.01em",fontWeight:"600"}],"body-small":["12px",{lineHeight:"18px",letterSpacing:"0.01em",fontWeight:"400"}],"reference-code-sm":["11px",{lineHeight:"16px",letterSpacing:"0em",fontWeight:"500"}],"reference-code":["13px",{lineHeight:"18px",letterSpacing:"-0.01em",fontWeight:"500"}],"label-caps":["11px",{lineHeight:"16px",letterSpacing:"0.05em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-regular text-body-regular text-on-surface min-h-screen flex flex-col justify-between antialiased selection:bg-secondary-container selection:text-on-secondary-container"><header class="fixed top-0 left-0 right-0 z-50 h-9 bg-[#FFFBEB] border-b border-[#FDE68A] flex items-center justify-center px-space-md"><div class="flex items-center gap-space-xs text-[#92400E] font-body-small text-body-small font-semibold"><span class="material-symbols-outlined text-[14px] text-[#92400E]">warning</span><span>ClaimGuard RAF — Concept Prototype. Not an official RAF system. Demonstration data only.</span></div></header><main class="w-full flex-1 pt-9 flex flex-col bg-surface"><div class="flex flex-col w-full">
+<div class="w-full flex-1 min-h-[calc(100vh-6.25rem)] flex flex-col lg:flex-row">
+<!-- Left Panel: Institutional Evidentiary Pillar (45%) -->
+<section class="relative w-full lg:w-[45%] bg-primary-container text-surface flex flex-col justify-between p-margin lg:p-12 overflow-hidden shadow-xl">
+<!-- Faint Security Grid Overlay -->
+<div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: radial-gradient(circle at 1px 1px, #d1e4ff 1px, transparent 0); background-size: 24px 24px;"></div>
+<!-- Faint Micro-Watermark / Geometric Security Lines -->
+<svg class="absolute -right-24 -bottom-24 w-96 h-96 opacity-[0.03] text-surface pointer-events-none" fill="currentColor" viewbox="0 0 100 100">
+<path d="M50 0 L93.3 25 L93.3 75 L50 100 L6.7 75 L6.7 25 Z" fill="none" stroke="currentColor" stroke-width="2"></path>
+<circle cx="50" cy="50" fill="none" r="32" stroke="currentColor" stroke-width="1.5"></circle>
+<path d="M50 18 L50 82 M18 50 L82 50" stroke="currentColor" stroke-width="1"></path>
+</svg>
+<!-- Brand and Value Header -->
+<div class="relative z-10 flex flex-col space-y-8">
+<!-- Logo Mark + Wordmark -->
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest/10 flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-h3 text-headline-h3 text-surface tracking-tight font-bold">ClaimGuard</span>
+<span class="font-reference-code-sm text-reference-code-sm px-1.5 py-0.5 rounded bg-secondary text-surface font-semibold tracking-wider">RAF</span>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-primary-container uppercase tracking-wider">Forensic Claim Verification Enclave</span>
+</div>
+</div>
+<!-- Institutional Value Statement -->
+<div class="space-y-3 pt-4">
+<div class="inline-flex items-center gap-space-xs px-2.5 py-1 rounded bg-surface-container-lowest/5 text-primary-fixed font-reference-code-sm text-reference-code-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed animate-pulse"></span>
+            STATUTORY TRIAGE &amp; AUDIT PIPELINE
+          </div>
+<h1 class="font-headline-h2 text-headline-h2 text-surface font-semibold leading-snug">
+            A secure, explainable assurance layer for Road Accident Fund claims verification.
+          </h1>
+<p class="font-body-regular text-body-regular text-on-primary-container max-w-lg leading-relaxed">
+            Engineered to safeguard public actuarial reserves, streamline valid victim compensation, and eliminate fraudulent multi-claim syndicates through immutable cryptographic auditability.
+          </p>
+</div>
+<!-- Trust Pillars -->
+<div class="space-y-5 pt-4">
+<!-- Bullet 1 -->
+<div class="flex items-start gap-space-md p-space-md rounded-lg bg-surface-container-lowest/[0.04]">
+<div class="w-8 h-8 rounded-md bg-secondary/20 flex items-center justify-center text-secondary-fixed shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+</div>
+<div class="space-y-0.5">
+<h2 class="font-body-medium text-body-medium text-surface font-semibold">Role-based access controls</h2>
+<p class="font-body-small text-body-small text-on-primary-container">6 discrete persona permissions enforcing judicial least-privilege security and segregation of duties.</p>
+</div>
+</div>
+<!-- Bullet 2 -->
+<div class="flex items-start gap-space-md p-space-md rounded-lg bg-surface-container-lowest/[0.04]">
+<div class="w-8 h-8 rounded-md bg-secondary/20 flex items-center justify-center text-secondary-fixed shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+<div class="space-y-0.5">
+<h2 class="font-body-medium text-body-medium text-surface font-semibold">Private &amp; redacted documentation</h2>
+<p class="font-body-small text-body-small text-on-primary-container">Field-level dynamic PII redaction, ephemeral signed tokens, and POPIA Act 4 compliance.</p>
+</div>
+</div>
+<!-- Bullet 3 -->
+<div class="flex items-start gap-space-md p-space-md rounded-lg bg-surface-container-lowest/[0.04]">
+<div class="w-8 h-8 rounded-md bg-secondary/20 flex items-center justify-center text-secondary-fixed shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+</div>
+<div class="space-y-0.5">
+<h2 class="font-body-medium text-body-medium text-surface font-semibold">Cryptographic audit trails</h2>
+<p class="font-body-small text-body-small text-on-primary-container">Immutable append-only ledger providing evidentiary provenance for legal triage and forensic inquiry.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Statutory Footnote Left -->
+<div class="relative z-10 pt-8 mt-8 flex flex-col gap-1 text-on-primary-container font-reference-code-sm text-reference-code-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-secondary-fixed">shield_lock</span>
+<span>POPIA Act 4 of 2013 compliant architecture • Section 24 governance safeguard</span>
+</div>
+<p class="opacity-70">Fictional demonstration environment • State-approved simulation mode active</p>
+</div>
+</section>
+<!-- Right Panel: Sign-In Workspace (55%) -->
+<section class="w-full lg:w-[55%] bg-surface flex flex-col justify-center items-center p-space-md sm:p-gutter lg:p-margin">
+<div class="w-full max-w-[460px] flex flex-col space-y-6">
+<!-- Main Sign-In Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg sm:p-8 flex flex-col space-y-6">
+<!-- Card Header -->
+<div class="space-y-1">
+<h2 class="font-headline-h2 text-headline-h2 text-on-surface font-semibold tracking-tight">Sign in</h2>
+<p class="font-body-regular text-body-regular text-on-surface-variant">
+              Enter your institutional or verified claimant credentials to access your caseload.
+            </p>
+</div>
+<!-- Inline Security Error Variant Showcase -->
+<div class="flex items-start gap-space-sm p-space-sm rounded-lg bg-error-container text-on-error-container" id="auth-alert">
+<span class="material-symbols-outlined text-[18px] text-error shrink-0 mt-0.5">error_outline</span>
+<div class="flex-1 text-left font-body-small text-body-small">
+<span class="font-semibold block">Authentication restricted</span>
+              Email or password is incorrect. For evidentiary security, account existence is not disclosed.
+            </div>
+<button aria-label="Dismiss error notification" class="text-on-error-container hover:opacity-70 p-0.5 rounded" onclick="document.getElementById('auth-alert').style.display='none'" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Sign-in Form -->
+<form class="space-y-4" onsubmit="event.preventDefault(); handleSimulateSignIn();">
+<!-- Email Field -->
+<div class="space-y-1.5">
+<label class="block font-body-medium text-body-medium text-on-surface" for="signin-email">
+                Institutional or Registered Email
+              </label>
+<div class="relative">
+<input class="w-full h-10 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-regular text-body-regular placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary transition-all" id="signin-email" placeholder="e.g. n.khumalo@raf.example.gov.za or attorney@law.example.co.za" required="" type="email" value="n.khumalo@raf.example.gov.za"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="block font-body-medium text-body-medium text-on-surface" for="signin-password">
+                  Password
+                </label>
+<a class="font-body-small text-body-small font-semibold text-secondary hover:underline" href="#forgot">
+                  Forgot password?
+                </a>
+</div>
+<div class="relative flex items-center">
+<input class="w-full h-10 pl-space-md pr-10 rounded-lg bg-surface-container-lowest text-on-surface font-reference-code text-reference-code placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary transition-all" id="signin-password" placeholder="••••••••••••" required="" type="password" value="DemoSecurePass2025!"/>
+<button aria-label="Toggle password visibility" class="absolute right-2.5 p-1 rounded hover:bg-surface-container text-on-surface-variant flex items-center justify-center transition-colors" id="toggle-password-btn" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-[18px]" id="eye-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Primary Sign-In Button -->
+<button class="w-full h-10 rounded-lg bg-secondary text-on-secondary font-body-medium text-body-medium font-semibold hover:bg-on-secondary-container active:scale-[0.99] transition-all flex items-center justify-center gap-space-xs shadow-sm" type="submit">
+<span>Sign in</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative flex py-1 items-center">
+<div class="flex-grow h-px bg-surface-container-high"></div>
+<span class="flex-shrink mx-3 text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">or simulate a role</span>
+<div class="flex-grow h-px bg-surface-container-high"></div>
+</div>
+<!-- Simulation Quick Access Persona Selector -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-body-small text-body-small font-semibold text-on-surface">Demo accounts (simulation only)</span>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant">Instant profile load</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+<!-- Role 1: Claimant -->
+<button class="group text-left p-2 rounded-lg bg-surface-container-low hover:bg-surface-container active:scale-95 transition-all flex flex-col" onclick="fillRole('s.nkosi@claimant.example.za', 'Claimant (S. K. Nkosi)')" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-body-small text-body-small font-semibold text-on-surface group-hover:text-secondary">Claimant</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant group-hover:text-secondary">person</span>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant truncate">S. K. Nkosi</span>
+</button>
+<!-- Role 2: Lawyer -->
+<button class="group text-left p-2 rounded-lg bg-surface-container-low hover:bg-surface-container active:scale-95 transition-all flex flex-col" onclick="fillRole('adv.sithole@legal.example.co.za', 'Lawyer (Adv. M. Sithole)')" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-body-small text-body-small font-semibold text-on-surface group-hover:text-secondary">Legal Rep</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant group-hover:text-secondary">gavel</span>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant truncate">Adv. M. Sithole</span>
+</button>
+<!-- Role 3: RAF Officer -->
+<button class="group text-left p-2 rounded-lg bg-surface-container-high hover:bg-surface-container active:scale-95 transition-all flex flex-col" onclick="fillRole('n.khumalo@raf.example.gov.za', 'RAF Officer (N. Khumalo)')" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-body-small text-body-small font-semibold text-secondary">RAF Officer</span>
+<span class="material-symbols-outlined text-[14px] text-secondary">badge</span>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant truncate">N. Khumalo</span>
+</button>
+<!-- Role 4: Forensic Investigator -->
+<button class="group text-left p-2 rounded-lg bg-surface-container-low hover:bg-surface-container active:scale-95 transition-all flex flex-col" onclick="fillRole('d.vanwyk@forensics.raf.example.gov.za', 'Investigator (D. Van Wyk)')" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-body-small text-body-small font-semibold text-on-surface group-hover:text-secondary">Investigator</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant group-hover:text-secondary">search_insights</span>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant truncate">D. Van Wyk</span>
+</button>
+<!-- Role 5: Claims Manager -->
+<button class="group text-left p-2 rounded-lg bg-surface-container-low hover:bg-surface-container active:scale-95 transition-all flex flex-col" onclick="fillRole('t.mokoena@executive.raf.example.gov.za', 'Manager (T. Mokoena)')" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-body-small text-body-small font-semibold text-on-surface group-hover:text-secondary">Manager</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant group-hover:text-secondary">account_tree</span>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant truncate">T. Mokoena</span>
+</button>
+<!-- Role 6: Security Admin -->
+<button class="group text-left p-2 rounded-lg bg-surface-container-low hover:bg-surface-container active:scale-95 transition-all flex flex-col" onclick="fillRole('j.venter@secops.raf.example.gov.za', 'Admin (Sys Admin J. Venter)')" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-body-small text-body-small font-semibold text-on-surface group-hover:text-secondary">Admin</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant group-hover:text-secondary">settings_suggest</span>
+</div>
+<span class="font-reference-code-sm text-reference-code-sm text-on-surface-variant truncate">J. Venter</span>
+</button>
+</div>
+<!-- Simulation Statutory Warning -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-reference-code-sm text-reference-code-sm pt-1">
+<span class="material-symbols-outlined text-[13px] text-outline">info</span>
+<span>Demo login is a simulation and does not protect or contain real identity data.</span>
+</div>
+</div>
+<!-- Bottom Card Auxiliary Action -->
+<div class="pt-2 text-center">
+<a class="inline-flex items-center gap-1 font-body-small text-body-small text-secondary hover:underline font-semibold" href="#register">
+<span>New claimant? Register for self-service pre-lodgement</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Global Security Status Indicator Below Card -->
+<div class="flex items-center justify-between px-space-sm text-on-surface-variant font-reference-code-sm text-reference-code-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Enclave Status: Online</span>
+</div>
+<span>RSA-4096 / TLS 1.3 Certified Handshake</span>
+</div>
+</div>
+</section>
+</div>
+<script>
+    function togglePasswordVisibility() {
+      const pwdInput = document.getElementById('signin-password');
+      const eyeIcon = document.getElementById('eye-icon');
+      if (!pwdInput || !eyeIcon) return;
+      if (pwdInput.type === 'password') {
+        pwdInput.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+      } else {
+        pwdInput.type = 'password';
+        eyeIcon.textContent = 'visibility';
+      }
+    }
+
+    function fillRole(email, roleLabel) {
+      const emailInput = document.getElementById('signin-email');
+      const pwdInput = document.getElementById('signin-password');
+      const alertBox = document.getElementById('auth-alert');
+      if (emailInput) {
+        emailInput.value = email;
+        emailInput.classList.add('bg-surface-container-high');
+        setTimeout(() => emailInput.classList.remove('bg-surface-container-high'), 400);
+      }
+      if (pwdInput) {
+        pwdInput.value = 'DemoSessionPassword#2025';
+      }
+      if (alertBox) {
+        alertBox.style.display = 'none';
+      }
+    }
+
+    function handleSimulateSignIn() {
+      const email = document.getElementById('signin-email')?.value;
+      const alertBox = document.getElementById('auth-alert');
+      if (!email || email.includes('error')) {
+        if (alertBox) alertBox.style.display = 'flex';
+      } else {
+        const btn = document.querySelector('button[type="submit"]');
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span><span>Authenticating enclave...</span>';
+          btn.disabled = true;
+          setTimeout(() => {
+            btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check_circle</span><span>Authenticated</span>';
+            setTimeout(() => {
+              btn.innerHTML = original;
+              btn.disabled = false;
+            }, 1200);
+          }, 900);
+        }
+      }
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30 py-space-sm px-gutter"><div class="w-full max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-space-xs text-on-surface-variant font-reference-code-sm text-reference-code-sm"><div class="flex items-center gap-space-xs"><span>SEC-ENCLAVE ID: RAF-ZA-9942</span><span class="text-outline-variant">•</span><span>FIPS 140-3 COMPLIANT SESSION</span></div><div class="flex items-center gap-space-sm font-body-small text-body-small text-on-surface-variant"><span>POPIA Act No. 4 of 2013 Protected</span><span class="text-outline-variant">•</span><span>Strict Forensic Audit Logging Active</span></div></div></footer></body></html>
