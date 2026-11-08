@@ -16,6 +16,11 @@ export function canChangeStatus(session: AuthSession): boolean {
   return session.roles.some((role) => role === 'claimant' || role === 'lawyer' || role === 'raf_officer');
 }
 
+/** SEC11: officers and investigators only if the permission is granted. */
+export function canUploadDocuments(session: AuthSession): boolean {
+  return session.roles.some((role) => role === 'claimant' || role === 'lawyer') || session.capabilities.includes('documents.upload');
+}
+
 export function canCreateClaim(session: AuthSession): boolean {
   return session.roles.some((role) => role === 'claimant' || role === 'lawyer');
 }

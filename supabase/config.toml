@@ -424,3 +424,7 @@ enabled = true
 # Called before sign-in, so there is no user token to verify (OP8). It only accepts a role key.
 [functions.demo-sign-in]
 verify_jwt = false
+
+# The function checks its own server key (OP21); the project's new key format is not a JWT.
+[functions.process-document]
+verify_jwt = false
