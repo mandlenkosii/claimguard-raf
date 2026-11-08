@@ -1,0 +1,26 @@
+-- Migration 10: every index in Section 8.4.
+create index claims_status_idx on public.claims (status);
+create index claims_claimant_id_idx on public.claims (claimant_id);
+create index claims_representing_organisation_id_idx on public.claims (representing_organisation_id);
+create index claims_updated_at_idx on public.claims (updated_at desc);
+create index claims_reference_trgm_idx on public.claims using gin (reference extensions.gin_trgm_ops);
+create index claim_assignments_active_idx on public.claim_assignments (profile_id, assignment_role) where ended_at is null;
+create index client_relationships_organisation_id_idx on public.client_relationships (organisation_id);
+create index organisation_members_profile_id_idx on public.organisation_members (profile_id);
+create index user_roles_user_id_idx on public.user_roles (user_id);
+create index documents_claim_category_idx on public.documents (claim_id, category_key);
+create index document_versions_sha256_idx on public.document_versions (sha256);
+create index claim_issues_claim_status_idx on public.claim_issues (claim_id, status);
+create unique index claim_issues_open_unique_idx on public.claim_issues (claim_id, rule_id, issue_key) where status in ('open','under_review');
+create index readiness_assessments_claim_idx on public.readiness_assessments (claim_id, assessed_at desc);
+create index risk_alerts_assigned_status_idx on public.risk_alerts (assigned_to, status);
+create index risk_alerts_severity_status_idx on public.risk_alerts (severity, status);
+create index risk_alerts_claim_id_idx on public.risk_alerts (claim_id);
+create index information_requests_claim_status_idx on public.information_requests (claim_id, status);
+create index information_requests_due_date_idx on public.information_requests (due_date) where status <> 'closed';
+create index messages_thread_created_idx on public.messages (thread_id, created_at);
+create index notifications_recipient_idx on public.notifications (recipient_id, read_at, created_at desc);
+create index claim_timeline_events_claim_created_idx on public.claim_timeline_events (claim_id, created_at);
+create index audit_logs_created_at_idx on public.audit_logs (created_at desc);
+create index audit_logs_claim_created_idx on public.audit_logs (claim_id, created_at desc);
+create index audit_logs_actor_id_idx on public.audit_logs (actor_id);

@@ -1,0 +1,26 @@
+-- T-BR22-2: notify_* triggers write notification_text() strings.
+begin;
+select plan(11);
+select results_eq($$ select title, summary from public.notification_text('request','CG-2026-000142',null) $$, $$ values ('New information request'::text,'You have a new information request on claim CG-2026-000142.'::text) $$,'T-BR22-2 TXT-60');
+select results_eq($$ select title, summary from public.notification_text('response','CG-2026-000142',null) $$, $$ values ('New response'::text,'A response was submitted on claim CG-2026-000142.'::text) $$,'T-BR22-2 TXT-61');
+select results_eq($$ select title, summary from public.notification_text('assignment','CG-2026-000142',null) $$, $$ values ('Claim assigned'::text,'You have been assigned to claim CG-2026-000142.'::text) $$,'T-BR22-2 TXT-62');
+select results_eq($$ select title, summary from public.notification_text('claim_update','CG-2026-000142','Validation') $$, $$ values ('Claim status updated'::text,'Claim CG-2026-000142 is now Validation.'::text) $$,'T-BR22-2 TXT-63');
+select results_eq($$ select title, summary from public.notification_text('message','CG-2026-000142',null) $$, $$ values ('New message'::text,'You have a new message on claim CG-2026-000142.'::text) $$,'T-BR22-2 TXT-64');
+delete from public.notifications;
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000005","role":"authenticated"}';
+insert into public.information_requests (id,claim_id,title,description,recipient_type,created_by) values ('d1000000-0000-4000-8000-000000000001','c0000000-0000-4000-8000-000000000003','t','d','claimant','00000000-0000-4000-8000-000000000005');
+select is((select summary from public.notifications where recipient_id='00000000-0000-4000-8000-000000000002' and type='request'),'You have a new information request on claim CG-2026-000142.','T-BR22-2 new request notifies the claimant');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
+insert into public.request_responses (request_id,author_id,body) values ('d1000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002','r');
+select is((select summary from public.notifications where recipient_id='00000000-0000-4000-8000-000000000005' and type='response'),'A response was submitted on claim CG-2026-000142.','T-BR22-2 new response notifies the creator');
+insert into public.claim_assignments (claim_id,profile_id,assignment_role,assigned_by) values ('c0000000-0000-4000-8000-000000000002','00000000-0000-4000-8000-000000000005','raf_officer','00000000-0000-4000-8000-000000000008');
+select is((select summary from public.notifications where recipient_id='00000000-0000-4000-8000-000000000005' and type='assignment'),format('You have been assigned to claim %s.',(select reference from public.claims where id='c0000000-0000-4000-8000-000000000002')),'T-BR22-2 assignment notifies the assignee');
+select set_config('app.transition_status','on',true);
+update public.claims set status='ready' where id='c0000000-0000-4000-8000-000000000003';
+select is((select summary from public.notifications where recipient_id='00000000-0000-4000-8000-000000000003' and type='claim_update'),'Claim CG-2026-000142 is now Ready.','T-BR22-2 status change notifies participants');
+select set_config('app.transition_status','',true);
+insert into public.messages (thread_id,claim_id,author_id,body) values ('f0000000-0000-4000-8000-000000000001','c0000000-0000-4000-8000-000000000003','00000000-0000-4000-8000-000000000002','hello');
+select is((select summary from public.notifications where recipient_id='00000000-0000-4000-8000-000000000003' and type='message'),'You have a new message on claim CG-2026-000142.','T-BR22-2 new message notifies participants');
+select is_empty($$ select 1 from public.notifications where recipient_id='00000000-0000-4000-8000-000000000002' and type='message' $$,'T-BR22-2 the author is not notified of their own message');
+select * from finish();
+rollback;

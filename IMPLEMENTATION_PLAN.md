@@ -1757,27 +1757,27 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | T-SEC-33a / 33b | Database | supabase/tests/database/sec_messages.test.sql | Participant inserts a message attachment / non-participant cannot |
 | T-SEC-34a / 34b | Database | supabase/tests/database/sec_anon.test.sql | Authenticated active user reads permitted rows / anonymous role reads nothing from any table and cannot execute any operation function |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above are written, run, and fail for the expected reason.
 
 **Step 2: Backend (Green)**
 
-- [ ] Migrations 1–10 in Section 8.6 written in order; `npm run db:reset` applies them from empty.
-- [ ] Every table, column and constraint in 8.1; relationships and delete rules in 8.2; triggers in 8.5; indexes in 8.4.
-- [ ] Helper functions `is_active_user()`, `has_role()`, `has_permission()`, `can_access_claim()`, `can_access_alert()`; views `claim_summaries`, `claim_risk_flags`, `claims_list` (security invoker).
-- [ ] Every policy in Section 9 written in migration 9, each requiring `is_active_user()`.
-- [ ] `supabase/functions/_shared/rules/notificationText.ts` and the SQL function `notification_text()` with templates TXT-60 … TXT-64; the `notify_*` triggers call `notification_text()`, so notifications have their final text from Phase 2 onwards.
-- [ ] Every foreign key from an append-only table is `on delete restrict` (8.2).
-- [ ] `supabase/seed.sql` and `scripts/seed-demo-users.mjs` load the data in 8.7; demo passwords come only from `DEMO_USER_PASSWORD`.
-- [ ] Synthetic SAMPLE documents added to `fixtures/sample-documents/` and uploaded into the seed claims' storage paths by `seed-demo-users.mjs`.
+- [x] Migrations 1–10 in Section 8.6 written in order; `npm run db:reset` applies them from empty.
+- [x] Every table, column and constraint in 8.1; relationships and delete rules in 8.2; triggers in 8.5; indexes in 8.4.
+- [x] Helper functions `is_active_user()`, `has_role()`, `has_permission()`, `can_access_claim()`, `can_access_alert()`; views `claim_summaries`, `claim_risk_flags`, `claims_list` (security invoker).
+- [x] Every policy in Section 9 written in migration 9, each requiring `is_active_user()`.
+- [x] `supabase/functions/_shared/rules/notificationText.ts` and the SQL function `notification_text()` with templates TXT-60 … TXT-64; the `notify_*` triggers call `notification_text()`, so notifications have their final text from Phase 2 onwards.
+- [x] Every foreign key from an append-only table is `on delete restrict` (8.2).
+- [x] `supabase/seed.sql` and `scripts/seed-demo-users.mjs` load the data in 8.7; demo passwords come only from `DEMO_USER_PASSWORD`.
+- [x] Synthetic SAMPLE documents added to `fixtures/sample-documents/` and uploaded into the seed claims' storage paths by `seed-demo-users.mjs`.
 
 **Step 3: Frontend (Green)**
 
-- [ ] None in this phase. `src/lib/supabase.ts` creates the public anon client only.
+- [x] None in this phase. `src/lib/supabase.ts` creates the public anon client only.
 
 **Step 4: Refactor and full check**
 
-- [ ] Code cleaned up; no duplicated logic; names use PRD key terms.
-- [ ] Full check passes (lint, type check, every automated test from every phase so far).
+- [x] Code cleaned up; no duplicated logic; names use PRD key terms.
+- [x] Full check passes (lint, type check, every automated test from every phase so far).
 
 **Step 5: Manual checks (human)**
 
@@ -1787,11 +1787,11 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 
 **Definition of Done**
 
-- [ ] Every test in Step 1 passes.
-- [ ] All earlier tests still pass.
-- [ ] Every screen in this phase shows all its required states (none in this phase).
+- [x] Every test in Step 1 passes.
+- [x] All earlier tests still pass.
+- [x] Every screen in this phase shows all its required states (none in this phase).
 - [ ] Manual checks are ticked by the human.
-- [ ] Progress log updated (Section 17).
+- [x] Progress log updated (Section 17).
 
 **Commit message:** `Phase 2: Data and security`
 
@@ -3136,6 +3136,7 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | Phase | Date | Status | Automated tests (passed / total) | Commit | Notes |
 | --- | --- | --- | --- | --- | --- |
 | 1 | 08 Nov 2026 | Complete; manual checks confirmed by the human | 128 / 128 (124 unit + component, 1 pgTAP database, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 1: Foundation | Versions: Node 24.18.0, npm 11.16.0, Deno 2.9.8, gitleaks 8.30.1, React 19.3.1, React Router 8.5.1, TanStack Query 5.107.1, Lucide React 1.70.0, supabase-js 2.119.0, Vite 8.3.6, @vitejs/plugin-react 6.2.1, TypeScript 6.0.3 (7.0 not used: typescript-eslint supports < 6.1), Tailwind CSS 4.3.5, Vitest 5.1.0 (+ coverage-v8), React Testing Library 16.3.3 (+ jest-dom 7.0.1, user-event 14.6.8), jsdom 31.0.0, Playwright 1.65.0, @axe-core/playwright 4.14.0, ESLint 10.14.0, typescript-eslint 8.72.1, Supabase CLI 3.0.0, pg 8.23.1. Backend: hosted Supabase project (Section 18 #46, #48); pgTAP extension enabled there. T-SETUP-6 passed at the Red step because `.gitignore` and `.env.example` were created before the test |
+| 2 | 08 Nov 2026 | Automated work complete; manual checks (Step 5) waiting for the human | 374 / 374 (130 unit + component, 241 pgTAP assertions in 35 files, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 2: Data and security | Ten migrations and the seed applied to the hosted project with `npm run db:reset`. Summary views stay security invoker, and read checked definer functions, so managers and administrators have no base-table access (SEC5, SEC6). Beyond the listed tests, T-DB-8 also proves users cannot set server-owned fields (processing state, confirmation, timestamps). Checked through the real API: all demo roles sign in and see only their permitted claims |
 
 ---
 
