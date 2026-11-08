@@ -1,0 +1,22 @@
+-- T-SEC-11, T-SEC-12: documents and storage.
+begin;
+select plan(8);
+insert into storage.objects (bucket_id,name,owner_id,metadata) values ('claim-documents','claims/c0000000-0000-4000-8000-000000000002/seed/v1/t.pdf','00000000-0000-4000-8000-000000000001','{"mimetype":"application/pdf","size":100}');
+set local role authenticated;
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000003","role":"authenticated"}';
+select lives_ok($$ insert into public.documents (id,claim_id,category_key,uploaded_by) values ('15000000-0000-4000-8000-000000000001','c0000000-0000-4000-8000-000000000003','proof_of_earnings','00000000-0000-4000-8000-000000000003') $$,'T-SEC-11a lawyer inserts a document for an authorised claim');
+select lives_ok($$ insert into storage.objects (bucket_id,name,owner_id,metadata) values ('claim-documents','claims/c0000000-0000-4000-8000-000000000003/15/v1/a.pdf','00000000-0000-4000-8000-000000000003','{"mimetype":"application/pdf","size":100}') $$,'T-SEC-11a lawyer inserts a storage object for an authorised claim');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000007","role":"authenticated"}';
+select throws_ok($$ insert into public.documents (claim_id,category_key,uploaded_by) values ('c0000000-0000-4000-8000-000000000003','proof_of_earnings','00000000-0000-4000-8000-000000000007') $$,'42501',null,'T-SEC-11b manager cannot insert a document');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+select throws_ok($$ insert into storage.objects (bucket_id,name,owner_id,metadata) values ('claim-documents','claims/c0000000-0000-4000-8000-000000000003/15/v1/b.pdf','00000000-0000-4000-8000-000000000001','{"mimetype":"application/pdf","size":100}') $$,'42501',null,'T-SEC-11b an unrelated claimant cannot upload');
+select isnt_empty($$ select 1 from storage.objects where name='claims/c0000000-0000-4000-8000-000000000002/seed/v1/t.pdf' $$,'T-SEC-12a claimant selects own claim''s storage object');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
+select is_empty($$ select 1 from storage.objects where name='claims/c0000000-0000-4000-8000-000000000002/seed/v1/t.pdf' $$,'T-SEC-12b second claimant cannot');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000007","role":"authenticated"}';
+select is_empty($$ select 1 from storage.objects where name='claims/c0000000-0000-4000-8000-000000000002/seed/v1/t.pdf' $$,'T-SEC-12b manager cannot');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000008","role":"authenticated"}';
+select is_empty($$ select 1 from storage.objects where name='claims/c0000000-0000-4000-8000-000000000002/seed/v1/t.pdf' $$,'T-SEC-12b admin cannot');
+reset role;
+select * from finish();
+rollback;

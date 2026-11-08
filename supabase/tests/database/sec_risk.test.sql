@@ -1,0 +1,32 @@
+-- T-SEC-14, T-SEC-16: alerts, evidence and notes.
+begin;
+select plan(14);
+insert into auth.users (id, instance_id, aud, role, email, raw_user_meta_data, raw_app_meta_data) values
+ ('10000000-0000-4000-8000-000000000031','00000000-0000-0000-0000-000000000000','authenticated','authenticated','inv2@example.com','{"first_name":"I","surname":"Two"}','{"account_type":"staff"}');
+insert into public.user_roles (user_id,role_key,assigned_by,reason) values ('10000000-0000-4000-8000-000000000031','investigator','00000000-0000-4000-8000-000000000008','test');
+set local role authenticated;
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000006","role":"authenticated"}';
+select isnt_empty($$ select 1 from public.risk_alerts where id='e0000000-0000-4000-8000-000000000001' $$,'T-SEC-14a assigned investigator reads the alert');
+select isnt_empty($$ select 1 from public.risk_evidence where alert_id='e0000000-0000-4000-8000-000000000001' $$,'T-SEC-14a assigned investigator reads the evidence');
+select lives_ok($$ insert into public.investigation_notes (alert_id,body) values ('e0000000-0000-4000-8000-000000000001','a note') $$,'T-SEC-16a investigator adds a note');
+select isnt_empty($$ select 1 from public.investigation_notes where alert_id='e0000000-0000-4000-8000-000000000001' $$,'T-SEC-16a investigator reads notes');
+set local "request.jwt.claims" = '{"sub":"10000000-0000-4000-8000-000000000031","role":"authenticated"}';
+select is_empty($$ select 1 from public.risk_alerts $$,'T-SEC-14b an unassigned investigator cannot read alerts');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
+select is_empty($$ select 1 from public.risk_alerts union all select 1 from public.risk_evidence $$,'T-SEC-14b claimant cannot read alerts');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000007","role":"authenticated"}';
+select is_empty($$ select 1 from public.risk_alerts union all select 1 from public.risk_evidence $$,'T-SEC-14b manager cannot read alerts');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000008","role":"authenticated"}';
+select is_empty($$ select 1 from public.risk_alerts union all select 1 from public.risk_evidence $$,'T-SEC-14b admin cannot read alerts');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000005","role":"authenticated"}';
+select is_empty($$ select 1 from public.risk_alerts union all select 1 from public.risk_evidence $$,'T-SEC-14b officer has no base-table access');
+select results_eq($$ select flag from public.claim_risk_flags where claim_id='c0000000-0000-4000-8000-000000000005' $$, $$ values ('Under review'::text) $$,'T-SEC-14 officer sees only the neutral flag');
+select is_empty($$ select 1 from public.investigation_notes $$,'T-SEC-16b officer cannot read notes');
+select throws_ok($$ insert into public.investigation_notes (alert_id,body) values ('e0000000-0000-4000-8000-000000000001','x') $$,'42501',null,'T-SEC-16b officer cannot add notes');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000003","role":"authenticated"}';
+select is_empty($$ select 1 from public.investigation_notes $$,'T-SEC-16b lawyer cannot read notes');
+set local "request.jwt.claims" = '{"sub":"00000000-0000-4000-8000-000000000007","role":"authenticated"}';
+select is_empty($$ select 1 from public.investigation_notes $$,'T-SEC-16b manager cannot read notes');
+reset role;
+select * from finish();
+rollback;
