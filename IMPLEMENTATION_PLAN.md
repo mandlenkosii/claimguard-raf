@@ -9,7 +9,7 @@
 | App name | ClaimGuard RAF (Claim Intelligence & Assurance Platform) |
 | Built from PRD version | v1.1 (4 November 2026): PRD v1.0 plus the Section 18 answers, recorded in the PRD Change log. Must match the version in docs/PRD.md |
 | Screen designs | Stitch project: https://stitch.withgoogle.com/projects/3126694362497483814 (screens S01–S46 from the ClaimGuard RAF Stitch prompt pack). Exported screens are saved in `docs/designs/` with the file names in Section 7.3 |
-| Plan version | v1.4 |
+| Plan version | v1.5 |
 | Repository | https://github.com/mandlenkosii/claimguard-raf |
 | Status | Ready to build. All 42 Section 18 rows are Answered |
 | Last updated | 08 Nov 2026 |
@@ -1781,16 +1781,16 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 
 **Step 5: Manual checks (human)**
 
-- [ ] Open Supabase Studio locally: every table shows "RLS enabled"; both buckets are private.
-- [ ] Browse the seed data: names are fictional, emails end with @example.com, documents are marked SAMPLE.
-- [ ] Each screen in this phase matches its design side by side: layout, text, colours, spacing (no screens in this phase).
+- [x] Open Supabase Studio locally: every table shows "RLS enabled"; both buckets are private.
+- [x] Browse the seed data: names are fictional, emails end with @example.com, documents are marked SAMPLE.
+- [x] Each screen in this phase matches its design side by side: layout, text, colours, spacing (no screens in this phase).
 
 **Definition of Done**
 
 - [x] Every test in Step 1 passes.
 - [x] All earlier tests still pass.
 - [x] Every screen in this phase shows all its required states (none in this phase).
-- [ ] Manual checks are ticked by the human.
+- [x] Manual checks are ticked by the human.
 - [x] Progress log updated (Section 17).
 
 **Commit message:** `Phase 2: Data and security`
@@ -3136,7 +3136,7 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | Phase | Date | Status | Automated tests (passed / total) | Commit | Notes |
 | --- | --- | --- | --- | --- | --- |
 | 1 | 08 Nov 2026 | Complete; manual checks confirmed by the human | 128 / 128 (124 unit + component, 1 pgTAP database, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 1: Foundation | Versions: Node 24.18.0, npm 11.16.0, Deno 2.9.8, gitleaks 8.30.1, React 19.3.1, React Router 8.5.1, TanStack Query 5.107.1, Lucide React 1.70.0, supabase-js 2.119.0, Vite 8.3.6, @vitejs/plugin-react 6.2.1, TypeScript 6.0.3 (7.0 not used: typescript-eslint supports < 6.1), Tailwind CSS 4.3.5, Vitest 5.1.0 (+ coverage-v8), React Testing Library 16.3.3 (+ jest-dom 7.0.1, user-event 14.6.8), jsdom 31.0.0, Playwright 1.65.0, @axe-core/playwright 4.14.0, ESLint 10.14.0, typescript-eslint 8.72.1, Supabase CLI 3.0.0, pg 8.23.1. Backend: hosted Supabase project (Section 18 #46, #48); pgTAP extension enabled there. T-SETUP-6 passed at the Red step because `.gitignore` and `.env.example` were created before the test |
-| 2 | 08 Nov 2026 | Automated work complete; manual checks (Step 5) waiting for the human | 374 / 374 (130 unit + component, 241 pgTAP assertions in 35 files, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 2: Data and security | Ten migrations and the seed applied to the hosted project with `npm run db:reset`. Summary views stay security invoker, and read checked definer functions, so managers and administrators have no base-table access (SEC5, SEC6). Beyond the listed tests, T-DB-8 also proves users cannot set server-owned fields (processing state, confirmation, timestamps). Checked through the real API: all demo roles sign in and see only their permitted claims |
+| 2 | 08 Nov 2026 | Complete; manual checks confirmed by the human | 374 / 374 (130 unit + component, 241 pgTAP assertions in 35 files, 1 integration, 2 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 2: Data and security | Ten migrations and the seed applied to the hosted project with `npm run db:reset`. Summary views stay security invoker, and read checked definer functions, so managers and administrators have no base-table access (SEC5, SEC6). Beyond the listed tests, T-DB-8 also proves users cannot set server-owned fields (processing state, confirmation, timestamps). Checked through the real API: all demo roles sign in and see only their permitted claims |
 
 ---
 
@@ -3194,6 +3194,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | 46 | Docker cannot run on the development laptop (WSL 2 will not start: Windows component store corrupted) | 4.2, 4.3, 6, Phase 1 | Use the real hosted Supabase project for development and tests instead of the local Docker stack. Migrations and pgTAP tests run with the CLI's `--remote` option and Edge Functions deploy with `--use-api`. Wherever this plan says "local backend" or "local database", it means this hosted development project. Only fictional data is used | Answered |
 | 47 | The project brief says data is "deleted for real", but #15 says no hard delete and document deletion is a Should item in Phase 11 | #15, US20, OP53 | Keep #15: documents are soft-deleted (hidden but kept for the audit history) in Phase 11; messages and accounts are never deleted. S01 also stays as built from the plan (#44) | Answered |
 | 48 | `supabase test db` needs Docker even with `--remote`, and `db query` runs only one statement per call | 4.1, 4.3, 12.2 | Add dev-only `pg` (node-postgres) and `scripts/test-db.mjs`, which runs the same pgTAP files over one connection per file and fails on any `not ok`, SQL error or plan mismatch. TLS is always verified using Supabase's public CA file `supabase/prod-ca-2021.crt`. `npm run db:push` and `npm run db:reset` still use the Supabase CLI | Answered |
+| 49 | S06, S07 and S13 were never exported from Stitch and Phase 3 needs them | 7.3, Phase 3 | The human asked the coding agent to create them. `S06_register`, `S07_password_recovery` and `S13_profile` (`.html` and `.png`) follow the S05 layout and AppShell, use the Section 7.1 tokens and PRD or catalogue wording, and show every state in 7.3. The S13 sessions list shows the current device only, because Supabase does not let the browser list other sessions; "Sign out of other sessions" still works | Answered |
 
 ---
 
@@ -3201,6 +3202,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 
 | Plan version | Date | What changed | Why |
 | --- | --- | --- | --- |
+| v1.5 | 08 Nov 2026 | Section 18 #49 added and Answered: S06, S07 and S13 designs created in the repository | The human asked for them to be created |
 | v1.4 | 08 Nov 2026 | Section 18 #48 added and Answered: `pg` and `scripts/test-db.mjs` run the pgTAP tests without Docker | `supabase test db` needs Docker |
 | v1.3 | 08 Nov 2026 | Section 18 #46 added and Answered: hosted Supabase replaces the local Docker stack (Sections 4.2, 4.3, 6). #47 added and Answered (keep #15) | Docker cannot run on the development laptop |
 | v1.2 | 07 Nov 2026 | Section 18 #43–#45 added and Answered: `docs/PRD.md` built from the v1.0 PDF plus the v1.1 answers; S01 built from the plan because its design is missing; `.html` design exports allowed (Section 7.3 note); PRD/plan wording wins over design text | Design files and PRD uploaded on 07 Nov 2026 |
