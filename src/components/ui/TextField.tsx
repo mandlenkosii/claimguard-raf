@@ -52,7 +52,7 @@ export function TextField({
           aria-invalid={error ? true : undefined}
           aria-describedby={describedBy(helperText && helpId, error && errorId)}
           onChange={(event) => onChange?.(event.target.value)}
-          className={cn(controlClasses, controlStateClasses(error), 'h-button', readOnly && 'pr-10')}
+          className={cn(controlClasses, controlStateClasses(error), 'h-button', readOnly && 'bg-surface-muted pr-10')}
           {...rest}
         />
         {readOnly ? (

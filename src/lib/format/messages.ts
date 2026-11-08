@@ -15,6 +15,16 @@ export const DEMONSTRATION_DATA_LABEL = 'Demonstration data';
 
 export const TRY_AGAIN = 'Try again';
 
+// Exact wording from Section 10 operations and the Phase 3 tests.
+export const SIGN_IN_ERROR = 'Email or password is incorrect';
+export const RESET_CONFIRMATION = "If an account exists for this email, we've sent a reset link";
+export const PASSWORD_UPDATED = 'Password updated. Please sign in.';
+export const ACCOUNT_DISABLED = 'Your account has been disabled. Contact your administrator.';
+export const ACCESS_DENIED = "You don't have access to this page";
+export const DEMO_NOTICE = 'Demo login is a simulation and does not protect real data.';
+export const READ_ONLY_TIP = 'Managed by your administrator';
+export const POPIA_CONSENT = 'I have read the privacy notice and consent to my information being processed for this claim.';
+
 export const TXT = {
   1: "You're offline. Your changes will be saved when your connection returns.",
   2: 'Something went wrong. Please try again.',

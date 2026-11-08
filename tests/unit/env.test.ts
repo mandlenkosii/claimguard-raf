@@ -14,6 +14,7 @@ const SECTION_6_VARIABLES = [
   'DEMO_USER_PASSWORD',
   'DEMO_LOGIN_ENABLED',
   'OCR_PROVIDER',
+  'SUPABASE_ACCESS_TOKEN',
 ];
 
 function listFiles(dir: string): string[] {

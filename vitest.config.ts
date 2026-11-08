@@ -12,6 +12,8 @@ export default defineConfig({
     setupFiles: ['./tests/setup/component.ts'],
     include: ['tests/unit/**/*.test.ts', 'tests/component/**/*.test.tsx'],
     css: false,
+    // Placeholders only: component tests make no network calls (Section 12.4).
+    env: { VITE_SUPABASE_URL: 'http://localhost:54321', VITE_SUPABASE_ANON_KEY: 'test-anon-key', VITE_APP_ENV: 'test' },
     coverage: {
       provider: 'v8',
       include: ['supabase/functions/_shared/rules/**/*.ts'],

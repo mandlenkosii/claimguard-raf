@@ -7,7 +7,7 @@ import { cn } from '@/lib/cn';
 export const controlClasses =
   'w-full rounded-input border bg-surface px-3 text-body text-text placeholder:text-text-secondary ' +
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ' +
-  'disabled:cursor-not-allowed disabled:bg-surface-muted read-only:bg-surface-muted';
+  'disabled:cursor-not-allowed disabled:bg-surface-muted';
 
 export function controlStateClasses(error?: string): string {
   return error ? 'border-error' : 'border-border';

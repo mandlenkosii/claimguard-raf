@@ -75,7 +75,7 @@ export function PasswordField({
         <div className="mt-2">
           <div
             role="meter"
-            aria-label="Password requirements met"
+            aria-label="Requirements met"
             aria-valuemin={0}
             aria-valuemax={PASSWORD_REQUIREMENTS.length}
             aria-valuenow={metCount}
