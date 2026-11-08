@@ -22,6 +22,7 @@ export const PASSWORD_UPDATED = 'Password updated. Please sign in.';
 export const ACCOUNT_DISABLED = 'Your account has been disabled. Contact your administrator.';
 export const ACCESS_DENIED = "You don't have access to this page";
 export const DEMO_NOTICE = 'Demo login is a simulation and does not protect real data.';
+export const NO_CLAIM_PERMISSION = "You don't have permission to view this claim";
 export const READ_ONLY_TIP = 'Managed by your administrator';
 export const POPIA_CONSENT = 'I have read the privacy notice and consent to my information being processed for this claim.';
 
