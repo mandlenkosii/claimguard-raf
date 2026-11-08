@@ -7,6 +7,7 @@ import { LoginPage } from '@/pages/auth/LoginPage';
 import { PasswordRecoveryPage } from '@/pages/auth/PasswordRecoveryPage';
 import { RegisterPage } from '@/pages/auth/RegisterPage';
 import { ClaimWorkspaceLayout, RestrictedTab } from '@/pages/claims/workspace/ClaimWorkspaceLayout';
+import { DocumentsTab } from '@/pages/claims/workspace/DocumentsTab';
 import { OverviewTab } from '@/pages/claims/workspace/OverviewTab';
 import { TimelineTab } from '@/pages/claims/workspace/TimelineTab';
 import { ClientDetailPage } from '@/pages/lawyer/ClientDetailPage';
@@ -43,7 +44,7 @@ function workspace(path: string): RouteObject {
     element: <ClaimWorkspaceLayout />,
     children: [
       { index: true, element: <OverviewTab /> },
-      { path: 'documents', element: null },
+      { path: 'documents', element: <DocumentsTab /> },
       { path: 'readiness', element: null },
       { path: 'risk', element: <RestrictedTab allowed="risk" /> },
       { path: 'messages', element: null },

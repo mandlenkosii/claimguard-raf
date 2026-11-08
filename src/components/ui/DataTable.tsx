@@ -33,6 +33,8 @@ type DataTableProps<T> = {
   onSelectionChange?: (ids: string[]) => void;
   rowActions?: (row: T) => RowAction[];
   renderExpanded?: (row: T) => ReactNode;
+  /** Buttons shown directly in each row, in a column with no heading. */
+  renderActions?: (row: T) => ReactNode;
 };
 
 const cellClasses = 'px-4 py-3 text-left align-middle';
@@ -104,12 +106,13 @@ export function DataTable<T>({
   onSelectionChange,
   rowActions,
   renderExpanded,
+  renderActions,
 }: DataTableProps<T>) {
   const [expanded, setExpanded] = useState<string[]>([]);
   const rowLabel = (row: T) => getRowLabel?.(row) ?? String(columns[0]?.render(row) ?? getRowId(row));
   const allIds = rows.map(getRowId);
   const allSelected = allIds.length > 0 && allIds.every((id) => selectedIds.includes(id));
-  const columnCount = columns.length + (selectable ? 1 : 0) + (renderExpanded ? 1 : 0) + (rowActions ? 1 : 0);
+  const columnCount = columns.length + (selectable ? 1 : 0) + (renderExpanded ? 1 : 0) + (rowActions ? 1 : 0) + (renderActions ? 1 : 0);
 
   function toggleSort(column: DataTableColumn<T>) {
     const direction: SortDirection = sort?.key === column.key && sort.direction === 'ascending' ? 'descending' : 'ascending';
@@ -184,6 +187,7 @@ export function DataTable<T>({
                 {column.render(row)}
               </td>
             ))}
+            {renderActions ? <td className={cn(cellClasses, 'text-right')}>{renderActions(row)}</td> : null}
             {rowActions ? (
               <td className={cn(cellClasses, 'w-12 text-right')}>
                 <RowActionMenu label={label} actions={rowActions(row)} />
@@ -245,6 +249,7 @@ export function DataTable<T>({
                 </th>
               );
             })}
+            {renderActions ? <td className={cellClasses} /> : null}
             {rowActions ? <td className={cellClasses} /> : null}
           </tr>
         </thead>
