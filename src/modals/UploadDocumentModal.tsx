@@ -11,7 +11,7 @@ import * as api from '@/features/documents/api';
 import { fillMessage, TXT } from '@/lib/format/messages';
 
 type Item = { id: number; file: File; state: UploadState };
-type Props = { open: boolean; claimId: string; reference: string; onClose: () => void; onUploaded: () => void };
+type Props = { open: boolean; claimId: string; reference: string; onClose: () => void; onUploaded: (document: { id: string; filename: string }) => void };
 
 function rejection(file: File): string | null {
   const check = validateFile(file);
@@ -46,11 +46,11 @@ export function UploadDocumentModal({ open, claimId, reference, onClose, onUploa
     for (const item of items.filter((candidate) => candidate.state.kind === 'queued')) {
       try {
         update(item.id, { kind: 'uploading', percent: 0 });
-        const { versionId } = await api.uploadDocument({ claimId, category, file: item.file, onProgress: (percent) => update(item.id, { kind: 'uploading', percent }) });
+        const { documentId, versionId } = await api.uploadDocument({ claimId, category, file: item.file, onProgress: (percent) => update(item.id, { kind: 'uploading', percent }) });
         const result = await api.confirmUpload(versionId);
         if (result.ok) {
           update(item.id, { kind: 'confirmed' });
-          onUploaded();
+          onUploaded({ id: documentId, filename: item.file.name });
         } else {
           update(item.id, { kind: 'rejected', reason: result.code === 'rate_limited' ? TXT[56] : TXT[25] });
         }

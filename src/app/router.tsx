@@ -8,7 +8,10 @@ import { PasswordRecoveryPage } from '@/pages/auth/PasswordRecoveryPage';
 import { RegisterPage } from '@/pages/auth/RegisterPage';
 import { ClaimWorkspaceLayout, RestrictedTab } from '@/pages/claims/workspace/ClaimWorkspaceLayout';
 import { DocumentsTab } from '@/pages/claims/workspace/DocumentsTab';
+import { MessagesTab } from '@/pages/claims/workspace/MessagesTab';
 import { ReadinessTab } from '@/pages/claims/workspace/ReadinessTab';
+import { RequestDetailPage } from '@/pages/claims/workspace/RequestDetailPage';
+import { RequestsTab } from '@/pages/claims/workspace/RequestsTab';
 import { RiskTab } from '@/pages/claims/workspace/RiskTab';
 import { InvestigationWorkspacePage } from '@/pages/risk/InvestigationWorkspacePage';
 import { RiskQueuePage } from '@/pages/risk/RiskQueuePage';
@@ -51,8 +54,9 @@ function workspace(path: string): RouteObject {
       { path: 'documents', element: <DocumentsTab /> },
       { path: 'readiness', element: <ReadinessTab /> },
       { path: 'risk', element: <RestrictedTab allowed="risk"><RiskTab /></RestrictedTab> },
-      { path: 'messages', element: null },
-      { path: 'requests', element: null },
+      { path: 'messages', element: <MessagesTab /> },
+      { path: 'requests', element: <RequestsTab /> },
+      { path: 'requests/:requestId', element: <RequestDetailPage /> },
       { path: 'timeline', element: <TimelineTab /> },
       { path: 'audit', element: <RestrictedTab allowed="audit" /> },
     ],

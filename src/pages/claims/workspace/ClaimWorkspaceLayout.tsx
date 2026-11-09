@@ -42,8 +42,8 @@ export function ClaimWorkspaceLayout() {
   if (!claim) return <RestrictedClaimView summary={summary ?? undefined} />;
 
   const base = location.pathname.startsWith('/raf/') ? `/raf/claims/${id}` : `/claims/${id}`;
-  const lastSegment = location.pathname.split('/').pop() ?? '';
-  const activeId = TAB_IDS.includes(lastSegment) ? lastSegment : 'overview';
+  const section = location.pathname.slice(base.length).split('/')[1] ?? '';
+  const activeId = TAB_IDS.includes(section) ? section : 'overview';
   const back = session.roles.includes('raf_officer') ? { to: '/raf/claims', label: 'Claims queue' } : session.roles.includes('lawyer') ? { to: '/lawyer/claims', label: 'Claims' } : { to: '/claims', label: 'My claims' };
 
   const tabs = [

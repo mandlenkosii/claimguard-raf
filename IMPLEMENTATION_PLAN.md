@@ -9,7 +9,7 @@
 | App name | ClaimGuard RAF (Claim Intelligence & Assurance Platform) |
 | Built from PRD version | v1.1 (4 November 2026): PRD v1.0 plus the Section 18 answers, recorded in the PRD Change log. Must match the version in docs/PRD.md |
 | Screen designs | Stitch project: https://stitch.withgoogle.com/projects/3126694362497483814 (screens S01–S46 from the ClaimGuard RAF Stitch prompt pack). Exported screens are saved in `docs/designs/` with the file names in Section 7.3 |
-| Plan version | v1.11 |
+| Plan version | v1.12 |
 | Repository | https://github.com/mandlenkosii/claimguard-raf |
 | Status | Ready to build. All 42 Section 18 rows are Answered |
 | Last updated | 09 Nov 2026 |
@@ -2286,24 +2286,24 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | T-E2E-3 | E2E | tests/e2e/requests.spec.ts | Request information, submit a response and close the request (PRD 14.4) |
 | T-C-28 | Component | tests/component/domain/Messages.test.tsx | MessageThread / Composer states |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above are written, run, and fail for the expected reason.
 
 **Step 2: Backend (Green)**
 
-- [ ] `_shared/rules/requests.ts` (`isOverdue`).
-- [ ] Migration `…_ops_requests_messaging.sql`: `create_information_request`, `respond_to_request`, `update_request_status`.
+- [x] `_shared/rules/requests.ts` (`isOverdue`).
+- [x] Migration `…_ops_requests_messaging.sql`: `create_information_request`, `respond_to_request`, `update_request_status`.
 
 **Step 3: Frontend (Green)**
 
-- [ ] S21 Requests tab with New request drawer: Normal, Empty, Loading, Error, Offline.
-- [ ] S22 Request detail and response composer (uses M1 for documents): Normal, Loading, Submitting, Error, Offline, Success.
-- [ ] S20 Messages tab: thread list, conversation, composer, collapsible participants; Normal, Empty, Loading, Sending, Error, Offline.
+- [x] S21 Requests tab with New request drawer: Normal, Empty, Loading, Error, Offline.
+- [x] S22 Request detail and response composer (uses M1 for documents): Normal, Loading, Submitting, Error, Offline, Success.
+- [x] S20 Messages tab: thread list, conversation, composer, collapsible participants; Normal, Empty, Loading, Sending, Error, Offline.
 
 **Step 4: Refactor and full check**
 
-- [ ] Code cleaned up; no duplicated logic; names use PRD key terms.
-- [ ] Full check passes (lint, type check, every automated test from every phase so far).
-- [ ] `npm run test:e2e` passes.
+- [x] Code cleaned up; no duplicated logic; names use PRD key terms.
+- [x] Full check passes (lint, type check, every automated test from every phase so far).
+- [x] `npm run test:e2e` passes.
 
 **Step 5: Manual checks (human)**
 
@@ -3145,7 +3145,8 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | 4 | 08 Nov 2026 | Committed with outstanding items: T-INT-5 (from Phase 3) and the Step 5 manual checks | 570 / 574 (251 unit + component, 267 pgTAP assertions, 37 of 41 integration, 15 end-to-end) | Phase 4: Claims and workflow | Every Phase 4 test passes. The only failures are the 4 outstanding T-INT-5 tests from Phase 3 (Section 18 #53). Integration tests add fictional claims to the hosted project; `npm run db:reset` clears them |
 | 5 | 08 Nov 2026 | Committed; the Step 5 manual checks are still to be confirmed | 649 / 649 (308 unit + component, 267 pgTAP assertions, 57 integration, 17 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 5: Documents | The 4 T-INT-5 tests from Phase 3 now pass: `demo-sign-in` is deployed. `process-document` is deployed and started through `pg_net` (Section 18 #56) |
 | 6 | 09 Nov 2026 | Committed and merged (PR #6); the Step 5 manual checks are still to be confirmed | 742 / 742 (381 unit + component, 267 pgTAP assertions, 74 integration, 20 end-to-end). `npm run check` exits 0; gitleaks: no leaks; `_shared/rules` line coverage 99.5% | Phase 6: Readiness and validation | `run-readiness` deployed |
-| 7 | 09 Nov 2026 | Built and tested; the Step 5 manual checks are still to be confirmed and the commit is waiting for approval | 813 / 813 (419 unit + component, 278 pgTAP assertions, 92 integration, 24 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 7: Risk and investigation | S35 and S37 were created from the plan at the human's request |
+| 7 | 09 Nov 2026 | Committed and merged (PR #7); the Step 5 manual checks are still to be confirmed | 813 / 813 (419 unit + component, 278 pgTAP assertions, 92 integration, 24 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 7: Risk and investigation | S35 and S37 were created from the plan at the human's request |
+| 8 | 09 Nov 2026 | Built and tested; the Step 5 manual checks are still to be confirmed and the commit is waiting for approval | 887 / 887 (458 unit + component, 290 pgTAP assertions, 113 integration, 26 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 8: Requests and messaging | S22 was created from the plan at the human's request. Per-thread unread counts are skipped (Section 18 #62) |
 
 ---
 
@@ -3216,6 +3217,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | 59 | How long after the accident can a hospital admission be and still be consistent (RULE-003)? | BR9 | 7 days (`ADMISSION_WINDOW_DAYS`), confirmed by the human on 09 Nov 2026; an admission before the accident always fails | Answered |
 | 60 | The mock OCR returned fixed names and dates, so every upload would conflict with the claim and raise risk alerts | PRD 11.3, BR8, BR9 | The mock copies the claim's details, so ordinary uploads agree. A file name containing IDENTITY_CONFLICT or DATE_CONFLICT produces those scenarios | Answered |
 | 61 | An investigator's evidence scope is "assigned", so who can see and pick up a new unassigned alert? | SEC14, SEC15, OP27 | S35 lists unassigned alerts (reference, claim, severity, no evidence) to investigators holding `investigations.review`, who can assign them. Evidence and notes stay closed until the alert is assigned, so `can_access_alert` is unchanged | Answered |
+| 62 | OP37 lists "threads with unread counts", but the schema has no per-user message read tracking | OP37, `messages` | Phase 8 shows each thread's latest message and date, without an unread count. The bell notifications (Phase 9) tell a participant a message arrived. Per-thread counts are skipped for the first release, confirmed by the human on 09 Nov 2026 | Answered |
 
 ---
 
@@ -3226,6 +3228,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | v1.9 | 09 Nov 2026 | Section 18 #57 added and Answered: shortest route to first release | Chosen by the human |
 | v1.10 | 09 Nov 2026 | Section 18 #58 and #60 added and Answered; #59 added and Open | Phase 6 built |
 | v1.11 | 09 Nov 2026 | Section 18 #59 Answered (7 days); #61 added and Answered; S35 and S37 designs created | Phase 7 built |
+| v1.12 | 09 Nov 2026 | Section 18 #62 added and Answered; S22 design created | Phase 8 built |
 | v1.8 | 08 Nov 2026 | Section 18 #53 resolved; #56 added and Answered | Access token added; Phase 5 built |
 | v1.7 | 08 Nov 2026 | Section 18 #54 and #55 added and Answered | Found while building Phase 4 |
 | v1.6 | 08 Nov 2026 | Section 6 adds `SUPABASE_ACCESS_TOKEN`. Section 18 #50, #51, #52 and #53 Answered | Found while building Phase 3 |
