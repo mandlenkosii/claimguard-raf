@@ -3,35 +3,14 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { Button, ButtonLink } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/TextField';
-import type { ClaimIssue, Evidence, IssueUpdate } from '@/features/readiness/api';
+import type { ClaimIssue, IssueUpdate } from '@/features/readiness/api';
 import { cn } from '@/lib/cn';
 import { TXT } from '@/lib/format/messages';
 import { issueActionLabel } from '@rules/readiness';
-import { ComparisonTable, type ComparisonRow } from './ComparisonTable';
+import { ComparisonTable, comparisonRows } from './ComparisonTable';
 import { StateChip } from './StateChip';
 
 const COMPARED_RULES = ['RULE-002', 'RULE-003'];
-const FIELD_LABELS: Record<string, string> = {
-  full_name: 'Full name',
-  id_number: 'ID number',
-  date_of_birth: 'Date of birth',
-  accident_date: 'Accident date',
-  admission_date: 'Admission date',
-};
-const fieldLabel = (field: string) => FIELD_LABELS[field] ?? field;
-
-function comparisonRows(evidence: Evidence[]): ComparisonRow[] {
-  const [first, ...others] = evidence;
-  return others.map((other) => ({
-    field: first!.field === other.field ? fieldLabel(first!.field) : `${fieldLabel(first!.field)} / ${fieldLabel(other.field)}`,
-    sourceA: first!.value ?? '—',
-    sourceB: other.value ?? '—',
-    sourceALabel: first!.source,
-    sourceBLabel: other.source,
-    match: first!.value === other.value,
-  }));
-}
-
 type IssueCardProps = { issue: ClaimIssue; canAct: boolean; documentsPath: string; busy?: boolean; onUpdate: (update: IssueUpdate) => void };
 
 /** One issue on S18 (US31, US35, US37). */

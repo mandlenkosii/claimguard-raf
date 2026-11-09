@@ -267,14 +267,15 @@ export function Pagination({ page, pageSize, total, onPageChange }: PaginationPr
   const to = Math.min(total, page * pageSize);
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
   const buttonClasses =
-    'inline-flex h-9 min-w-9 items-center justify-center gap-1 rounded-input border border-border bg-surface px-2 text-body text-text ' +
-    'hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent';
+    'inline-flex h-9 min-w-9 items-center justify-center gap-1 rounded-input border px-2 text-body ' +
+    'disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent';
+  const idleClasses = 'border-border bg-surface text-text hover:bg-surface-muted';
 
   return (
     <nav aria-label="Pagination" className="flex flex-wrap items-center justify-between gap-3 py-3">
       <p className="text-small text-text-secondary">{`Showing ${from}–${to} of ${total}`}</p>
       <div className="flex items-center gap-1">
-        <button type="button" className={buttonClasses} disabled={page <= 1} onClick={() => onPageChange(page - 1)}>
+        <button type="button" className={cn(buttonClasses, idleClasses)} disabled={page <= 1} onClick={() => onPageChange(page - 1)}>
           <ChevronLeft aria-hidden className="size-icon-sm" />
           Previous
         </button>
@@ -285,12 +286,12 @@ export function Pagination({ page, pageSize, total, onPageChange }: PaginationPr
             aria-label={`Page ${number}`}
             aria-current={number === page ? 'page' : undefined}
             onClick={() => onPageChange(number)}
-            className={cn(buttonClasses, number === page && 'border-primary bg-primary text-text-on-dark hover:bg-primary')}
+            className={cn(buttonClasses, number === page ? 'border-primary bg-primary text-text-on-dark' : idleClasses)}
           >
             {number}
           </button>
         ))}
-        <button type="button" className={buttonClasses} disabled={page >= pageCount} onClick={() => onPageChange(page + 1)}>
+        <button type="button" className={cn(buttonClasses, idleClasses)} disabled={page >= pageCount} onClick={() => onPageChange(page + 1)}>
           Next
           <ChevronRight aria-hidden className="size-icon-sm" />
         </button>

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Outlet, useLocation, useNavigate, useOutletContext, useParams } from 'react-router';
@@ -89,8 +90,8 @@ export function ClaimWorkspaceLayout() {
 }
 
 /** Risk and Audit: the URLs of hidden tabs show S25 (Section 11). */
-export function RestrictedTab({ allowed }: { allowed: 'risk' | 'audit' }) {
+export function RestrictedTab({ allowed, children = null }: { allowed: 'risk' | 'audit'; children?: ReactNode }) {
   const { session } = useAuth();
   const permitted = session ? (allowed === 'risk' ? canSeeRiskTab(session) : canSeeAuditTab(session)) : false;
-  return permitted ? null : <RestrictedClaimView />;
+  return permitted ? children : <RestrictedClaimView />;
 }
