@@ -125,7 +125,7 @@ export function MessagesTab() {
   return (
     <div className="space-y-4">
       <OfflineBanner />
-      <div className="grid items-start gap-6 lg:grid-cols-[1fr_2fr]">
+      <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
         <section className="space-y-3 rounded-card border border-border bg-surface p-4 shadow-card">
           <div className="flex items-center justify-between gap-2">
             <h2 className="text-h3 text-primary">Threads</h2>

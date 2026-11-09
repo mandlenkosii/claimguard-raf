@@ -9,6 +9,8 @@ import { ROLE_LABELS, type RoleKey } from '@/lib/access/roles';
 import { cn } from '@/lib/cn';
 
 const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent';
+const TABLET_QUERY = '(max-width: 79.9375em)';
+const isTabletWidth = () => window.matchMedia?.(TABLET_QUERY).matches ?? false;
 
 function Sidebar({ roles, collapsed, onToggle }: { roles: readonly RoleKey[]; collapsed: boolean; onToggle: () => void }) {
   return (
@@ -145,10 +147,11 @@ function TopBar({ role, userName, unreadCount, onSignOut }: { role: RoleKey; use
   );
 }
 
-function MobileTabBar() {
+function MobileTabBar({ role, roles }: { role: RoleKey; roles: readonly RoleKey[] }) {
+  const items = role === 'claimant' ? CLAIMANT_TAB_BAR : sidebarItemsFor(roles).slice(0, 5);
   return (
     <nav aria-label="Mobile" className="fixed inset-x-0 bottom-0 z-20 flex border-t border-border bg-surface md:hidden">
-      {CLAIMANT_TAB_BAR.map(({ label, to, icon: Icon }) => (
+      {items.map(({ label, to, icon: Icon }) => (
         <NavLink
           key={label}
           to={to}
@@ -175,9 +178,17 @@ type AppShellProps = {
   children: ReactNode;
 };
 
-/** Signed-in layout (S09–S43): notice bar, role sidebar, top bar, and the claimant mobile tab bar (S45). */
+/** Signed-in layout (S09–S43): notice bar, role sidebar, top bar, and the mobile tab bar (S45). */
 export function AppShell({ role, roles, userName, unreadCount, onSignOut, children }: AppShellProps) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(isTabletWidth);
+  // S46: tablets get the icon rail; the desktop layout restores the full sidebar.
+  useEffect(() => {
+    const query = window.matchMedia?.(TABLET_QUERY);
+    if (!query) return undefined;
+    const update = () => setCollapsed(query.matches);
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <PrototypeNotice variant="app" />
@@ -186,10 +197,10 @@ export function AppShell({ role, roles, userName, unreadCount, onSignOut, childr
         <Sidebar roles={roles ?? [role]} collapsed={collapsed} onToggle={() => setCollapsed((current) => !current)} />
         <div className="flex min-w-0 flex-1 flex-col">
           <TopBar role={role} userName={userName} unreadCount={unreadCount} onSignOut={onSignOut} />
-          <main className={cn('flex-1 p-6', role === 'claimant' && 'pb-24 md:pb-6')}>{children}</main>
+          <main className="min-w-0 flex-1 p-4 pb-24 md:p-6">{children}</main>
         </div>
       </div>
-      {role === 'claimant' ? <MobileTabBar /> : null}
+      <MobileTabBar role={role} roles={roles ?? [role]} />
     </div>
   );
 }

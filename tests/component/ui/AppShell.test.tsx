@@ -122,9 +122,9 @@ describe('T-C-9 AppShell', () => {
     ]);
   });
 
-  it('T-C-9 other roles have no bottom tab bar', () => {
+  it('T-NFR-5 other roles get a bottom tab bar from their own menu', () => {
     renderShell('raf_officer');
-    expect(screen.queryByRole('navigation', { name: 'Mobile' })).toBeNull();
+    expect(screen.getByRole('navigation', { name: 'Mobile' })).toHaveTextContent('Claims queue');
   });
 
   it('T-C-9 renders the screen body in the main region', () => {

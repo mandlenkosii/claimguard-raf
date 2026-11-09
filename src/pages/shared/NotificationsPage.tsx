@@ -65,6 +65,7 @@ export function NotificationsPage() {
           setPage(1);
         }}
       />
+      <div role="tabpanel" id={`notifications-panel-${tab}`} aria-labelledby={`notifications-tab-${tab}`} className="space-y-4">
       {list.isPending ? <Skeleton variant="card" /> : null}
       {list.isError ? <ErrorState onRetry={() => void list.refetch()} /> : null}
       {list.data && !list.data.rows.length ? (
@@ -88,6 +89,7 @@ export function NotificationsPage() {
           ))
         : null}
       {list.data?.rows.length ? <Pagination page={page} pageSize={PAGE_SIZE} total={list.data.total} onPageChange={setPage} /> : null}
+      </div>
     </div>
   );
 }
