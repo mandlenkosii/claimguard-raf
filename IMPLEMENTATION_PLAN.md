@@ -9,7 +9,7 @@
 | App name | ClaimGuard RAF (Claim Intelligence & Assurance Platform) |
 | Built from PRD version | v1.1 (4 November 2026): PRD v1.0 plus the Section 18 answers, recorded in the PRD Change log. Must match the version in docs/PRD.md |
 | Screen designs | Stitch project: https://stitch.withgoogle.com/projects/3126694362497483814 (screens S01–S46 from the ClaimGuard RAF Stitch prompt pack). Exported screens are saved in `docs/designs/` with the file names in Section 7.3 |
-| Plan version | v1.15 |
+| Plan version | v1.16 |
 | Repository | https://github.com/mandlenkosii/claimguard-raf |
 | Status | Ready to build. All 42 Section 18 rows are Answered |
 | Last updated | 09 Nov 2026 |
@@ -3149,7 +3149,8 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | 8 | 09 Nov 2026 | Committed and merged (PR #8); the Step 5 manual checks are still to be confirmed | 887 / 887 (458 unit + component, 290 pgTAP assertions, 113 integration, 26 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 8: Requests and messaging | S22 was created from the plan at the human's request. Per-thread unread counts are skipped (Section 18 #62) |
 | 9 | 09 Nov 2026 | Committed and merged (PR #9); the Step 5 manual checks are still to be confirmed | 950 / 950 (495 unit + component, 296 pgTAP assertions, 126 integration, 33 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 9: Notifications and dashboards | S12, S26, S30, S33 and S38 were created from the plan at the human's request |
 | 10 | 09 Nov 2026 | Committed and merged (PR #10); the Step 5 manual checks are still to be confirmed | 999 / 999 (524 unit + component, 302 pgTAP assertions, 138 integration, 35 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 10: Administration | S43 was created from the plan at the human's request. `admin-invite-user` deployed |
-| 16 | 09 Nov 2026 | Built and tested; the Step 5 manual checks are still to be confirmed and the commit is waiting for approval | 1173 / 1173 (645 unit + component, 302 pgTAP assertions, 145 integration, 81 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 16: Hardening | End-to-end ran on the dev server; T-NFR-1 and the production-build run move to the Vercel preview in Phase 17. Keyboard tests cover sign-in, focus and dialogs, not the whole of T-E2E-1 to 3. S45 and S46 expandable rows: Section 18 #66 |
+| 16 | 09 Nov 2026 | Committed and merged (PR #11); the Step 5 manual checks are still to be confirmed | 1173 / 1173 (645 unit + component, 302 pgTAP assertions, 145 integration, 81 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 16: Hardening | End-to-end ran on the dev server; T-NFR-1 and the production-build run move to the Vercel preview in Phase 17. Keyboard tests cover sign-in, focus and dialogs, not the whole of T-E2E-1 to 3. S45 and S46 expandable rows: Section 18 #66 |
+| 17 | 09 Nov 2026 | Release files merged; the hosted Supabase project was reset to the demo data; the Vercel import and checks on the live URL are still to be done | 645 unit + component, 302 pgTAP assertions, 7 release end-to-end tests locally. Lint, type check, production build and gitleaks clean | Phase 17: Release | README, `vercel.json` and `tests/e2e/release.spec.ts` added |
 
 ---
 
@@ -3239,6 +3240,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | v1.13 | 09 Nov 2026 | Section 18 #63 added and Answered; S12, S26, S30, S33 and S38 designs created | Phase 9 built |
 | v1.14 | 09 Nov 2026 | Section 18 #64 and #65 added and Answered; S43 design created | Phase 10 built |
 | v1.15 | 09 Nov 2026 | Section 18 #66 added and Answered | Phase 16 built |
+| v1.16 | 09 Nov 2026 | Release files added; progress log updated | Phase 17 started |
 | v1.8 | 08 Nov 2026 | Section 18 #53 resolved; #56 added and Answered | Access token added; Phase 5 built |
 | v1.7 | 08 Nov 2026 | Section 18 #54 and #55 added and Answered | Found while building Phase 4 |
 | v1.6 | 08 Nov 2026 | Section 6 adds `SUPABASE_ACCESS_TOKEN`. Section 18 #50, #51, #52 and #53 Answered | Found while building Phase 3 |

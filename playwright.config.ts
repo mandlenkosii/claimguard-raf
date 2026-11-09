@@ -1,6 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
 // End-to-end tests (Section 12.2). Starts `npm run dev` if it is not already running.
+// Set PLAYWRIGHT_BASE_URL to test a deployed site instead of the local server (T-REL-2).
+const deployedSite = process.env.PLAYWRIGHT_BASE_URL;
+
 export default defineConfig({
   testDir: './tests/e2e',
   testMatch: '**/*.spec.ts',
@@ -11,14 +14,16 @@ export default defineConfig({
   expect: { timeout: 15000 },
   reporter: 'list',
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL: deployedSite ?? 'http://localhost:5173',
     trace: 'retain-on-failure',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } }],
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:5173',
-    reuseExistingServer: true,
-    timeout: 120000,
-  },
+  webServer: deployedSite
+    ? undefined
+    : {
+        command: 'npm run dev',
+        url: 'http://localhost:5173',
+        reuseExistingServer: true,
+        timeout: 120000,
+      },
 });
