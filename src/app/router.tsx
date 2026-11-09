@@ -15,6 +15,11 @@ import { ManagementDashboardPage } from '@/pages/raf/ManagementDashboardPage';
 import { OfficerTasksPage } from '@/pages/raf/OfficerTasksPage';
 import { RafDashboardPage } from '@/pages/raf/RafDashboardPage';
 import { NotificationsPage } from '@/pages/shared/NotificationsPage';
+import { AuditLogPage } from '@/pages/admin/AuditLogPage';
+import { OrganisationsHealthPage } from '@/pages/admin/OrganisationsHealthPage';
+import { RolesPage } from '@/pages/admin/RolesPage';
+import { UsersPage } from '@/pages/admin/UsersPage';
+import { AuditTab } from '@/pages/claims/workspace/AuditTab';
 import { ReadinessTab } from '@/pages/claims/workspace/ReadinessTab';
 import { RequestDetailPage } from '@/pages/claims/workspace/RequestDetailPage';
 import { RequestsTab } from '@/pages/claims/workspace/RequestsTab';
@@ -64,7 +69,7 @@ function workspace(path: string): RouteObject {
       { path: 'requests', element: <RequestsTab /> },
       { path: 'requests/:requestId', element: <RequestDetailPage /> },
       { path: 'timeline', element: <TimelineTab /> },
-      { path: 'audit', element: <RestrictedTab allowed="audit" /> },
+      { path: 'audit', element: <RestrictedTab allowed="audit"><AuditTab /></RestrictedTab> },
     ],
   };
 }
@@ -101,7 +106,7 @@ export const routes: RouteObject[] = [
       area(['raf_officer'], [{ path: '/raf/dashboard', element: <RafDashboardPage /> }, { path: '/raf/claims', element: <ClaimsQueuePage /> }, workspace('/raf/claims/:id'), { path: '/raf/tasks', element: <OfficerTasksPage /> }, placeholder('/raf/reports')]),
       area(['investigator'], [{ path: '/raf/risk', element: <RiskQueuePage /> }, { path: '/raf/risk/:id', element: <InvestigationWorkspacePage /> }]),
       area(['manager'], [{ path: '/raf/management', element: <ManagementDashboardPage /> }]),
-      area(['admin'], [placeholder('/admin/users'), placeholder('/admin/roles'), placeholder('/admin/organisations'), placeholder('/admin/settings'), placeholder('/admin/audit')]),
+      area(['admin'], [{ path: '/admin/users', element: <UsersPage /> }, { path: '/admin/roles', element: <RolesPage /> }, { path: '/admin/organisations', element: <OrganisationsHealthPage /> }, placeholder('/admin/settings'), { path: '/admin/audit', element: <AuditLogPage /> }]),
       { path: '*', element: <AccessDeniedPage /> },
     ],
   },
