@@ -1,6 +1,7 @@
 import { ArrowLeft, CircleAlert, Copy } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
+import { ReadinessRing } from './Readiness';
 import { StatusChip } from './StatusChip';
 
 type ClaimHeaderProps = {
@@ -36,7 +37,7 @@ export function ClaimHeader({ backTo, backLabel, reference, title, status, readi
               </button>
             </span>
             <StatusChip status={status} />
-            {readinessScore !== null ? <span className="rounded-chip bg-surface-muted px-2 text-small font-semibold text-primary">{`${readinessScore}% ready`}</span> : null}
+            {readinessScore !== null ? <ReadinessRing value={readinessScore} size="mini" /> : null}
             {blocking > 0 ? (
               <span className="inline-flex items-center gap-1 rounded-chip bg-error-tint px-2 text-small font-semibold text-error">
                 <CircleAlert aria-hidden className="size-icon-sm" />

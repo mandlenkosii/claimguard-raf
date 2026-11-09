@@ -428,3 +428,7 @@ verify_jwt = false
 # The function checks its own server key (OP21); the project's new key format is not a JWT.
 [functions.process-document]
 verify_jwt = false
+
+# The function validates the caller itself and checks claim access (OP24).
+[functions.run-readiness]
+verify_jwt = false
