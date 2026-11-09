@@ -112,6 +112,7 @@ export function RiskQueuePage() {
           setPage(1);
         }}
       />
+      <div role="tabpanel" id={`risk-queue-panel-${tab}`} aria-labelledby={`risk-queue-tab-${tab}`} className="space-y-4">
       <FilterBar
         selects={[
           { label: 'Severity', value: filters.severity, onChange: setFilter('severity'), options: SEVERITIES.map((item) => ({ value: item.key, label: item.label })) },
@@ -147,6 +148,7 @@ export function RiskQueuePage() {
         }
       />
       <Pagination page={page} pageSize={PAGE_SIZE} total={queue.data?.total ?? 0} onPageChange={setPage} />
+      </div>
     </div>
   );
 }

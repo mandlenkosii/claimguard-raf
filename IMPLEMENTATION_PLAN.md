@@ -9,7 +9,7 @@
 | App name | ClaimGuard RAF (Claim Intelligence & Assurance Platform) |
 | Built from PRD version | v1.1 (4 November 2026): PRD v1.0 plus the Section 18 answers, recorded in the PRD Change log. Must match the version in docs/PRD.md |
 | Screen designs | Stitch project: https://stitch.withgoogle.com/projects/3126694362497483814 (screens S01–S46 from the ClaimGuard RAF Stitch prompt pack). Exported screens are saved in `docs/designs/` with the file names in Section 7.3 |
-| Plan version | v1.14 |
+| Plan version | v1.15 |
 | Repository | https://github.com/mandlenkosii/claimguard-raf |
 | Status | Ready to build. All 42 Section 18 rows are Answered |
 | Last updated | 09 Nov 2026 |
@@ -2765,23 +2765,23 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | T-DB-1 (re-run) | Database | supabase/tests/database/rls_enabled.test.sql | Every table, including any added since Phase 2, has RLS and policies |
 | T-E2E-1 … T-E2E-8 | E2E | tests/e2e/*.spec.ts | Full end-to-end suite passes on a production build (`npm run build && npm run preview`) |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above are written, run, and fail for the expected reason.
 
 **Step 2: Backend (Green)**
 
-- [ ] Rate limits from Section 9 (Section 18 #21: Supabase Auth limits plus 10 uploads per minute per user, TXT-56); any slow query fixed with an index from 8.4 (new indexes are added to 8.4 first).
-- [ ] Edge Functions log only ids and error codes.
+- [x] Rate limits from Section 9 (Section 18 #21: Supabase Auth limits plus 10 uploads per minute per user, TXT-56); any slow query fixed with an index from 8.4 (new indexes are added to 8.4 first).
+- [x] Edge Functions log only ids and error codes.
 
 **Step 3: Frontend (Green)**
 
-- [ ] Responsive layouts for every screen; S45 mobile and S46 tablet built to their designs.
-- [ ] Every screen re-checked against its Required states in 7.3; offline banner and retry wired through TanStack Query.
+- [x] Responsive layouts for every screen; S45 mobile and S46 tablet built to their designs.
+- [x] Every screen re-checked against its Required states in 7.3; offline banner and retry wired through TanStack Query.
 
 **Step 4: Refactor and full check**
 
-- [ ] Code cleaned up; no duplicated logic; names use PRD key terms.
-- [ ] Full check passes (lint, type check, every automated test from every phase so far).
-- [ ] `npm run test:e2e` passes in full.
+- [x] Code cleaned up; no duplicated logic; names use PRD key terms.
+- [x] Full check passes (lint, type check, every automated test from every phase so far).
+- [x] `npm run test:e2e` passes in full.
 
 **Step 5: Manual checks (human)**
 
@@ -3148,7 +3148,8 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | 7 | 09 Nov 2026 | Committed and merged (PR #7); the Step 5 manual checks are still to be confirmed | 813 / 813 (419 unit + component, 278 pgTAP assertions, 92 integration, 24 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 7: Risk and investigation | S35 and S37 were created from the plan at the human's request |
 | 8 | 09 Nov 2026 | Committed and merged (PR #8); the Step 5 manual checks are still to be confirmed | 887 / 887 (458 unit + component, 290 pgTAP assertions, 113 integration, 26 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 8: Requests and messaging | S22 was created from the plan at the human's request. Per-thread unread counts are skipped (Section 18 #62) |
 | 9 | 09 Nov 2026 | Committed and merged (PR #9); the Step 5 manual checks are still to be confirmed | 950 / 950 (495 unit + component, 296 pgTAP assertions, 126 integration, 33 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 9: Notifications and dashboards | S12, S26, S30, S33 and S38 were created from the plan at the human's request |
-| 10 | 09 Nov 2026 | Built and tested; the Step 5 manual checks are still to be confirmed and the commit is waiting for approval | 999 / 999 (524 unit + component, 302 pgTAP assertions, 138 integration, 35 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 10: Administration | S43 was created from the plan at the human's request. `admin-invite-user` deployed |
+| 10 | 09 Nov 2026 | Committed and merged (PR #10); the Step 5 manual checks are still to be confirmed | 999 / 999 (524 unit + component, 302 pgTAP assertions, 138 integration, 35 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 10: Administration | S43 was created from the plan at the human's request. `admin-invite-user` deployed |
+| 16 | 09 Nov 2026 | Built and tested; the Step 5 manual checks are still to be confirmed and the commit is waiting for approval | 1173 / 1173 (645 unit + component, 302 pgTAP assertions, 145 integration, 81 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 16: Hardening | End-to-end ran on the dev server; T-NFR-1 and the production-build run move to the Vercel preview in Phase 17. Keyboard tests cover sign-in, focus and dialogs, not the whole of T-E2E-1 to 3. S45 and S46 expandable rows: Section 18 #66 |
 
 ---
 
@@ -3223,6 +3224,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | 63 | What fills the S29 board, given Section 18 #16 limits tasks to open requests and unresolved issues? | S29, OP40 | Three columns: To do, In progress, Waiting on client. The design's Done column is left out because finished work is not outstanding work | Answered |
 | 64 | OP46 filters the audit log by severity, but `audit_logs` has no severity | OP46, S42 | Phase 10 filters by date, role, category and outcome. The severity filter is left out rather than inventing a value for each event | Answered |
 | 65 | How does an invited account become active, and can the prototype email fictional addresses? | OP42, S39 | The account is created as Invited with its roles, and the administrator activates it on S39. A set-password email goes to real addresses only; nothing is sent to @example.com. An administrator also cannot change their own account status | Answered |
+| 66 | S45 was never exported, and the human asked to reach deployment quickly | 7.3, Phase 16 | Mobile is built from the plan without an S45 file: every role gets a bottom tab bar at 390px. At tablet width the sidebar becomes the S46 icon rail; wide tables scroll inside their own box instead of S46's expandable rows | Answered |
 
 ---
 
@@ -3236,6 +3238,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | v1.12 | 09 Nov 2026 | Section 18 #62 added and Answered; S22 design created | Phase 8 built |
 | v1.13 | 09 Nov 2026 | Section 18 #63 added and Answered; S12, S26, S30, S33 and S38 designs created | Phase 9 built |
 | v1.14 | 09 Nov 2026 | Section 18 #64 and #65 added and Answered; S43 design created | Phase 10 built |
+| v1.15 | 09 Nov 2026 | Section 18 #66 added and Answered | Phase 16 built |
 | v1.8 | 08 Nov 2026 | Section 18 #53 resolved; #56 added and Answered | Access token added; Phase 5 built |
 | v1.7 | 08 Nov 2026 | Section 18 #54 and #55 added and Answered | Found while building Phase 4 |
 | v1.6 | 08 Nov 2026 | Section 6 adds `SUPABASE_ACCESS_TOKEN`. Section 18 #50, #51, #52 and #53 Answered | Found while building Phase 3 |

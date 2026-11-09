@@ -10,9 +10,9 @@ import { ReadinessSnapshot } from './ReadinessSnapshot';
 
 const PARTY_LABELS: Record<string, string> = { claimant: 'Claimant', legal_representative: 'Legal representative', other_driver: 'Other driver', other_party: 'Other party' };
 
-function Detail({ label, value }: { label: string; value: string | null }) {
+function Detail({ label, value, className }: { label: string; value: string | null; className?: string }) {
   return (
-    <div>
+    <div className={className}>
       <dt className="text-label uppercase text-text-secondary">{label}</dt>
       <dd className="mt-1 text-body text-text">{value || '—'}</dd>
     </div>
@@ -36,12 +36,8 @@ export function OverviewTab() {
             <Detail label="Accident location" value={[claim.accident_location, claim.accident_town, claim.accident_province].filter(Boolean).join(', ')} />
             <Detail label="Claimant role" value={claim.claimant_role && claim.claimant_role[0]!.toUpperCase() + claim.claimant_role.slice(1)} />
             <Detail label="Police station and case number" value={[claim.police_station, claim.cas_number].filter(Boolean).join(' · ')} />
-            <div className="sm:col-span-2">
-              <Detail label="Accident description" value={claim.accident_description} />
-            </div>
-            <div className="sm:col-span-2">
-              <Detail label="Injuries" value={claim.injuries_summary} />
-            </div>
+            <Detail className="sm:col-span-2" label="Accident description" value={claim.accident_description} />
+            <Detail className="sm:col-span-2" label="Injuries" value={claim.injuries_summary} />
           </dl>
         </Card>
         <div className="space-y-6">

@@ -259,13 +259,19 @@ export function DataTable<T>({
   );
 }
 
+/** Every page when there are few; otherwise the ends and the neighbours of the current page. */
+function visiblePages(page: number, pageCount: number): number[] {
+  const all = Array.from({ length: pageCount }, (_, index) => index + 1);
+  return pageCount <= 7 ? all : all.filter((number) => number === 1 || number === pageCount || Math.abs(number - page) <= 1);
+}
+
 type PaginationProps = { page: number; pageSize: number; total: number; onPageChange: (page: number) => void };
 
 export function Pagination({ page, pageSize, total, onPageChange }: PaginationProps) {
   const pageCount = Math.max(1, Math.ceil(total / pageSize));
   const from = total === 0 ? 0 : (page - 1) * pageSize + 1;
   const to = Math.min(total, page * pageSize);
-  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
+  const pages = visiblePages(page, pageCount);
   const buttonClasses =
     'inline-flex h-9 min-w-9 items-center justify-center gap-1 rounded-input border px-2 text-body ' +
     'disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent';
@@ -274,7 +280,7 @@ export function Pagination({ page, pageSize, total, onPageChange }: PaginationPr
   return (
     <nav aria-label="Pagination" className="flex flex-wrap items-center justify-between gap-3 py-3">
       <p className="text-small text-text-secondary">{`Showing ${from}–${to} of ${total}`}</p>
-      <div className="flex items-center gap-1">
+      <div className="flex flex-wrap items-center gap-1">
         <button type="button" className={cn(buttonClasses, idleClasses)} disabled={page <= 1} onClick={() => onPageChange(page - 1)}>
           <ChevronLeft aria-hidden className="size-icon-sm" />
           Previous

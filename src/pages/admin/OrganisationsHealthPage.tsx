@@ -112,6 +112,7 @@ export function OrganisationsHealthPage() {
         ) : null}
       </div>
       <Tabs label="Organisations and system health" idPrefix="admin-orgs" tabs={[{ id: 'organisations', label: 'Organisations' }, { id: 'health', label: 'System health' }]} activeId={tab} onChange={setTab} />
+      <div role="tabpanel" id={`admin-orgs-panel-${tab}`} aria-labelledby={`admin-orgs-tab-${tab}`}>
       {tab === 'organisations' ? (
         <DataTable
           caption="Organisations"
@@ -131,6 +132,7 @@ export function OrganisationsHealthPage() {
       ) : (
         <SystemHealth />
       )}
+      </div>
       {editing ? <OrganisationDrawer key={editing === 'new' ? 'new' : editing.id} organisation={editing === 'new' ? null : editing} onClose={() => setEditing(null)} onSaved={() => void queryClient.invalidateQueries({ queryKey: ['organisations'] })} /> : null}
     </div>
   );
