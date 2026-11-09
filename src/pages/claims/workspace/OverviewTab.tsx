@@ -1,14 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { Card } from '@/components/ui/Card';
-import { Stepper, type Step } from '@/components/ui/Stepper';
-import { CLAIM_STATUSES } from '@/components/domain/StatusChip';
+import { Stepper } from '@/components/ui/Stepper';
+import { claimStages } from '@/components/domain/claimStages';
 import * as api from '@/features/claims/api';
 import { ROLE_LABELS, type RoleKey } from '@/lib/access/roles';
 import { formatDate } from '@/lib/format/dates';
 import { useWorkspaceClaim } from './ClaimWorkspaceLayout';
 import { ReadinessSnapshot } from './ReadinessSnapshot';
 
-const STAGES = ['draft', 'documents_needed', 'validation', 'ready', 'submitted', 'raf_review', 'assessment', 'negotiation', 'settlement', 'closed'];
 const PARTY_LABELS: Record<string, string> = { claimant: 'Claimant', legal_representative: 'Legal representative', other_driver: 'Other driver', other_party: 'Other party' };
 
 function Detail({ label, value }: { label: string; value: string | null }) {
@@ -20,11 +19,6 @@ function Detail({ label, value }: { label: string; value: string | null }) {
   );
 }
 
-function stages(status: string): Step[] {
-  const current = STAGES.indexOf(status === 'information_required' ? 'raf_review' : status);
-  return STAGES.map((id, index) => ({ id, label: CLAIM_STATUSES[id]!, status: index < current ? 'complete' : index === current ? 'current' : 'upcoming' }));
-}
-
 /** S14. */
 export function OverviewTab() {
   const claim = useWorkspaceClaim();
@@ -32,7 +26,7 @@ export function OverviewTab() {
   return (
     <div className="space-y-6">
       <Card>
-        <Stepper label="Claim progress" variant="tracker" steps={stages(claim.status)} />
+        <Stepper label="Claim progress" variant="tracker" steps={claimStages(claim.status)} />
       </Card>
       <ReadinessSnapshot claimId={claim.id} />
       <div className="grid items-start gap-6 lg:grid-cols-[2fr_1fr]">

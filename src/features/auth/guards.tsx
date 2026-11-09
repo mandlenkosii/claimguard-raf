@@ -1,3 +1,4 @@
+import { useUnreadCount } from '@/features/notifications/useUnreadCount';
 import { Navigate, Outlet, useLocation } from 'react-router';
 import { useAuth } from '@/app/auth';
 import { Skeleton } from '@/components/ui/States';
@@ -57,11 +58,12 @@ export function DashboardRoute() {
 
 export function ShellLayout() {
   const { session } = useAuth();
+  const unreadCount = useUnreadCount(Boolean(session));
   if (!session) return null;
   const [primary] = session.roles;
   if (!primary) return <AccessDeniedPage />;
   return (
-    <AppShell role={primary} roles={session.roles} userName={session.displayName} unreadCount={0} onSignOut={() => void api.signOut()}>
+    <AppShell role={primary} roles={session.roles} userName={session.displayName} unreadCount={unreadCount} onSignOut={() => void api.signOut()}>
       <Outlet />
     </AppShell>
   );
