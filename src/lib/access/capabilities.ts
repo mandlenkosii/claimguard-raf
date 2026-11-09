@@ -21,6 +21,11 @@ export function canUploadDocuments(session: AuthSession): boolean {
   return session.roles.some((role) => role === 'claimant' || role === 'lawyer') || session.capabilities.includes('documents.upload');
 }
 
+/** SEC18. */
+export function canCreateRequests(session: AuthSession): boolean {
+  return session.capabilities.includes('requests.create');
+}
+
 export function canCreateClaim(session: AuthSession): boolean {
   return session.roles.some((role) => role === 'claimant' || role === 'lawyer');
 }

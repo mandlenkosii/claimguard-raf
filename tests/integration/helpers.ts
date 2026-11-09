@@ -1,3 +1,6 @@
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 const options = { auth: { persistSession: false, autoRefreshToken: false } };
@@ -13,10 +16,28 @@ export const anonClient = (): SupabaseClient => createClient(process.env.VITE_SU
 
 export const adminClient = (): SupabaseClient => createClient(process.env.VITE_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, options);
 
+// The hosted project limits sign-ins per IP, so demo-user sessions are reused between test files.
+const SESSION_FILE = join(tmpdir(), 'claimguard-integration-sessions.json');
+type SavedSession = { access_token: string; refresh_token: string; expires_at: number };
+
+function savedSessions(): Record<string, SavedSession> {
+  return existsSync(SESSION_FILE) ? (JSON.parse(readFileSync(SESSION_FILE, 'utf8')) as Record<string, SavedSession>) : {};
+}
+
 export async function signedIn(email: string, password = process.env.DEMO_USER_PASSWORD!): Promise<SupabaseClient> {
   const client = anonClient();
-  const { error } = await client.auth.signInWithPassword({ email, password });
+  const reusable = password === process.env.DEMO_USER_PASSWORD;
+  const saved = reusable ? savedSessions()[email] : undefined;
+  if (saved && saved.expires_at * 1000 > Date.now() + 600_000) {
+    const { error } = await client.auth.setSession(saved);
+    if (!error) return client;
+  }
+  const { data, error } = await client.auth.signInWithPassword({ email, password });
   if (error) throw new Error(`Sign-in failed for ${email}: ${error.message}`);
+  if (reusable) {
+    const { access_token, refresh_token, expires_at } = data.session;
+    writeFileSync(SESSION_FILE, JSON.stringify({ ...savedSessions(), [email]: { access_token, refresh_token, expires_at: expires_at! } }));
+  }
   return client;
 }
 
