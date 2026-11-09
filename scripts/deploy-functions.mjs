@@ -3,7 +3,7 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 
-const FUNCTIONS = ['demo-sign-in', 'process-document', 'run-readiness'];
+const FUNCTIONS = ['demo-sign-in', 'process-document', 'run-readiness', 'admin-invite-user'];
 
 if (!existsSync('.env')) {
   console.error('Missing .env (Section 6).');

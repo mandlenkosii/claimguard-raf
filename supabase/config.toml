@@ -432,3 +432,7 @@ verify_jwt = false
 # The function validates the caller itself and checks claim access (OP24).
 [functions.run-readiness]
 verify_jwt = false
+
+# The function validates the caller itself and requires an active administrator (OP42).
+[functions.admin-invite-user]
+verify_jwt = false
