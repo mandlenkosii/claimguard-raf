@@ -9,6 +9,12 @@ import { RegisterPage } from '@/pages/auth/RegisterPage';
 import { ClaimWorkspaceLayout, RestrictedTab } from '@/pages/claims/workspace/ClaimWorkspaceLayout';
 import { DocumentsTab } from '@/pages/claims/workspace/DocumentsTab';
 import { MessagesTab } from '@/pages/claims/workspace/MessagesTab';
+import { LawyerDashboardPage } from '@/pages/lawyer/LawyerDashboardPage';
+import { LawyerTasksPage } from '@/pages/lawyer/LawyerTasksPage';
+import { ManagementDashboardPage } from '@/pages/raf/ManagementDashboardPage';
+import { OfficerTasksPage } from '@/pages/raf/OfficerTasksPage';
+import { RafDashboardPage } from '@/pages/raf/RafDashboardPage';
+import { NotificationsPage } from '@/pages/shared/NotificationsPage';
 import { ReadinessTab } from '@/pages/claims/workspace/ReadinessTab';
 import { RequestDetailPage } from '@/pages/claims/workspace/RequestDetailPage';
 import { RequestsTab } from '@/pages/claims/workspace/RequestsTab';
@@ -90,11 +96,11 @@ export const routes: RouteObject[] = [
         children: [area(['claimant'], [{ path: '/dashboard', element: <ClaimantDashboardPage /> }])],
       },
       area(['claimant', 'lawyer', 'raf_officer'], [{ path: '/claims/new', element: <NewClaimPage /> }]),
-      area(ROLE_ORDER, [{ path: '/claims', element: <ClaimsListPage /> }, workspace('/claims/:id'), placeholder('/notifications'), { path: '/profile', element: <ProfilePage /> }]),
-      area(['lawyer'], [placeholder('/lawyer/dashboard'), { path: '/lawyer/claims', element: <ClaimsListPage /> }, { path: '/lawyer/clients', element: <ClientsPage /> }, { path: '/lawyer/clients/:id', element: <ClientDetailPage /> }, placeholder('/lawyer/tasks'), { path: '/lawyer/profile', element: <ProfilePage /> }]),
-      area(['raf_officer'], [placeholder('/raf/dashboard'), { path: '/raf/claims', element: <ClaimsQueuePage /> }, workspace('/raf/claims/:id'), placeholder('/raf/tasks'), placeholder('/raf/reports')]),
+      area(ROLE_ORDER, [{ path: '/claims', element: <ClaimsListPage /> }, workspace('/claims/:id'), { path: '/notifications', element: <NotificationsPage /> }, { path: '/profile', element: <ProfilePage /> }]),
+      area(['lawyer'], [{ path: '/lawyer/dashboard', element: <LawyerDashboardPage /> }, { path: '/lawyer/claims', element: <ClaimsListPage /> }, { path: '/lawyer/clients', element: <ClientsPage /> }, { path: '/lawyer/clients/:id', element: <ClientDetailPage /> }, { path: '/lawyer/tasks', element: <LawyerTasksPage /> }, { path: '/lawyer/profile', element: <ProfilePage /> }]),
+      area(['raf_officer'], [{ path: '/raf/dashboard', element: <RafDashboardPage /> }, { path: '/raf/claims', element: <ClaimsQueuePage /> }, workspace('/raf/claims/:id'), { path: '/raf/tasks', element: <OfficerTasksPage /> }, placeholder('/raf/reports')]),
       area(['investigator'], [{ path: '/raf/risk', element: <RiskQueuePage /> }, { path: '/raf/risk/:id', element: <InvestigationWorkspacePage /> }]),
-      area(['manager'], [placeholder('/raf/management')]),
+      area(['manager'], [{ path: '/raf/management', element: <ManagementDashboardPage /> }]),
       area(['admin'], [placeholder('/admin/users'), placeholder('/admin/roles'), placeholder('/admin/organisations'), placeholder('/admin/settings'), placeholder('/admin/audit')]),
       { path: '*', element: <AccessDeniedPage /> },
     ],
