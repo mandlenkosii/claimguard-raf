@@ -9,6 +9,9 @@ import { RegisterPage } from '@/pages/auth/RegisterPage';
 import { ClaimWorkspaceLayout, RestrictedTab } from '@/pages/claims/workspace/ClaimWorkspaceLayout';
 import { DocumentsTab } from '@/pages/claims/workspace/DocumentsTab';
 import { ReadinessTab } from '@/pages/claims/workspace/ReadinessTab';
+import { RiskTab } from '@/pages/claims/workspace/RiskTab';
+import { InvestigationWorkspacePage } from '@/pages/risk/InvestigationWorkspacePage';
+import { RiskQueuePage } from '@/pages/risk/RiskQueuePage';
 import { OverviewTab } from '@/pages/claims/workspace/OverviewTab';
 import { TimelineTab } from '@/pages/claims/workspace/TimelineTab';
 import { ClientDetailPage } from '@/pages/lawyer/ClientDetailPage';
@@ -47,7 +50,7 @@ function workspace(path: string): RouteObject {
       { index: true, element: <OverviewTab /> },
       { path: 'documents', element: <DocumentsTab /> },
       { path: 'readiness', element: <ReadinessTab /> },
-      { path: 'risk', element: <RestrictedTab allowed="risk" /> },
+      { path: 'risk', element: <RestrictedTab allowed="risk"><RiskTab /></RestrictedTab> },
       { path: 'messages', element: null },
       { path: 'requests', element: null },
       { path: 'timeline', element: <TimelineTab /> },
@@ -86,7 +89,7 @@ export const routes: RouteObject[] = [
       area(ROLE_ORDER, [{ path: '/claims', element: <ClaimsListPage /> }, workspace('/claims/:id'), placeholder('/notifications'), { path: '/profile', element: <ProfilePage /> }]),
       area(['lawyer'], [placeholder('/lawyer/dashboard'), { path: '/lawyer/claims', element: <ClaimsListPage /> }, { path: '/lawyer/clients', element: <ClientsPage /> }, { path: '/lawyer/clients/:id', element: <ClientDetailPage /> }, placeholder('/lawyer/tasks'), { path: '/lawyer/profile', element: <ProfilePage /> }]),
       area(['raf_officer'], [placeholder('/raf/dashboard'), { path: '/raf/claims', element: <ClaimsQueuePage /> }, workspace('/raf/claims/:id'), placeholder('/raf/tasks'), placeholder('/raf/reports')]),
-      area(['investigator'], [placeholder('/raf/risk')]),
+      area(['investigator'], [{ path: '/raf/risk', element: <RiskQueuePage /> }, { path: '/raf/risk/:id', element: <InvestigationWorkspacePage /> }]),
       area(['manager'], [placeholder('/raf/management')]),
       area(['admin'], [placeholder('/admin/users'), placeholder('/admin/roles'), placeholder('/admin/organisations'), placeholder('/admin/settings'), placeholder('/admin/audit')]),
       { path: '*', element: <AccessDeniedPage /> },

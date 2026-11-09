@@ -2,6 +2,28 @@ import { cn } from '@/lib/cn';
 
 export type ComparisonRow = { field: string; sourceA: string; sourceB: string; sourceALabel?: string; sourceBLabel?: string; match: boolean };
 
+const FIELD_LABELS: Record<string, string> = {
+  full_name: 'Full name',
+  id_number: 'ID number',
+  date_of_birth: 'Date of birth',
+  accident_date: 'Accident date',
+  admission_date: 'Admission date',
+};
+const fieldLabel = (field: string) => FIELD_LABELS[field] ?? field;
+
+/** The first source compared with each of the others. */
+export function comparisonRows(evidence: Array<{ source: string; field: string; value?: string }>): ComparisonRow[] {
+  const [first, ...others] = evidence;
+  return others.map((other) => ({
+    field: first!.field === other.field ? fieldLabel(first!.field) : `${fieldLabel(first!.field)} / ${fieldLabel(other.field)}`,
+    sourceA: first!.value ?? '—',
+    sourceB: other.value ?? '—',
+    sourceALabel: first!.source,
+    sourceBLabel: other.source,
+    match: first!.value === other.value,
+  }));
+}
+
 function Value({ value, label }: { value: string; label?: string }) {
   return (
     <>

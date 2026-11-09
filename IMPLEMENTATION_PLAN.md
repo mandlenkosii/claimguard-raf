@@ -9,7 +9,7 @@
 | App name | ClaimGuard RAF (Claim Intelligence & Assurance Platform) |
 | Built from PRD version | v1.1 (4 November 2026): PRD v1.0 plus the Section 18 answers, recorded in the PRD Change log. Must match the version in docs/PRD.md |
 | Screen designs | Stitch project: https://stitch.withgoogle.com/projects/3126694362497483814 (screens S01–S46 from the ClaimGuard RAF Stitch prompt pack). Exported screens are saved in `docs/designs/` with the file names in Section 7.3 |
-| Plan version | v1.10 |
+| Plan version | v1.11 |
 | Repository | https://github.com/mandlenkosii/claimguard-raf |
 | Status | Ready to build. All 42 Section 18 rows are Answered |
 | Last updated | 09 Nov 2026 |
@@ -2209,25 +2209,25 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | T-E2E-2 | E2E | tests/e2e/risk.spec.ts | Detect a simulated inconsistency and review it as an investigator (PRD 14.4) |
 | T-C-11, T-C-26, T-C-31 | Component | tests/component/domain/*.test.tsx | SeverityChip, AlertCard and DocumentPreview (SAMPLE label, no highlight boxes yet) |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above are written, run, and fail for the expected reason.
 
 **Step 2: Backend (Green)**
 
-- [ ] Migration `…_ops_risk.sql`: `update_risk_alert`, `record_risk_review`; `run-readiness` creates alerts only for rules with `creates_risk_alert` and writes evidence rows.
-- [ ] Only RULE-002 (identity_mismatch, MEDIUM), RULE-003 (date_inconsistency, HIGH) and RULE-004 (duplicate_hash, LOW) can create alerts, and only when `creates_risk_alert` is true; the other PRD 5.7 indicators are Deferred (Section 18 #11).
+- [x] Migration `…_ops_risk.sql`: `update_risk_alert`, `record_risk_review`; `run-readiness` creates alerts only for rules with `creates_risk_alert` and writes evidence rows.
+- [x] Only RULE-002 (identity_mismatch, MEDIUM), RULE-003 (date_inconsistency, HIGH) and RULE-004 (duplicate_hash, LOW) can create alerts, and only when `creates_risk_alert` is true; the other PRD 5.7 indicators are Deferred (Section 18 #11).
 
 **Step 3: Frontend (Green)**
 
-- [ ] S19 Risk tab: Normal, Empty, Loading, Error, Offline; not rendered for unauthorised roles.
-- [ ] S35 Risk queue: Normal, Empty, Loading, Error, Offline (the Investigator workload card is added in Phase 15).
-- [ ] S36 Investigation workspace (three columns): Normal, Loading, Error, Offline, note saving, correction note.
-- [ ] M3 Record outcome modal with every state.
+- [x] S19 Risk tab: Normal, Empty, Loading, Error, Offline; not rendered for unauthorised roles.
+- [x] S35 Risk queue: Normal, Empty, Loading, Error, Offline (the Investigator workload card is added in Phase 15).
+- [x] S36 Investigation workspace (three columns): Normal, Loading, Error, Offline, note saving, correction note.
+- [x] M3 Record outcome modal with every state.
 
 **Step 4: Refactor and full check**
 
-- [ ] Code cleaned up; no duplicated logic; names use PRD key terms.
-- [ ] Full check passes (lint, type check, every automated test from every phase so far).
-- [ ] `npm run test:e2e` passes.
+- [x] Code cleaned up; no duplicated logic; names use PRD key terms.
+- [x] Full check passes (lint, type check, every automated test from every phase so far).
+- [x] `npm run test:e2e` passes.
 
 **Step 5: Manual checks (human)**
 
@@ -3144,7 +3144,8 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | 3 | 08 Nov 2026 | Committed with outstanding items: T-INT-5 and the Step 5 manual checks | 438 / 442 (176 unit + component, 241 pgTAP assertions, 12 of 16 integration, 9 end-to-end) | Phase 3: Authentication and profiles | OUTSTANDING: the 4 T-INT-5 tests fail because `demo-sign-in` is not deployed (needs `SUPABASE_ACCESS_TOKEN`, Section 18 #53), so `npm run check` exits with those 4 failures only and the S05 demo buttons show TXT-2. They are not skipped. The function code is written and passes `deno check`. To finish: add the token, run `npm run functions:deploy`, re-run `npm run check`. End-to-end: 9 / 9 |
 | 4 | 08 Nov 2026 | Committed with outstanding items: T-INT-5 (from Phase 3) and the Step 5 manual checks | 570 / 574 (251 unit + component, 267 pgTAP assertions, 37 of 41 integration, 15 end-to-end) | Phase 4: Claims and workflow | Every Phase 4 test passes. The only failures are the 4 outstanding T-INT-5 tests from Phase 3 (Section 18 #53). Integration tests add fictional claims to the hosted project; `npm run db:reset` clears them |
 | 5 | 08 Nov 2026 | Committed; the Step 5 manual checks are still to be confirmed | 649 / 649 (308 unit + component, 267 pgTAP assertions, 57 integration, 17 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 5: Documents | The 4 T-INT-5 tests from Phase 3 now pass: `demo-sign-in` is deployed. `process-document` is deployed and started through `pg_net` (Section 18 #56) |
-| 6 | 09 Nov 2026 | Built and tested; the Step 5 manual checks are still to be confirmed and the commit is waiting for approval | 742 / 742 (381 unit + component, 267 pgTAP assertions, 74 integration, 20 end-to-end). `npm run check` exits 0; gitleaks: no leaks; `_shared/rules` line coverage 99.5% | Phase 6: Readiness and validation | `run-readiness` deployed. Section 18 #59 is Open: the 7-day admission window needs the human's confirmation |
+| 6 | 09 Nov 2026 | Committed and merged (PR #6); the Step 5 manual checks are still to be confirmed | 742 / 742 (381 unit + component, 267 pgTAP assertions, 74 integration, 20 end-to-end). `npm run check` exits 0; gitleaks: no leaks; `_shared/rules` line coverage 99.5% | Phase 6: Readiness and validation | `run-readiness` deployed |
+| 7 | 09 Nov 2026 | Built and tested; the Step 5 manual checks are still to be confirmed and the commit is waiting for approval | 813 / 813 (419 unit + component, 278 pgTAP assertions, 92 integration, 24 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 7: Risk and investigation | S35 and S37 were created from the plan at the human's request |
 
 ---
 
@@ -3212,8 +3213,9 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | 56 | How does `confirm_document_upload` start `process-document`, which only server callers may use? | OP20, OP21 | Through `pg_net`, with the function address and key held in the database Vault by `scripts/set-vault-secrets.mjs`. The project's `sb_secret` key is copied to the function as `PROCESS_DOCUMENT_KEY` | Answered |
 | 57 | Which phases are needed before the first deployment? | 13.0, 16 | Shortest route chosen by the human on 09 Nov 2026: Phases 6, 7, 8, 9, 10, 16, 17, delivering every Must feature. Should Phases 11–15 are postponed until after the first release and done if time allows. For the first release, Sections 15 and 16 and Phases 16 and 17 apply to the built Must features only | Answered |
 | 58 | Where do the required-field checks live, given `claim_checks` and `claim_issues` must point at a rule? | BR12, Section 18 #10, 8.1 | Recorded under an extra rule, RULE-000 Required claim field missing (blocking, required information), added by the Phase 6 migration | Answered |
-| 59 | How long after the accident can a hospital admission be and still be consistent (RULE-003)? | BR9 | The PRD gives no number. Phase 6 uses 7 days (`ADMISSION_WINDOW_DAYS`), and an admission before the accident always fails. The human needs to confirm or change it | Open |
+| 59 | How long after the accident can a hospital admission be and still be consistent (RULE-003)? | BR9 | 7 days (`ADMISSION_WINDOW_DAYS`), confirmed by the human on 09 Nov 2026; an admission before the accident always fails | Answered |
 | 60 | The mock OCR returned fixed names and dates, so every upload would conflict with the claim and raise risk alerts | PRD 11.3, BR8, BR9 | The mock copies the claim's details, so ordinary uploads agree. A file name containing IDENTITY_CONFLICT or DATE_CONFLICT produces those scenarios | Answered |
+| 61 | An investigator's evidence scope is "assigned", so who can see and pick up a new unassigned alert? | SEC14, SEC15, OP27 | S35 lists unassigned alerts (reference, claim, severity, no evidence) to investigators holding `investigations.review`, who can assign them. Evidence and notes stay closed until the alert is assigned, so `can_access_alert` is unchanged | Answered |
 
 ---
 
@@ -3223,6 +3225,7 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | --- | --- | --- | --- |
 | v1.9 | 09 Nov 2026 | Section 18 #57 added and Answered: shortest route to first release | Chosen by the human |
 | v1.10 | 09 Nov 2026 | Section 18 #58 and #60 added and Answered; #59 added and Open | Phase 6 built |
+| v1.11 | 09 Nov 2026 | Section 18 #59 Answered (7 days); #61 added and Answered; S35 and S37 designs created | Phase 7 built |
 | v1.8 | 08 Nov 2026 | Section 18 #53 resolved; #56 added and Answered | Access token added; Phase 5 built |
 | v1.7 | 08 Nov 2026 | Section 18 #54 and #55 added and Answered | Found while building Phase 4 |
 | v1.6 | 08 Nov 2026 | Section 6 adds `SUPABASE_ACCESS_TOKEN`. Section 18 #50, #51, #52 and #53 Answered | Found while building Phase 3 |
