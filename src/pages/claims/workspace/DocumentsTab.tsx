@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Check, Download, FileText, Lock, Plus, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router';
 import { useAuth } from '@/app/auth';
 import { StateChip } from '@/components/domain/StateChip';
@@ -43,6 +43,17 @@ export function DocumentsTab() {
     refetchInterval: (query) => (query.state.data?.some((row) => row.processing_status === 'uploaded' || row.processing_status === 'processing') ? 3000 : false),
   });
   const refresh = () => void queryClient.invalidateQueries({ queryKey: ['documents', id] });
+
+  // The server re-runs the checks when processing ends, so the score and issues must follow (US32).
+  const processing = documents.data?.some((row) => row.processing_status === 'uploaded' || row.processing_status === 'processing') ?? false;
+  const wasProcessing = useRef(false);
+  useEffect(() => {
+    if (wasProcessing.current && !processing) {
+      void queryClient.invalidateQueries({ queryKey: ['readiness', id] });
+      void queryClient.invalidateQueries({ queryKey: ['claim', id] });
+    }
+    wasProcessing.current = processing;
+  }, [processing, id, queryClient]);
 
   const retry = useMutation({ mutationFn: (documentId: string) => api.retryProcessing(documentId), onSuccess: refresh, onError: () => toast.show({ tone: 'error', message: TXT[2] }) });
   const review = useMutation({

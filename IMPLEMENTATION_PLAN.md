@@ -9,10 +9,10 @@
 | App name | ClaimGuard RAF (Claim Intelligence & Assurance Platform) |
 | Built from PRD version | v1.1 (4 November 2026): PRD v1.0 plus the Section 18 answers, recorded in the PRD Change log. Must match the version in docs/PRD.md |
 | Screen designs | Stitch project: https://stitch.withgoogle.com/projects/3126694362497483814 (screens S01–S46 from the ClaimGuard RAF Stitch prompt pack). Exported screens are saved in `docs/designs/` with the file names in Section 7.3 |
-| Plan version | v1.8 |
+| Plan version | v1.10 |
 | Repository | https://github.com/mandlenkosii/claimguard-raf |
 | Status | Ready to build. All 42 Section 18 rows are Answered |
-| Last updated | 08 Nov 2026 |
+| Last updated | 09 Nov 2026 |
 
 ---
 
@@ -1591,6 +1591,8 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 
 ### 13.0 Phase overview
 
+**Build order for the first release (Section 18 #57):** 1–5 (done), 6, 7, 8, 9, 10, 16, 17. Should Phases 11–15 are postponed until after the first release.
+
 | Phase | Name | Features | Screens | Main tests |
 | --- | --- | --- | --- | --- |
 | 1 | Foundation | — | S01–S04, AppShell, S44 components | T-SETUP-1 … 8, T-C-1 … 9, T-C-14 … 21, T-BR32-1, T-S1-1 … T-S4-1, T-NAV-1, T-NAV-2 |
@@ -2128,24 +2130,24 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | T-E2E-1 | E2E | tests/e2e/claimFlow.spec.ts | Create a claim, upload documents, run checks and resolve an issue (PRD 14.4) |
 | T-C-13, T-C-25, T-C-27 | Component | tests/component/domain/*.test.tsx | ReadinessRing / CategoryBar, IssueCard and ComparisonTable render every state |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above are written, run, and fail for the expected reason.
 
 **Step 2: Backend (Green)**
 
-- [ ] `_shared/rules/readiness.ts`, `rules/rule001.ts` … `rule005.ts`, `rules/compare.ts`.
-- [ ] Edge Function `run-readiness`: reads the claim, documents and extracted fields, runs the enabled rules, writes the assessment, checks, issues (create and auto-resolve) and any configured alerts, then clears `readiness_stale`; called by `process-document` and by "Re-run checks".
-- [ ] Migration `…_ops_readiness.sql`: `update_issue_status`; `transition_claim_status` extended with the blocking-issue and stale prerequisites.
+- [x] `_shared/rules/readiness.ts`, `rules/rule001.ts` … `rule005.ts`, `rules/compare.ts`.
+- [x] Edge Function `run-readiness`: reads the claim, documents and extracted fields, runs the enabled rules, writes the assessment, checks, issues (create and auto-resolve) and any configured alerts, then clears `readiness_stale`; called by `process-document` and by "Re-run checks".
+- [x] Migration `…_ops_readiness.sql`: `update_issue_status`; `transition_claim_status` extended with the blocking-issue and stale prerequisites.
 
 **Step 3: Frontend (Green)**
 
-- [ ] S18 Readiness tab: states Normal, Not yet assessed, Loading, Re-running, Error, Offline; groups Blocking / Warnings / Resolved.
-- [ ] S14 Readiness snapshot card and ClaimHeader mini-ring show live data.
+- [x] S18 Readiness tab: states Normal, Not yet assessed, Loading, Re-running, Error, Offline; groups Blocking / Warnings / Resolved.
+- [x] S14 Readiness snapshot card and ClaimHeader mini-ring show live data.
 
 **Step 4: Refactor and full check**
 
-- [ ] Code cleaned up; no duplicated logic; names use PRD key terms.
-- [ ] Full check passes (lint, type check, every automated test from every phase so far), with at least 80% line coverage of `_shared/rules`.
-- [ ] `npm run test:e2e` passes.
+- [x] Code cleaned up; no duplicated logic; names use PRD key terms.
+- [x] Full check passes (lint, type check, every automated test from every phase so far), with at least 80% line coverage of `_shared/rules`.
+- [x] `npm run test:e2e` passes.
 
 **Step 5: Manual checks (human)**
 
@@ -3142,6 +3144,7 @@ The PRD has no edge-case section, so the T-EDGE list in Section 15 is drawn from
 | 3 | 08 Nov 2026 | Committed with outstanding items: T-INT-5 and the Step 5 manual checks | 438 / 442 (176 unit + component, 241 pgTAP assertions, 12 of 16 integration, 9 end-to-end) | Phase 3: Authentication and profiles | OUTSTANDING: the 4 T-INT-5 tests fail because `demo-sign-in` is not deployed (needs `SUPABASE_ACCESS_TOKEN`, Section 18 #53), so `npm run check` exits with those 4 failures only and the S05 demo buttons show TXT-2. They are not skipped. The function code is written and passes `deno check`. To finish: add the token, run `npm run functions:deploy`, re-run `npm run check`. End-to-end: 9 / 9 |
 | 4 | 08 Nov 2026 | Committed with outstanding items: T-INT-5 (from Phase 3) and the Step 5 manual checks | 570 / 574 (251 unit + component, 267 pgTAP assertions, 37 of 41 integration, 15 end-to-end) | Phase 4: Claims and workflow | Every Phase 4 test passes. The only failures are the 4 outstanding T-INT-5 tests from Phase 3 (Section 18 #53). Integration tests add fictional claims to the hosted project; `npm run db:reset` clears them |
 | 5 | 08 Nov 2026 | Committed; the Step 5 manual checks are still to be confirmed | 649 / 649 (308 unit + component, 267 pgTAP assertions, 57 integration, 17 end-to-end). `npm run check` exits 0; gitleaks: no leaks | Phase 5: Documents | The 4 T-INT-5 tests from Phase 3 now pass: `demo-sign-in` is deployed. `process-document` is deployed and started through `pg_net` (Section 18 #56) |
+| 6 | 09 Nov 2026 | Built and tested; the Step 5 manual checks are still to be confirmed and the commit is waiting for approval | 742 / 742 (381 unit + component, 267 pgTAP assertions, 74 integration, 20 end-to-end). `npm run check` exits 0; gitleaks: no leaks; `_shared/rules` line coverage 99.5% | Phase 6: Readiness and validation | `run-readiness` deployed. Section 18 #59 is Open: the 7-day admission window needs the human's confirmation |
 
 ---
 
@@ -3207,6 +3210,10 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 | 54 | T-BR4-2 says an invalid transition "raises", but T-BR6-1 needs the blocked attempt to be logged, and raising would roll that log back | OP13, T-BR4-2, T-BR6-1 | `transition_claim_status` returns `{ ok: false, code, reason }` for a refused transition, changes nothing and keeps the log. Only "no access" and unexpected errors stop earlier | Answered |
 | 55 | S11 New claim was never exported from Stitch and the human chose to continue without it | 7.3, Phase 4 | S11 is built from the plan's fields and tests in the style of the other screens, with six steps: Claimant, Accident, Injuries, Vehicles, Parties, Review. It can be matched to a design later if one is added | Answered |
 | 56 | How does `confirm_document_upload` start `process-document`, which only server callers may use? | OP20, OP21 | Through `pg_net`, with the function address and key held in the database Vault by `scripts/set-vault-secrets.mjs`. The project's `sb_secret` key is copied to the function as `PROCESS_DOCUMENT_KEY` | Answered |
+| 57 | Which phases are needed before the first deployment? | 13.0, 16 | Shortest route chosen by the human on 09 Nov 2026: Phases 6, 7, 8, 9, 10, 16, 17, delivering every Must feature. Should Phases 11–15 are postponed until after the first release and done if time allows. For the first release, Sections 15 and 16 and Phases 16 and 17 apply to the built Must features only | Answered |
+| 58 | Where do the required-field checks live, given `claim_checks` and `claim_issues` must point at a rule? | BR12, Section 18 #10, 8.1 | Recorded under an extra rule, RULE-000 Required claim field missing (blocking, required information), added by the Phase 6 migration | Answered |
+| 59 | How long after the accident can a hospital admission be and still be consistent (RULE-003)? | BR9 | The PRD gives no number. Phase 6 uses 7 days (`ADMISSION_WINDOW_DAYS`), and an admission before the accident always fails. The human needs to confirm or change it | Open |
+| 60 | The mock OCR returned fixed names and dates, so every upload would conflict with the claim and raise risk alerts | PRD 11.3, BR8, BR9 | The mock copies the claim's details, so ordinary uploads agree. A file name containing IDENTITY_CONFLICT or DATE_CONFLICT produces those scenarios | Answered |
 
 ---
 
@@ -3214,6 +3221,8 @@ Every row must be **Answered** before Phase 1 starts. Section 1 step 4 and the P
 
 | Plan version | Date | What changed | Why |
 | --- | --- | --- | --- |
+| v1.9 | 09 Nov 2026 | Section 18 #57 added and Answered: shortest route to first release | Chosen by the human |
+| v1.10 | 09 Nov 2026 | Section 18 #58 and #60 added and Answered; #59 added and Open | Phase 6 built |
 | v1.8 | 08 Nov 2026 | Section 18 #53 resolved; #56 added and Answered | Access token added; Phase 5 built |
 | v1.7 | 08 Nov 2026 | Section 18 #54 and #55 added and Answered | Found while building Phase 4 |
 | v1.6 | 08 Nov 2026 | Section 6 adds `SUPABASE_ACCESS_TOKEN`. Section 18 #50, #51, #52 and #53 Answered | Found while building Phase 3 |

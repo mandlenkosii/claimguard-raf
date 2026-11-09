@@ -38,7 +38,7 @@ describe('Phase 4 domain components', () => {
     expect(screen.getByText('CG-2026-000142')).toHaveClass('font-mono');
     expect(screen.getByRole('heading', { name: 'Sipho Ndlovu' })).toBeInTheDocument();
     expect(screen.getByText('Validation')).toBeInTheDocument();
-    expect(screen.getByText('85% ready')).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Readiness 85%' })).toHaveAttribute('data-size', 'mini');
     expect(screen.getByText('1 blocking issue')).toBeInTheDocument();
   });
 
